@@ -18,22 +18,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="写NFC" />
-
-    <Button
-        android:id="@+id/jumpNFC_sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="NFC加密" />
-
-    <Button
-        android:id="@+id/jumpNFC_rp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="NFC解密" />
-
-    <Button
-        android:id="@+id/jumpNFC_write_with_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="NFC带密码写" />
 </LinearLayout>
