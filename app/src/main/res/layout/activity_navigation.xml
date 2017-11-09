@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.leiming.mydemo.activity.NavigationActivity">
+
+    <EditText
+        android:id="@+id/navigation_lat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="39.9064915780"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="101dp" />
+
+    <EditText
+        android:id="@+id/navigation_lng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="116.4043802659"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="49dp" />
+
+    <Button
+        android:id="@+id/navigation_gaode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="高德导航"
+        tools:layout_editor_absoluteX="183dp"
+        tools:layout_editor_absoluteY="242dp" />
+
+    <Button
+        android:id="@+id/navigation_baidu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="百度导航"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="242dp" />
+</LinearLayout>

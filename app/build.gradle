@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'mydemo'
+            keyPassword 'mydemo'
+            storeFile file('E:/AndroidDemo/test/MyDemo/app/mydemo.jks')
+            storePassword 'mydemo'
+        }
+        debug {
+            keyAlias 'mydemo'
+            keyPassword 'mydemo'
+            storeFile file('E:/AndroidDemo/test/MyDemo/app/mydemo.jks')
+            storePassword 'mydemo'
+        }
+    }
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.example.leiming.mydemo"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            debug {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                buildConfigField "String", "BASE_URL", "\"https://api.douban.com/v2/movie/\""
+                buildConfigField "int", "INT", "0"
+                buildConfigField "boolean", "BOOLEAN", "true"
+                signingConfig signingConfigs.debug
+            }
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://api.douban.com/v2/movie/\""
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile files('libs/mail.jar')
+    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.7.7.1'
+    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.7.7.1'
+    compile 'tv.danmaku.ijk.media:ijkplayer-exo:0.7.7.1'
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'javax.mail:mail:1.5.0-b01'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.google.code.gson:gson:2.8.1'
+    testCompile 'junit:junit:4.12'
+}

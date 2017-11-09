@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.leiming.mydemo.activity.nfc.NFCActivity">
+
+    <Button
+        android:id="@+id/jumpNFC_r"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="读NFC" />
+
+    <Button
+        android:id="@+id/jumpNFC_w"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="写NFC" />
+
+    <Button
+        android:id="@+id/jumpNFC_sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NFC加密" />
+
+    <Button
+        android:id="@+id/jumpNFC_rp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NFC解密" />
+
+    <Button
+        android:id="@+id/jumpNFC_write_with_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NFC带密码写" />
+</LinearLayout>
