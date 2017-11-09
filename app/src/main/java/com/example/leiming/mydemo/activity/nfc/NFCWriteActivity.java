@@ -16,7 +16,7 @@ import com.example.leiming.mydemo.base.BaseNfcActivity;
 
 public class NFCWriteActivity extends BaseNfcActivity {
 
-    private String mPackageName = "fe847f40be464016af2ee3f6fa74ca4e@6de34e4daeaf45aba998d0394f0a993b@zxycloud.com";//短信
+    private String mPackageName = "com.baidu.BaiduMap";//短信
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
