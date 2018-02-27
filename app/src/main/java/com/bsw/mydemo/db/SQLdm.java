@@ -18,9 +18,9 @@ import java.io.InputStream;
 public class SQLdm {
 
     //数据库存储路径
-    String filePath = "data/data/com.example.leiming.mydemo/test.db";
+    String filePath = "data/data/com.bsw.mydemo/test.db";
     //数据库存放的文件夹 data/data/com.main.jh 下面
-    String pathStr = "data/data/com.example.leiming.mydemo";
+    String pathStr = "data/data/com.bsw.mydemo";
 
     SQLiteDatabase database;
     public  SQLiteDatabase openDatabase(Context context){

@@ -5,13 +5,13 @@ android {
         release {
             keyAlias 'mydemo'
             keyPassword 'mydemo'
-            storeFile file('E:/AndroidDemo/test/MyDemo/app/mydemo.jks')
+            storeFile file('./mydemo.jks')
             storePassword 'mydemo'
         }
         debug {
             keyAlias 'mydemo'
             keyPassword 'mydemo'
-            storeFile file('E:/AndroidDemo/test/MyDemo/app/mydemo.jks')
+            storeFile file('./mydemo.jks')
             storePassword 'mydemo'
         }
     }
