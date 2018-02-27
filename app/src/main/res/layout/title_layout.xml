@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/title_height">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/base_bg"
+        android:paddingTop="@dimen/size_20"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
         android:background="@color/blue">
@@ -20,12 +21,11 @@
         <TextView
             android:id="@+id/base_title"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_centerInParent="true"
-            android:gravity="center"
+            android:gravity="bottom"
             android:textColor="@android:color/white"
             android:textSize="@dimen/size_20" />
-
 
         <ImageView
             android:id="@+id/base_right_icon2"

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ShakeAndFlashActivity">
+
+    <Button
+        android:id="@+id/startFlash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开启闪光灯" />
+
+    <Button
+        android:id="@+id/stopFlash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭闪光灯" />
+
+    <Button
+        android:id="@+id/startShake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开启震动" />
+
+    <Button
+        android:id="@+id/stopShake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭震动" />
+
+    <Button
+        android:id="@+id/startMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开启音频" />
+
+    <Button
+        android:id="@+id/stopMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关闭音频" />
+</LinearLayout>
