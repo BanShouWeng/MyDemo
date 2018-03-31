@@ -58,37 +58,35 @@ import java.util.Vector;
  * Initial the camera
  * 扫描二维码界面
  */
-public class CaptureActivity extends BaseActivity implements Callback, TimerUtils.OnBaseTimerCallBack {
-    public static final String QR_RESULT = "RESULT";
-    private final String SCAN_TAG = "scan_tag";
-    private final String NET_CONNECT_TAG = "net_connect_tag";
+public abstract class CaptureActivity extends BaseActivity implements Callback, TimerUtils.OnBaseTimerCallBack {
 
-    private final int REQUEST_CODE_SCAN_GALLERY = 0x78;
+    /**
+     * 不自动关闭扫码页面（如不自动关闭，扫码页面长时间前台运行可能会导致内存溢出崩溃）
+     */
+    protected final int DO_NOT_CLOSE = 0;
 
     private CaptureActivityHandler handler;
-    private ViewfinderView viewfinderView;
-    private SurfaceView surfaceView;
-    private Button flashOn;
+    protected ViewfinderView viewfinderView;
+    protected SurfaceView surfaceView;
     private boolean hasSurface;
     private Vector<BarcodeFormat> decodeFormats;
     private String characterSet;
     private InactivityTimer inactivityTimer;
     // private static final float BEEP_VOLUME = 0.10f;
     private boolean vibrate;
-    private CameraManager cameraManager;
+    protected CameraManager cameraManager;
 
     private TimerUtils timerUtils;
+    private int autoCloseTime = 0;
 
     /**
      * Called when the activity is first created.
      */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 //		requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setTitle(R.string.main_activity_btn_qrcode);
-        setBaseRightText(R.string.album);
 
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -96,7 +94,10 @@ public class CaptureActivity extends BaseActivity implements Callback, TimerUtil
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
 
-        timerUtils = new TimerUtils(120000, 120000, this);
+        autoCloseTime = setAutoCloseTime();
+        if (autoCloseTime != DO_NOT_CLOSE) {
+            timerUtils = new TimerUtils(autoCloseTime, autoCloseTime, this);
+        }
     }
 
     @Override
@@ -122,8 +123,9 @@ public class CaptureActivity extends BaseActivity implements Callback, TimerUtil
         AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
 //        initBeepSound();
         vibrate = true;
-
-        timerUtils.start();
+        if (autoCloseTime != DO_NOT_CLOSE) {
+            timerUtils.start();
+        }
     }
 
     @Override
@@ -131,6 +133,25 @@ public class CaptureActivity extends BaseActivity implements Callback, TimerUtil
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         PermissionUtils.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
+    /**
+     * 打开相册
+     *
+     * @param requestCode 请求码
+     */
+    protected void openAlbum(int requestCode) {
+        //打开手机中的相册
+        Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        innerIntent.setType("image/*");
+        startActivityForResult(innerIntent, requestCode);
+    }
+
+    /**
+     * 长时间前台运行关闭时间
+     *
+     * @return 时间（毫秒级）
+     */
+    protected abstract int setAutoCloseTime();
 
     @Override
     protected void onPause() {
@@ -151,33 +172,6 @@ public class CaptureActivity extends BaseActivity implements Callback, TimerUtil
     protected void onDestroy() {
         inactivityTimer.shutdown();
         super.onDestroy();
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_capture;
-    }
-
-    @Override
-    protected void findViews() {
-        surfaceView = getView(R.id.preview_view);
-        viewfinderView = getView(R.id.viewfinder_view);
-        flashOn = getView(R.id.flash_on);
-    }
-
-    @Override
-    protected void formatViews() {
-        setOnClickListener(R.id.flash_on);
-    }
-
-    @Override
-    protected void formatData() {
-
-    }
-
-    @Override
-    protected void getBundle(Bundle bundle) {
-
     }
 
     private void initCamera(final SurfaceHolder surfaceHolder) {
@@ -327,42 +321,14 @@ public class CaptureActivity extends BaseActivity implements Callback, TimerUtil
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.flash_on:
-                if (flashOn.getText().equals(getResources().getString(R.string.flash_on))) {
-                    cameraManager.openFlashLight();
-                    flashOn.setText(R.string.flash_off);
-                } else {
-                    cameraManager.offFlashLight();
-                    flashOn.setText(R.string.flash_on);
-                }
-
-            case RIGHT_TEXT_ID:
-                //打开手机中的相册
-                Intent innerIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                innerIntent.setType("image/*");
-                startActivityForResult(innerIntent, REQUEST_CODE_SCAN_GALLERY);
-                break;
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case REQUEST_CODE_SCAN_GALLERY:
-                    Result result = AlbumDecoding.handleAlbumPic(activity, data);
-                    if (null == result) {
-                        toast(R.string.recognize_failed);
-                    } else {
-                        toast(result.getText());
-                    }
-                    break;
-            }
-        }
+    /**
+     * 获取扫描结果
+     *
+     * @param data 相册中获取的图片信息
+     * @return 扫描结果
+     */
+    public Result getResult(Intent data) {
+        return AlbumDecoding.handleAlbumPic(activity, data);
     }
 
     @Override

@@ -17,6 +17,7 @@ import com.bsw.mydemo.activity.LanguageActivity;
 import com.bsw.mydemo.activity.LinkmanActivity;
 import com.bsw.mydemo.activity.NavigationActivity;
 import com.bsw.mydemo.activity.RTMPActivity;
+import com.bsw.mydemo.activity.ScanCodeActivity;
 import com.bsw.mydemo.activity.ShakeAndFlashActivity;
 import com.bsw.mydemo.activity.VideoActivity;
 import com.bsw.mydemo.activity.WifiActivity;
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.jumpQrCode).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CaptureActivity.class));
+                startActivity(new Intent(MainActivity.this, ScanCodeActivity.class));
             }
         });
 
