@@ -13,7 +13,6 @@ import java.io.InputStream;
 /**
  * 这个类就是实现从assets目录读取数据库文件然后写入SDcard中,如果在SDcard中存在，就打开数据库，不存在就从assets目录下复制过去
  * @author Big_Adamapple
- *
  */
 public class SQLdm {
 
@@ -39,7 +38,7 @@ public class SQLdm {
                 Log.i("test", "创建成功");
             }else{
                 Log.i("test", "创建失败");
-            };
+            }
             try {
                 //得到资源
                 AssetManager am= context.getAssets();
