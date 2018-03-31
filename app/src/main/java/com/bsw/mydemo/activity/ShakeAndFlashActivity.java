@@ -19,7 +19,9 @@ import com.bsw.mydemo.Utils.PermissionUtils;
 import com.bsw.mydemo.base.BaseActivity;
 
 import java.util.List;
-
+/**
+ * @author 半寿翁
+ */
 public class ShakeAndFlashActivity extends BaseActivity {
 
     /**
@@ -179,7 +181,7 @@ public class ShakeAndFlashActivity extends BaseActivity {
                 camera.startPreview();
             }
             parameter = camera.getParameters();
-            parameter.setFlashMode(parameter.FLASH_MODE_TORCH);
+            parameter.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             camera.setParameters(parameter);
         } catch (Exception e) {
             Logger.i("Exception", e);
@@ -192,7 +194,7 @@ public class ShakeAndFlashActivity extends BaseActivity {
     public void offFlashLight() {
         if (camera != null) {
             parameter = camera.getParameters();
-            parameter.setFlashMode(parameter.FLASH_MODE_OFF);
+            parameter.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
             camera.setParameters(parameter);
             camera.stopPreview();
             camera.release();

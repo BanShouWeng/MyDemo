@@ -16,7 +16,9 @@ import com.bsw.mydemo.R;
 import com.bsw.mydemo.base.BaseNfcActivity;
 
 import java.io.UnsupportedEncodingException;
-
+/**
+ * @author 半寿翁
+ */
 public class NFCReadActivity extends BaseNfcActivity {
 
     private TextView mNfcText;

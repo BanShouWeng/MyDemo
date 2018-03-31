@@ -11,9 +11,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Created by leiming on 2018/1/4.
+ * @author 半寿翁
  */
-
 public class AssetsJsonUtils {
     public static String getJson(Context context, String fileName) {
         //将json数据变成字符串

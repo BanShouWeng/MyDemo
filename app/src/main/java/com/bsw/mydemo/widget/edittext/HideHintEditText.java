@@ -9,7 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
 
 /**
- * @author leiming
+ * @author 半寿翁
  * @date 2017/10/11
  */
 public class HideHintEditText extends AppCompatEditText {

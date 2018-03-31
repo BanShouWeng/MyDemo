@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bsw.mydemo.activity.GestureLockActivity">
+
+    <com.bsw.mydemo.widget.GestureLock.GestureLockViewGroup
+        android:id="@+id/id_gestureLockViewGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#F2F2F7"
+        app:color_finger_on="#1734BF"
+        app:color_no_finger_inner_circle="#085D58"
+        app:color_no_finger_outer_circle="#08F0E0"
+        app:count="3"
+        app:line_width_percent="3"
+        app:lock_width_percent="60"
+        app:margin_between_lock_view_percent="50"
+        app:try_times="5" />
+</RelativeLayout>

@@ -25,7 +25,9 @@ import com.bsw.mydemo.event.NetBroadcastReceiver;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author 半寿翁
+ */
 public abstract class BaseActivity extends AppCompatActivity implements NetBroadcastReceiver.NetEvent, View.OnClickListener {
     public final int BACK_ID = R.id.base_back;
     public final int RIGHT_TEXT_ID = R.id.base_right_text;
@@ -276,6 +278,10 @@ public abstract class BaseActivity extends AppCompatActivity implements NetBroad
             InputMethodManager inputmanger = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    protected String getName() {
+        return getClass().getSimpleName();
     }
 
     /**

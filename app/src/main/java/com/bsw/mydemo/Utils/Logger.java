@@ -4,7 +4,9 @@ import android.util.Log;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
+/**
+ * @author 半寿翁
+ */
 public class Logger {
     private static boolean debug = true;
     private static int showLength = 3999;

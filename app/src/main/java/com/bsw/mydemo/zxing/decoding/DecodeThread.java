@@ -71,6 +71,7 @@ final class DecodeThread extends Thread {
     	 decodeFormats.addAll(DecodeFormatManager.ONE_D_FORMATS);
     	 decodeFormats.addAll(DecodeFormatManager.QR_CODE_FORMATS);
     	 decodeFormats.addAll(DecodeFormatManager.DATA_MATRIX_FORMATS);
+    	 
     }
     
     hints.put(DecodeHintType.POSSIBLE_FORMATS, decodeFormats);
@@ -91,10 +92,6 @@ final class DecodeThread extends Thread {
     return handler;
   }
 
-  DecodeHandler startScan(){
-    return new DecodeHandler(activity, hints);
-  }
-
   @Override
   public void run() {
     Looper.prepare();
@@ -102,4 +99,5 @@ final class DecodeThread extends Thread {
     handlerInitLatch.countDown();
     Looper.loop();
   }
+
 }

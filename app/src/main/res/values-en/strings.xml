@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyDemo</string>
+
+    <string name="main_activity_btn_NFC">NFC</string>
+    <string name="main_activity_btn_video_play">video_play</string>
+    <string name="main_activity_btn_rtmp">rtmp</string>
+    <string name="main_activity_btn_bluetooth">bluetooth</string>
+    <string name="main_activity_btn_navigation">navigation</string>
+    <string name="main_activity_btn_db">db</string>
+    <string name="main_activity_btn_linkman">linkman</string>
+    <string name="main_activity_btn_flash_and_shake">flash_and_shake</string>
+    <string name="main_activity_btn_qrcode">qrcode</string>
+    <string name="main_activity_btn_language">language</string>
+    <string name="main_activity_btn_time_zone">time_zone</string>
+    <string name="main_activity_btn_gesture_lock">gesture_lock</string>
+    <string name="main_activity_btn_wifi">wifi</string>
+
+    <string name="permission_get_accounts_hint">PERMISSION_GET_ACCOUNTS</string>
+    <string name="permission_read_phone_hint">PERMISSION_READ_PHONE_STATE</string>
+    <string name="permission_call_phone_hint">PERMISSION_CALL_PHONE</string>
+    <string name="permission_camera_hint">PERMISSION_CAMERA</string>
+    <string name="permission_access_fine_location_hint">PERMISSION_ACCESS_FINE_LOCATION</string>
+    <string name="permission_access_coarse_location_hint">PERMISSION_ACCESS_COARSE_LOCATION</string>
+    <string name="permission_read_external_hint">PERMISSION_READ_EXTERNAL_STORAGE</string>
+    <string name="permission_white_external_hint">PERMISSION_WRITE_EXTERNAL_STORAGE</string>
+    <string name="permission_recode_audio_hint">PERMISSION_RECORD_AUDIO</string>
+
+    <string name="flash_on">flash on</string>
+    <string name="flash_off">flash off</string>
+    <string name="album">album</string>
+    <string name="recognize_failed">Failed to recognize</string>
+</resources>

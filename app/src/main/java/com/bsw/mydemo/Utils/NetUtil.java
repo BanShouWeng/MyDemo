@@ -3,7 +3,9 @@ package com.bsw.mydemo.Utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
+/**
+ * @author 半寿翁
+ */
 public class NetUtil {
     /**
      * 没有连接网络

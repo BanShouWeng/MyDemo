@@ -11,7 +11,7 @@
         android:layout_gravity="center"
         android:padding="@dimen/size_20" />
 
-    <com.example.bsw.mydemo.zxing.view.ViewfinderView
+    <com.bsw.mydemo.zxing.view.ViewfinderView
         android:id="@+id/viewfinder_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -4,7 +4,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 /**
- * @author leiming
+ * @author 半寿翁
  * @date 2017/10/11
  */
 public class TxtUtils {

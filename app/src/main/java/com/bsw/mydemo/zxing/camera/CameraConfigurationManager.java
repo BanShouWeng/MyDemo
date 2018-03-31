@@ -67,10 +67,10 @@ final class CameraConfigurationManager {
 			height = temp;
 		}
 		screenResolution = new Point(height, width);
-		Log.i(TAG, "Screen resolution: " + screenResolution);
+		Log.i(TAG, String.format("Screen resolution: %s", screenResolution));
 
 		cameraResolution = findBestPreviewSizeValue(parameters, new Point(width, height), false);
-		Log.i(TAG, "Camera resolution: " + cameraResolution);
+		Log.i(TAG, String.format("Camera resolution: %s", cameraResolution));
 	}
 
 	void setDesiredCameraParameters(Camera camera) {
@@ -164,7 +164,7 @@ final class CameraConfigurationManager {
 	}
 
 	private static String findSettableValue(Collection<String> supportedValues, String... desiredValues) {
-		Log.i(TAG, "Supported values: " + supportedValues);
+		Log.i(TAG, String.format("Supported values: %s", supportedValues));
 		String result = null;
 		if (supportedValues != null) {
 			for (String desiredValue : desiredValues) {
@@ -174,7 +174,7 @@ final class CameraConfigurationManager {
 				}
 			}
 		}
-		Log.i(TAG, "Settable value: " + result);
+		Log.i(TAG, String.format("Settable value: %s", result));
 		return result;
 	}
 

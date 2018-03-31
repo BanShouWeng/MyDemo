@@ -19,7 +19,9 @@ import java.io.IOException;
 
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
-
+/**
+ * @author 半寿翁
+ */
 public class RTMPActivity extends BaseNetActivity implements View.OnClickListener, TextureView.SurfaceTextureListener {
 
     private String path = "rtmp:....";

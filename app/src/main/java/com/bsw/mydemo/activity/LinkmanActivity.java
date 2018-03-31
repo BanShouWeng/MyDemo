@@ -24,7 +24,9 @@ import com.bsw.mydemo.Utils.TxtUtils;
 import com.bsw.mydemo.base.BaseActivity;
 
 import java.util.List;
-
+/**
+ * @author 半寿翁
+ */
 public class LinkmanActivity extends BaseActivity {
 
     private Button insertLinkman;

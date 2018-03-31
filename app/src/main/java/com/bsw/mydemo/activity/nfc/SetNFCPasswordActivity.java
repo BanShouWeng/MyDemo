@@ -17,7 +17,9 @@ import com.bsw.mydemo.Utils.Logger;
 import com.bsw.mydemo.base.BaseNfcActivity;
 
 import java.io.IOException;
-
+/**
+ * @author 半寿翁
+ */
 public class SetNFCPasswordActivity extends BaseNfcActivity {
 
     private Tag tag;

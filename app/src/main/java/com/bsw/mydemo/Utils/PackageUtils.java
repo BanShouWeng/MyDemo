@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by leiming on 2017/11/9.
+ * @author 半寿翁
+ * @date 2017/11/9
  */
-
 public class PackageUtils {
     public static final byte BAIDU_MAP = 0x00;
     public static final byte GAODE_MAP = 0x01;
@@ -87,8 +87,7 @@ public class PackageUtils {
                 .append("&lon=").append(lng)
                 .append("&dev=").append(1)
                 .append("&style=").append(0);
-        ;
-//        if (!TextUtils.isEmpty(poiname)) {
+        //        if (!TextUtils.isEmpty(poiname)) {
 //            stringBuffer.append("&poiname=").append(poiname);
 //        }
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(stringBuffer.toString()));

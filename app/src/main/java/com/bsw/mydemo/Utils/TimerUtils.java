@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 
 /**
- * @author leiming
+ * @author 半寿翁
  * @date 2017/10/11
  */
 public class TimerUtils extends CountDownTimer {

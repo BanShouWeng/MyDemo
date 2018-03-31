@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="color_no_finger_inner_circle" format="color" />
+    <attr name="color_no_finger_outer_circle" format="color" />
+    <attr name="color_finger_on" format="color" />
+    <attr name="color_finger_up" format="color" />
+    <attr name="count" format="integer" />
+    <attr name="try_times" format="integer" />
+    <attr name="reset_time" format="integer" />
+    <attr name="line_width_percent" format="integer" />
+    <attr name="line_alpha" format="integer" />
+    <attr name="lock_width_percent" format="integer" />
+    <attr name="margin_between_lock_view_percent" format="integer" />
+
+    <declare-styleable name="GestureLockViewGroup">
+        <attr name="color_no_finger_inner_circle" />
+        <attr name="color_no_finger_outer_circle" />
+        <attr name="color_finger_on" />
+        <attr name="color_finger_up" />
+        <attr name="count" />
+        <attr name="try_times" />
+        <attr name="reset_time" />
+        <attr name="line_width_percent" />
+        <attr name="line_alpha" />
+        <attr name="lock_width_percent" />
+        <attr name="margin_between_lock_view_percent" />
+    </declare-styleable>
+</resources>

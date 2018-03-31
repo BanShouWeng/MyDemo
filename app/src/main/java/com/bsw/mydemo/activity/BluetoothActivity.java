@@ -16,7 +16,9 @@ import android.widget.TextView;
 import com.bsw.mydemo.R;
 
 import java.util.Set;
-
+/**
+ * @author 半寿翁
+ */
 public class BluetoothActivity extends AppCompatActivity implements View.OnClickListener {
 
     private BluetoothAdapter mBluetoothAdapter = null;

@@ -8,7 +8,9 @@ import com.bsw.mydemo.R;
 import com.bsw.mydemo.Utils.PackageUtils;
 import com.bsw.mydemo.Utils.TxtUtils;
 import com.bsw.mydemo.base.BaseActivity;
-
+/**
+ * @author 半寿翁
+ */
 public class NavigationActivity extends BaseActivity {
 
     private EditText lng, lat;

@@ -12,6 +12,8 @@ import android.nfc.NfcAdapter;
  *   所以我们获取intent传递过来的Tag数据操作放在onNewIntent方法中执行
  *   如果在栈中已经有该Activity的实例，就重用该实例(会调用实例的onNewIntent())
  *   只要NFC标签靠近就执行
+ *
+ * @author 半寿翁
  */
 public abstract class BaseNfcActivity extends BaseActivity {
     private NfcAdapter mNfcAdapter;

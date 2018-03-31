@@ -6,7 +6,9 @@ import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-
+/**
+ * @author 半寿翁
+ */
 public interface RetrofitPostJsonService {
 
     @POST("{action}")

@@ -20,7 +20,9 @@ import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import okhttp3.ResponseBody;
-
+/**
+ * @author 半寿翁
+ */
 public abstract class BaseNetActivity extends BaseActivity {
 
     /**
@@ -209,7 +211,7 @@ public abstract class BaseNetActivity extends BaseActivity {
                     case 0:
                         String responseString = responseBody.string();
                         Logger.i("responseString", action + "********** responseString get  " + responseString);
-                        success(action, (T) new Gson().fromJson(responseString, clazz));
+                        success(action, new Gson().fromJson(responseString, clazz));
                         break;
 
                     case 1:

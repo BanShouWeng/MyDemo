@@ -5,7 +5,9 @@ import android.view.View;
 
 import com.bsw.mydemo.R;
 import com.bsw.mydemo.base.BaseActivity;
-
+/**
+ * @author 半寿翁
+ */
 public class NFCActivity extends BaseActivity {
 
     @Override

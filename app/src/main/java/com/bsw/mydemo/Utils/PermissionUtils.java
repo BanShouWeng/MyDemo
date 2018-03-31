@@ -12,9 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by leiming on 2018/1/2.
+ * @author 半寿翁
+ * @date 2018/1/2
  */
-
 public class PermissionUtils {
 
     // CALENDAR

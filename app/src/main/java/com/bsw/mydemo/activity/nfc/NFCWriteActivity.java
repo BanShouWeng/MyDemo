@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 import com.bsw.mydemo.R;
 import com.bsw.mydemo.base.BaseNfcActivity;
-
+/**
+ * @author 半寿翁
+ */
 public class NFCWriteActivity extends BaseNfcActivity {
 
     private String mPackageName = "com.baidu.BaiduMap";//短信

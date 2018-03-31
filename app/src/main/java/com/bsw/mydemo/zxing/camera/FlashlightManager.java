@@ -97,7 +97,7 @@ final class FlashlightManager {
       // OK
       return null;
     } catch (RuntimeException re) {
-      Log.w(TAG, "Unexpected error while finding class " + name, re);
+      Log.w(TAG, String.format("Unexpected error while finding class %s", name), re);
       return null;
     }
   }
@@ -109,7 +109,7 @@ final class FlashlightManager {
       // OK
       return null;
     } catch (RuntimeException re) {
-      Log.w(TAG, "Unexpected error while finding method " + name, re);
+      Log.w(TAG, String.format("Unexpected error while finding method %s", name), re);
       return null;
     }
   }
@@ -118,13 +118,13 @@ final class FlashlightManager {
     try {
       return method.invoke(instance, args);
     } catch (IllegalAccessException e) {
-      Log.w(TAG, "Unexpected error while invoking " + method, e);
+      Log.w(TAG, String.format("Unexpected error while invoking %s", method), e);
       return null;
     } catch (InvocationTargetException e) {
-      Log.w(TAG, "Unexpected error while invoking " + method, e.getCause());
+      Log.w(TAG, String.format("Unexpected error while invoking %s", method), e.getCause());
       return null;
     } catch (RuntimeException re) {
-      Log.w(TAG, "Unexpected error while invoking " + method, re);
+      Log.w(TAG, String.format("Unexpected error while invoking %s", method), re);
       return null;
     }
   }

@@ -11,9 +11,9 @@ import com.bsw.mydemo.activity.CrashHandler;
 import java.util.List;
 
 /**
- * Created by leiming on 2017/11/1.
+ * @author 半寿翁
+ * @date 2017/11/1
  */
-
 public class App extends Application {
 
     private static App app;

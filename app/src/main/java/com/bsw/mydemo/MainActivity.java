@@ -6,21 +6,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bsw.mydemo.Utils.Logger;
 import com.bsw.mydemo.Utils.PermissionUtils;
 import com.bsw.mydemo.activity.BluetoothActivity;
 import com.bsw.mydemo.activity.DbActivity;
+import com.bsw.mydemo.activity.GestureLockActivity;
+import com.bsw.mydemo.activity.LanguageActivity;
 import com.bsw.mydemo.activity.LinkmanActivity;
 import com.bsw.mydemo.activity.NavigationActivity;
 import com.bsw.mydemo.activity.RTMPActivity;
 import com.bsw.mydemo.activity.ShakeAndFlashActivity;
 import com.bsw.mydemo.activity.VideoActivity;
+import com.bsw.mydemo.activity.WifiActivity;
 import com.bsw.mydemo.activity.nfc.NFCActivity;
 import com.bsw.mydemo.zxing.activity.CaptureActivity;
 
 import java.util.List;
 
+/**
+ * @author 半寿翁
+ * @date 2017/11/1
+ */
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
@@ -32,9 +40,21 @@ public class MainActivity extends AppCompatActivity {
 
         textView = (TextView) findViewById(R.id.error);
         String error = App.getInstance().getSharedPreferencesInstance().getString("error", "");
-        if (!TextUtils.isEmpty(error)) {
+        if (! TextUtils.isEmpty(error)) {
             textView.setText(error);
         }
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this, "afsdfsfas", Toast.LENGTH_LONG).show();
+                    }
+                }).start();
+            }
+        });
+
         findViewById(R.id.jumpNFC).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,10 +118,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.jumpLanguage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LanguageActivity.class));
+            }
+        });
+
+        findViewById(R.id.jumpGestureLock).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GestureLockActivity.class));
+            }
+        });
+
+        findViewById(R.id.jumpWifi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, WifiActivity.class));
+            }
+        });
+
         PermissionUtils.setRequestPermissions(this, new PermissionUtils.PermissionGrant() {
             @Override
             public Integer[] onPermissionGranted() {
-                return new Integer[]{PermissionUtils.CODE_ALL_PERMISSION};
+                return new Integer[] {PermissionUtils.CODE_ALL_PERMISSION};
             }
 
             @Override

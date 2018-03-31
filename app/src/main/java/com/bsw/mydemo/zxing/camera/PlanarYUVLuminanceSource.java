@@ -20,6 +20,8 @@ import android.graphics.Bitmap;
 
 import com.google.zxing.LuminanceSource;
 
+import java.util.Locale;
+
 /**
  * This object extends LuminanceSource around an array of YUV data returned from the camera driver,
  * with the option to crop to a rectangle within the full data. This can be used to exclude
@@ -59,7 +61,7 @@ public final class PlanarYUVLuminanceSource extends LuminanceSource {
   @Override
   public byte[] getRow(int y, byte[] row) {
     if (y < 0 || y >= getHeight()) {
-      throw new IllegalArgumentException("Requested row is outside the image: " + y);
+      throw new IllegalArgumentException(String.format(Locale.CHINA, "Requested row is outside the image: %d", y));
     }
     int width = getWidth();
     if (row == null || row.length < width) {

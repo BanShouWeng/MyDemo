@@ -15,7 +15,9 @@ import android.widget.Toast;
 import com.bsw.mydemo.R;
 import com.bsw.mydemo.Utils.Logger;
 import com.bsw.mydemo.base.BaseNfcActivity;
-
+/**
+ * @author 半寿翁
+ */
 public class NFCWriteWithPasswordActivity extends BaseNfcActivity {
 
     private String message = "fe847f40be464016af2ee3f6fa74ca4e@6de34e4daeaf45aba998d0394f0a993b@zxycloud.com";// 短信

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_activity_btn_NFC">NFC</string>
+    <string name="main_activity_btn_video_play">视频播放</string>
+    <string name="main_activity_btn_rtmp">rtmp视频播放</string>
+    <string name="main_activity_btn_bluetooth">蓝牙设备</string>
+    <string name="main_activity_btn_navigation">导航</string>
+    <string name="main_activity_btn_db">数据库</string>
+    <string name="main_activity_btn_linkman">获取联系人</string>
+    <string name="main_activity_btn_flash_and_shake">手机震动和闪光灯</string>
+    <string name="main_activity_btn_qrcode">二维码</string>
+    <string name="main_activity_btn_language">语言环境</string>
+    <string name="main_activity_btn_time_zone">时区</string>
+    <string name="main_activity_btn_gesture_lock">手势解锁</string>
+    <string name="main_activity_btn_wifi">wifi</string>
+
+    <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启获取通讯录权限。</string>
+    <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启获取手机状态权限。</string>
+    <string name="permission_call_phone_hint">没有此权限，无法开启这个功能，请开启拨打电话权限权限。</string>
+    <string name="permission_camera_hint">没有此权限，无法开启这个功能，请开启相机权限。</string>
+    <string name="permission_access_fine_location_hint">没有此权限，无法开启这个功能，请开启通过GPS芯片接收卫星的定位权限。</string>
+    <string name="permission_access_coarse_location_hint">没有此权限，无法开启这个功能，请开启获得粗略位置信息权限。</string>
+    <string name="permission_read_external_hint">没有此权限，无法开启这个功能，请开启读外部存储权限。</string>
+    <string name="permission_white_external_hint">没有此权限，无法开启这个功能，请开启写外部存储权限。</string>
+    <string name="permission_recode_audio_hint">没有此权限，无法开启这个功能，请开启媒体权限。</string>
+
+    <string name="flash_on">开启闪光灯</string>
+    <string name="flash_off">关闭闪光灯</string>
+    <string name="album">相册</string>
+    <string name="recognize_failed">识别失败</string>
+</resources>

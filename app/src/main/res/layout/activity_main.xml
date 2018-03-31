@@ -9,66 +9,86 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/size_20"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/error"
             android:layout_width="match_parent"
+            android:padding="@dimen/size_8"
             android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/jumpNFC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NFC" />
+            android:text="@string/main_activity_btn_NFC" />
 
         <Button
             android:id="@+id/jumpVideo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="视频播放" />
+            android:text="@string/main_activity_btn_video_play" />
 
         <Button
             android:id="@+id/jumpRtmp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="rtmp视频播放" />
+            android:text="@string/main_activity_btn_rtmp" />
 
         <Button
             android:id="@+id/jumpBluetooth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="蓝牙设备" />
+            android:text="@string/main_activity_btn_bluetooth" />
 
         <Button
             android:id="@+id/jumpNavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="导航" />
+            android:text="@string/main_activity_btn_navigation" />
 
         <Button
             android:id="@+id/jumpDb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="数据库" />
+            android:text="@string/main_activity_btn_db" />
 
         <Button
             android:id="@+id/jumpLinkman"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="获取联系人" />
+            android:text="@string/main_activity_btn_linkman" />
 
         <Button
             android:id="@+id/jumpShakeAndFlash"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="手机震动和闪光灯" />
+            android:text="@string/main_activity_btn_flash_and_shake" />
 
         <Button
             android:id="@+id/jumpQrCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="二维码" />
+            android:text="@string/main_activity_btn_qrcode" />
+
+        <Button
+            android:id="@+id/jumpLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_activity_btn_language" />
+
+        <Button
+            android:id="@+id/jumpGestureLock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_activity_btn_gesture_lock" />
+
+        <Button
+            android:id="@+id/jumpWifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_activity_btn_wifi" />
     </LinearLayout>
 </ScrollView>

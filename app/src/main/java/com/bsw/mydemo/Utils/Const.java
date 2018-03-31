@@ -8,9 +8,9 @@ import android.content.pm.PackageManager;
 import java.util.List;
 
 /**
- * Created by leiming on 2017/11/1.
+ * @author 半寿翁
+ * @date 2017/11/1
  */
-
 public class Const {
     //版本名
     public static String getVersionName(Context context) {

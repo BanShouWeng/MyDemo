@@ -10,7 +10,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * @author leiming
+ * @author 半寿翁
  * @date 2017/10/11
  */
 public class AesUtil {

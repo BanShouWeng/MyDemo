@@ -16,7 +16,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bsw.mydemo.R;
-
+/**
+ * @author 半寿翁
+ */
 public class VideoActivity extends AppCompatActivity implements View.OnClickListener, TextureView.SurfaceTextureListener, MediaPlayer.OnCompletionListener {
 
     @SuppressLint("AuthLeak")

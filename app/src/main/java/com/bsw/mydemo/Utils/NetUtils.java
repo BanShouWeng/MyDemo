@@ -23,7 +23,9 @@ import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+/**
+ * @author 半寿翁
+ */
 public class NetUtils {
     private Map<String, String> headerParams;
 
