@@ -15,6 +15,7 @@
     <string name="main_activity_btn_time_zone">time_zone</string>
     <string name="main_activity_btn_gesture_lock">gesture_lock</string>
     <string name="main_activity_btn_wifi">wifi</string>
+    <string name="main_activity_btn_gif">Gif</string>
 
     <string name="permission_get_accounts_hint">PERMISSION_GET_ACCOUNTS</string>
     <string name="permission_read_phone_hint">PERMISSION_READ_PHONE_STATE</string>

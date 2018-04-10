@@ -10,14 +10,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/size_20"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/size_20">
 
         <TextView
             android:id="@+id/error"
             android:layout_width="match_parent"
-            android:padding="@dimen/size_8"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="@dimen/size_8" />
 
         <Button
             android:id="@+id/jumpNFC"
@@ -90,5 +90,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/main_activity_btn_wifi" />
+
+        <Button
+            android:id="@+id/jumpGif"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_activity_btn_gif" />
     </LinearLayout>
 </ScrollView>

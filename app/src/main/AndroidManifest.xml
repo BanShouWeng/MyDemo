@@ -89,7 +89,8 @@
         <activity android:name=".activity.LanguageActivity" />
         <activity android:name=".activity.GestureLockActivity" />
         <activity android:name=".activity.WifiActivity" />
-        <activity android:name=".activity.ScanCodeActivity"></activity>
+        <activity android:name=".activity.ScanCodeActivity" />
+        <activity android:name=".activity.GifActivity"></activity>
     </application>
 
 </manifest>

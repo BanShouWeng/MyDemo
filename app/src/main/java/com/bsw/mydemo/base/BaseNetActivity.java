@@ -3,6 +3,7 @@ package com.bsw.mydemo.base;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.bsw.mydemo.R;
 import com.bsw.mydemo.Utils.Logger;
@@ -20,6 +21,8 @@ import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import okhttp3.ResponseBody;
+import retrofit2.HttpException;
+
 /**
  * @author 半寿翁
  */
@@ -187,6 +190,7 @@ public abstract class BaseNetActivity extends BaseActivity {
          * 返回结果状态：0、正常Bean；1、Bitmap
          */
         private int resultStatus = 0;
+        private String errorbody;
 
         MyObserver(String action, Class<T> clazz) {
             this.clazz = clazz;
@@ -229,7 +233,12 @@ public abstract class BaseNetActivity extends BaseActivity {
 
         @Override
         public void onError(@NonNull Throwable e) {
-            Logger.i("responseString", "responseString get  " + e.toString());
+            try {
+                errorbody = ((HttpException) e).response().errorBody().string();
+                Logger.i("responseString", String.format("%s********** responseString get error %s content %s", action, e.toString(), TextUtils.isEmpty(errorbody) ? "" : errorbody));
+            } catch (IOException | NullPointerException e1) {
+                e1.printStackTrace();
+            }
             error(action, e);
         }
 

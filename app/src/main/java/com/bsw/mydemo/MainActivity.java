@@ -13,6 +13,7 @@ import com.bsw.mydemo.Utils.PermissionUtils;
 import com.bsw.mydemo.activity.BluetoothActivity;
 import com.bsw.mydemo.activity.DbActivity;
 import com.bsw.mydemo.activity.GestureLockActivity;
+import com.bsw.mydemo.activity.GifActivity;
 import com.bsw.mydemo.activity.LanguageActivity;
 import com.bsw.mydemo.activity.LinkmanActivity;
 import com.bsw.mydemo.activity.NavigationActivity;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textView = (TextView) findViewById(R.id.error);
+        textView = findViewById(R.id.error);
         String error = App.getInstance().getSharedPreferencesInstance().getString("error", "");
         if (! TextUtils.isEmpty(error)) {
             textView.setText(error);
@@ -137,6 +138,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, WifiActivity.class));
+            }
+        });
+
+        findViewById(R.id.jumpGif).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GifActivity.class));
             }
         });
 

@@ -7,9 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 
-import com.bsw.mydemo.R;
 import com.bsw.mydemo.Utils.UriUtils;
-import com.bsw.mydemo.zxing.activity.CaptureActivity;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.DecodeHintType;
