@@ -38,6 +38,8 @@
 
     <!-- 打开公放的权限 -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- 监听通话状态 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
 
     <application
         android:name=".App"
@@ -90,7 +92,15 @@
         <activity android:name=".activity.GestureLockActivity" />
         <activity android:name=".activity.WifiActivity" />
         <activity android:name=".activity.ScanCodeActivity" />
-        <activity android:name=".activity.GifActivity"></activity>
+        <activity android:name=".activity.GifActivity"/>
+
+        <!--拨打电话监听Receiver-->
+        <receiver android:name=".receiver.PhoneBroadcastReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
