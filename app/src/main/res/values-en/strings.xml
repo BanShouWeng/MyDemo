@@ -3,17 +3,21 @@
     <string name="app_name">MyDemo</string>
 
     <string name="main_activity_btn_NFC">NFC</string>
-    <string name="main_activity_btn_video_play">video_play</string>
+    <string name="main_activity_btn_video_play">video play</string>
     <string name="main_activity_btn_rtmp">rtmp</string>
     <string name="main_activity_btn_bluetooth">bluetooth</string>
     <string name="main_activity_btn_navigation">navigation</string>
     <string name="main_activity_btn_db">db</string>
     <string name="main_activity_btn_linkman">linkman</string>
-    <string name="main_activity_btn_flash_and_shake">flash_and_shake</string>
+    <string name="main_activity_btn_flash_and_shake">flash and shake</string>
+    <string name="main_activity_btn_media">media</string>
+    <string name="main_activity_btn_recording">recording</string>
+    <string name="main_activity_btn_video_record">video record</string>
+    <string name="media_activity_btn_crop_pic">picture crop</string>
     <string name="main_activity_btn_qrcode">qrcode</string>
     <string name="main_activity_btn_language">language</string>
-    <string name="main_activity_btn_time_zone">time_zone</string>
-    <string name="main_activity_btn_gesture_lock">gesture_lock</string>
+    <string name="main_activity_btn_time_zone">time zone</string>
+    <string name="main_activity_btn_gesture_lock">gesture lock</string>
     <string name="main_activity_btn_wifi">wifi</string>
     <string name="main_activity_btn_gif">Gif</string>
 

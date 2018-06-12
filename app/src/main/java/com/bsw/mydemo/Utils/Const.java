@@ -90,6 +90,26 @@ public class Const {
     }
 
     /**
+     * 当前对象为空判断
+     *
+     * @param o 被判断对象
+     * @return 是否为空
+     */
+    public static boolean isEmpty(Object o) {
+        return null == o;
+    }
+
+    /**
+     * 当前对象存在判断
+     *
+     * @param o 被判断对象
+     * @return 是否存在
+     */
+    public static boolean notEmpty(Object o) {
+        return null != o;
+    }
+
+    /**
      * 判断服务是否启动
      *
      * @param mContext  上下文对象

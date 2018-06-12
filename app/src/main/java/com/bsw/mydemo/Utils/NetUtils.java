@@ -76,7 +76,7 @@ public class NetUtils {
      * @param params   索要传递的参数
      * @param observer 求情观察者
      */
-    public void get(final String action, Map<String, String> params, Observer<ResponseBody> observer) {
+    public void get(final String action, Map<String, Object> params, Observer<ResponseBody> observer) {
         RetrofitGetService getService = initBaseData(action).create(RetrofitGetService.class);
         if (params == null) {
             params = new HashMap<>();

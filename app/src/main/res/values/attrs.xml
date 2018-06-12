@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--手势解锁-->
     <attr name="color_no_finger_inner_circle" format="color" />
     <attr name="color_no_finger_outer_circle" format="color" />
     <attr name="color_finger_on" format="color" />
@@ -24,5 +25,12 @@
         <attr name="line_alpha" />
         <attr name="lock_width_percent" />
         <attr name="margin_between_lock_view_percent" />
+    </declare-styleable>
+
+    <!--hint图片居中的EditText-->
+    <declare-styleable name="CenterImgHintTextView">
+        <attr name="imagewidth" format="dimension" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
     </declare-styleable>
 </resources>

@@ -13,6 +13,7 @@ import com.bsw.mydemo.db.SQLdm;
  * @author 半寿翁
  */
 public class DbActivity extends BaseActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

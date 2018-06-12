@@ -8,6 +8,10 @@
     <string name="main_activity_btn_db">数据库</string>
     <string name="main_activity_btn_linkman">获取联系人</string>
     <string name="main_activity_btn_flash_and_shake">手机震动和闪光灯</string>
+    <string name="main_activity_btn_media">多媒体</string>
+    <string name="main_activity_btn_recording">录音</string>
+    <string name="main_activity_btn_video_record">视频录制</string>
+    <string name="media_activity_btn_crop_pic">截图</string>
     <string name="main_activity_btn_qrcode">二维码</string>
     <string name="main_activity_btn_language">语言环境</string>
     <string name="main_activity_btn_time_zone">时区</string>

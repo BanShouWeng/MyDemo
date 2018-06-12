@@ -1,7 +1,9 @@
 package com.bsw.mydemo;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,11 +21,11 @@ import com.bsw.mydemo.activity.LinkmanActivity;
 import com.bsw.mydemo.activity.NavigationActivity;
 import com.bsw.mydemo.activity.RTMPActivity;
 import com.bsw.mydemo.activity.ScanCodeActivity;
-import com.bsw.mydemo.activity.ShakeAndFlashActivity;
+import com.bsw.mydemo.activity.media.MediaActivity;
+import com.bsw.mydemo.activity.media.ShakeAndFlashActivity;
 import com.bsw.mydemo.activity.VideoActivity;
 import com.bsw.mydemo.activity.WifiActivity;
 import com.bsw.mydemo.activity.nfc.NFCActivity;
-import com.bsw.mydemo.zxing.activity.CaptureActivity;
 
 import java.util.List;
 
@@ -39,6 +41,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent i_getvalue = getIntent();
+        String action = i_getvalue.getAction();
+
+        if (Intent.ACTION_VIEW.equals(action)) {
+            Uri uri = i_getvalue.getData();
+            if (uri != null) {
+                String name = uri.getQueryParameter("name");
+                String age = uri.getQueryParameter("age");
+                Toast.makeText(getApplicationContext(), "name = " + name + " age = " + age, Toast.LENGTH_LONG).show();
+            }
+        }
 
         textView = findViewById(R.id.error);
         String error = App.getInstance().getSharedPreferencesInstance().getString("error", "");
@@ -106,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.jumpShakeAndFlash).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.jumpMedia).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ShakeAndFlashActivity.class));
+                startActivity(new Intent(MainActivity.this, MediaActivity.class));
             }
         });
 
@@ -161,5 +175,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionUtils.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

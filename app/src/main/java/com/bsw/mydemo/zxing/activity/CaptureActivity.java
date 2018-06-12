@@ -1,10 +1,8 @@
 package com.bsw.mydemo.zxing.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
@@ -12,23 +10,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.bsw.mydemo.R;
 import com.bsw.mydemo.Utils.Const;
 import com.bsw.mydemo.Utils.Logger;
 import com.bsw.mydemo.Utils.PermissionUtils;
 import com.bsw.mydemo.Utils.TimerUtils;
-import com.bsw.mydemo.Utils.UriUtils;
 import com.bsw.mydemo.base.BaseActivity;
 import com.bsw.mydemo.zxing.MessageIDs;
 import com.bsw.mydemo.zxing.camera.CameraManager;
@@ -36,21 +29,10 @@ import com.bsw.mydemo.zxing.decoding.AlbumDecoding;
 import com.bsw.mydemo.zxing.decoding.CaptureActivityHandler;
 import com.bsw.mydemo.zxing.decoding.InactivityTimer;
 import com.bsw.mydemo.zxing.view.ViewfinderView;
-import com.google.android.exoplayer.util.UriUtil;
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.ChecksumException;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.FormatException;
-import com.google.zxing.NotFoundException;
-import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Result;
-import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.datamatrix.DataMatrixReader;
-import com.google.zxing.qrcode.QRCodeReader;
 
 import java.io.IOException;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 

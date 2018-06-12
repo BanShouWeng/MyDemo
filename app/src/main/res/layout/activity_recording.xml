@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bsw.mydemo.activity.media.RecordingActivity">
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btnStart" />
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btnStop" />
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btnPlay" />
+
+    <Button
+        android:id="@+id/btnUpLoad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btnUpLoad" />
+
+    <Button
+        android:id="@+id/btnDownLoad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="btnDownLoad" />
+</LinearLayout>

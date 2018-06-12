@@ -2,9 +2,11 @@ package com.bsw.mydemo.Utils;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 
 import java.util.ArrayList;
@@ -160,6 +162,23 @@ public class PermissionUtils {
                 grant.onRequestResult(new ArrayList<String>());
             }
         }
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    private static boolean hasPermission(Fragment fragment, String permission) {
+        return ContextCompat.checkSelfPermission(fragment.getActivity().getApplicationContext(), permission) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private static boolean hasPermission(Activity activity, String permission) {
+        return ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static boolean hasPermission(Activity activity, int permissionId) {
+        return ContextCompat.checkSelfPermission(activity, requestPermissions[permissionId]) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static boolean hasPermission(Context context, int permissionId) {
+        return ContextCompat.checkSelfPermission(context, requestPermissions[permissionId]) == PackageManager.PERMISSION_GRANTED;
     }
 
     public interface PermissionGrant {

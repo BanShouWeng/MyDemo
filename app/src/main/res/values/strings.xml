@@ -9,12 +9,22 @@
     <string name="main_activity_btn_db">数据库</string>
     <string name="main_activity_btn_linkman">获取联系人</string>
     <string name="main_activity_btn_flash_and_shake">手机震动和闪光灯</string>
+    <string name="main_activity_btn_recording">录音</string>
+    <string name="main_activity_btn_video_record">视频录制</string>
+    <string name="media_activity_btn_crop_pic">截图</string>
+    <string name="main_activity_btn_media">多媒体</string>
     <string name="main_activity_btn_qrcode">二维码</string>
     <string name="main_activity_btn_language">语言环境</string>
     <string name="main_activity_btn_time_zone">时区</string>
     <string name="main_activity_btn_gesture_lock">手势解锁</string>
     <string name="main_activity_btn_wifi">wifi</string>
     <string name="main_activity_btn_gif">Gif</string>
+
+    <!--resId-->
+    <string name="img">img</string>
+    <string name="video">video</string>
+    <string name="capture">capture</string>
+
 
     <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_GET_ACCOUNTS</string>
     <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_PHONE_STATE</string>
@@ -30,4 +40,5 @@
     <string name="flash_off">关闭闪光灯</string>
     <string name="album">相册</string>
     <string name="recognize_failed">识别失败</string>
+    <string name="title_activity_media">MediaActivity</string>
 </resources>

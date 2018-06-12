@@ -62,10 +62,10 @@
             android:text="@string/main_activity_btn_linkman" />
 
         <Button
-            android:id="@+id/jumpShakeAndFlash"
+            android:id="@+id/jumpMedia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_flash_and_shake" />
+            android:text="@string/main_activity_btn_media" />
 
         <Button
             android:id="@+id/jumpQrCode"

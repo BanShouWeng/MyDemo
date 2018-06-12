@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bsw.mydemo.R;
+
 /**
  * @author 半寿翁
  */
@@ -23,7 +24,8 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
 
     @SuppressLint("AuthLeak")
     private String path1 = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
-    private String path2 = "rtsp://...";
+//    private String path2 = "rtsp://...";
+    private String path2 = "http://192.168.18.93:8080/fileUpload/upload/052a9ae9-00b4-45a9-ae60-d344b15f2ea0.mp4";
 
     private MediaPlayer mediaPlayer;
     private Surface surface;
@@ -105,7 +107,8 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
                 }
                 mediaPlayer = new MediaPlayer();
 
-                mediaPlayer.setDataSource(TextUtils.isEmpty(path1) ? path2 : path1);//设置播放资源(可以是应用的资源文件／url／sdcard路径)
+//                mediaPlayer.setDataSource(TextUtils.isEmpty(path1) ? path2 : path1);//设置播放资源(可以是应用的资源文件／url／sdcard路径)
+                mediaPlayer.setDataSource(path2);//设置播放资源(可以是应用的资源文件／url／sdcard路径)
                 mediaPlayer.setSurface(surface);//设置渲染画板
                 mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);//设置播放类型
                 mediaPlayer.setOnCompletionListener(VideoActivity.this);//播放完成监听

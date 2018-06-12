@@ -35,7 +35,7 @@ public abstract class BaseNetActivity extends BaseActivity {
 
     private NetUtils netUtils;
 
-    public Map<String, String> params;
+    public Map<String, Object> params;
 
 
     @Override

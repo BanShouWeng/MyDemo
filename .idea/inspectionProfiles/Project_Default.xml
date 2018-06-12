@@ -1,6 +1,17 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <inspection_tool class="ArrayIssues" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="CannotResolve" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ConstExpressionRequired" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ConstructionIsNotAllowed" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DerivedFunctionsReturnTypeMismatch" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="DuplicateDeclarations" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="FieldMustBeInitialized" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="FunctionParameterCountMismatch" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="IncompatibleTypes" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="InitializerIssues" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="IntegerTypeRequired" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="JavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="TOP_LEVEL_CLASS_OPTIONS">
         <value>
@@ -32,5 +43,12 @@
       <option name="IGNORE_POINT_TO_ITSELF" value="false" />
       <option name="myAdditionalJavadocTags" value="date" />
     </inspection_tool>
+    <inspection_tool class="MemberVisibility" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="NoDefaultBaseConstructor" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="NotAssignable" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="PointerTypeRequired" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ScalarTypeRequired" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="StaticnessMismatch" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="TemplateArgumentsIssues" enabled="false" level="ERROR" enabled_by_default="false" />
   </profile>
 </component>

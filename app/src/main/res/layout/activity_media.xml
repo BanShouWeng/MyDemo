@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bsw.mydemo.activity.media.MediaActivity">
+
+    <Button
+        android:id="@+id/jumpShakeAndFlash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_activity_btn_flash_and_shake" />
+
+    <Button
+        android:id="@+id/jumpRecording"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_activity_btn_recording" />
+
+    <Button
+        android:id="@+id/jumpVideoRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_activity_btn_video_record" />
+
+    <Button
+        android:id="@+id/jumpPicCrop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/media_activity_btn_crop_pic" />
+</LinearLayout>
