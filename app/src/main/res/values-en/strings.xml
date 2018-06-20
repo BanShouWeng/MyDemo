@@ -20,6 +20,9 @@
     <string name="main_activity_btn_gesture_lock">gesture lock</string>
     <string name="main_activity_btn_wifi">wifi</string>
     <string name="main_activity_btn_gif">Gif</string>
+    <string name="main_activity_btn_img_marker">add_marker_on_img</string>
+
+    <string name="crop_picture_error">Failed to get the picture resource. Please reselect</string>
 
     <string name="permission_get_accounts_hint">PERMISSION_GET_ACCOUNTS</string>
     <string name="permission_read_phone_hint">PERMISSION_READ_PHONE_STATE</string>
@@ -35,4 +38,7 @@
     <string name="flash_off">flash off</string>
     <string name="album">album</string>
     <string name="recognize_failed">Failed to recognize</string>
+
+    <string name="confirm">confirm</string>
+    <string name="cancel">cancel</string>
 </resources>

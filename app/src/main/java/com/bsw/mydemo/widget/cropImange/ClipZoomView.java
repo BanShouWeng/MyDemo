@@ -1,4 +1,4 @@
-package com.bsw.mydemo.widget.ImgAndVideo.crophomepage;
+package com.bsw.mydemo.widget.cropImange;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +18,6 @@ import android.view.ScaleGestureDetector.OnScaleGestureListener;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,11 +28,11 @@ import java.io.IOException;
  *
  * @author zhy
  */
-public class ClipZoomHomepageView extends AppCompatImageView implements
+public class ClipZoomView extends AppCompatImageView implements
         OnScaleGestureListener, OnTouchListener,
         ViewTreeObserver.OnGlobalLayoutListener {
 
-    private static final String TAG = ClipZoomHomepageView.class.getSimpleName();
+    private static final String TAG = ClipZoomView.class.getSimpleName();
     public static float SCALE_MAX = 4.0f;
     private static float SCALE_MID = 1.0f;
 
@@ -68,11 +67,11 @@ public class ClipZoomHomepageView extends AppCompatImageView implements
     private boolean isCanDrag;
     private int lastPointerCount;
 
-    public ClipZoomHomepageView(Context context) {
+    public ClipZoomView(Context context) {
         this(context, null);
     }
 
-    public ClipZoomHomepageView(Context context, AttributeSet attrs) {
+    public ClipZoomView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         setScaleType(ScaleType.MATRIX);
@@ -86,11 +85,11 @@ public class ClipZoomHomepageView extends AppCompatImageView implements
                         float x = e.getX();
                         float y = e.getY();
                         if (getScale() < SCALE_MID) {
-                            ClipZoomHomepageView.this.postDelayed(
+                            ClipZoomView.this.postDelayed(
                                     new AutoScaleRunnable(SCALE_MID, x, y), 16);
                             isAutoScale = true;
                         } else {
-                            ClipZoomHomepageView.this.postDelayed(
+                            ClipZoomView.this.postDelayed(
                                     new AutoScaleRunnable(initScale, x, y), 16);
                             isAutoScale = true;
                         }
@@ -147,7 +146,7 @@ public class ClipZoomHomepageView extends AppCompatImageView implements
             // 如果值在合法范围内，继续缩放
             if (((tmpScale > 1f) && (currentScale < mTargetScale))
                     || ((tmpScale < 1f) && (mTargetScale < currentScale))) {
-                ClipZoomHomepageView.this.postDelayed(this, 16);
+                ClipZoomView.this.postDelayed(this, 16);
             } else
             // 设置为目标的缩放比例
             {

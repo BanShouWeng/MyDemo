@@ -135,7 +135,7 @@ public class GestureLockViewGroup extends RelativeLayout {
     public GestureLockViewGroup(Context context, AttributeSet attrs,
                                 int defStyle) {
         super(context, attrs, defStyle);
-        /**
+        /*
          * 获得所有自定义的参数的值
          */
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs,

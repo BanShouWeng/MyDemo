@@ -96,5 +96,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/main_activity_btn_gif" />
+
+        <Button
+            android:id="@+id/jumpImgMarker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_activity_btn_img_marker" />
     </LinearLayout>
 </ScrollView>

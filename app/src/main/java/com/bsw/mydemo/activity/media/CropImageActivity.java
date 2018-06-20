@@ -10,43 +10,44 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.bsw.mydemo.R;
+import com.bsw.mydemo.Utils.Const;
 import com.bsw.mydemo.base.BaseActivity;
-import com.bsw.mydemo.widget.ImgAndVideo.BitmapUtil;
-import com.bsw.mydemo.widget.ImgAndVideo.crophomepage.ClipHomepageLayout;
-import com.bsw.mydemo.widget.ImgAndVideo.viewUtils;
+import com.bsw.mydemo.Utils.BitmapUtil;
+import com.bsw.mydemo.Utils.ViewUtils;
+import com.bsw.mydemo.widget.cropImange.ClipLayout;
 
 /*
  * 截取图片界面
  */
-public class CropDiaryHomepageActivity extends BaseActivity {
+public class CropImageActivity extends BaseActivity {
 
-    private ClipHomepageLayout mClipImageLayout;
-    private TextView mTvCancel, mTvSelect;
+    private ClipLayout mClipImageLayout;
     private String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("截取图片");
-        // 实例化控件
-        mClipImageLayout = (ClipHomepageLayout) findViewById(R.id.id_clipImageLayout);
-        mTvCancel = (TextView) findViewById(R.id.cancel);
-        mTvSelect = (TextView) findViewById(R.id.ok);
-        // 设置按钮监听
-        mTvCancel.setOnClickListener(this);
-        mTvSelect.setOnClickListener(this);
+
         // 设置要裁切的图片资源
-        int degree = viewUtils.readPictureDegree(path);
+        int degree = ViewUtils.readPictureDegree(path);
         try {
             WindowManager wm = (WindowManager) context
                     .getSystemService(Context.WINDOW_SERVICE);
 
-            Bitmap mbitmap = BitmapFactory.decodeByteArray(
-                    BitmapUtil.decodeBitmap(path), 0,
-                    BitmapUtil.decodeBitmap(path).length);
-            mClipImageLayout.setImageBitmap(viewUtils.rotateBitmap(mbitmap, degree));
+            byte[] bytes = BitmapUtil.decodeBitmap(path);
+            if (Const.notEmpty(bytes)) {
+
+                Bitmap mbitmap = BitmapFactory.decodeByteArray(
+                        bytes, 0,
+                        bytes.length);
+                mClipImageLayout.setImageBitmap(ViewUtils.rotateBitmap(mbitmap, degree));
+            } else {
+                toast(R.string.crop_picture_error);
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            toast(R.string.crop_picture_error);
         }
     }
 
@@ -82,12 +83,12 @@ public class CropDiaryHomepageActivity extends BaseActivity {
 
     @Override
     protected void findViews() {
-
+        mClipImageLayout = getView(R.id.id_clipImageLayout);
     }
 
     @Override
     protected void formatViews() {
-
+        setOnClickListener(R.id.cancel, R.id.ok);
     }
 
     @Override

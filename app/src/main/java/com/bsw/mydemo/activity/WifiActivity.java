@@ -59,7 +59,7 @@ public class WifiActivity extends BaseActivity {
 //        }
         // 去连接网络
         WifiAdminUtils mWifiAdmin = new WifiAdminUtils(context);
-        /**是否去连接了 */
+        /* 是否去连接了 */
 //        if (WifiConnDialog.this != null) {
 //            dismiss();
 //        }

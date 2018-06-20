@@ -63,7 +63,7 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
     public static final int TYPE_SHORT = 0x003;
     public static final int TYPE_DEFAULT = 0x004;
 
-    //录制视频比特率
+    //录制视频比特率   一般720P的视频码率不要低于4500Kbps，1080P的保持在9000Kbps以上
     public static final int MEDIA_QUALITY_HIGH = 20 * 100000;
     public static final int MEDIA_QUALITY_MIDDLE = 16 * 100000;
     public static final int MEDIA_QUALITY_LOW = 12 * 100000;
@@ -388,7 +388,6 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
     /**************************************************
      * 对外提供的API                     *
      **************************************************/
-
     public void setSaveVideoPath(String path) {
         CameraInterface.getInstance().setSaveVideoPath(path);
     }

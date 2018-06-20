@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:cropimage="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.bsw.mydemo.widget.ImgAndVideo.crophomepage.ClipHomepageLayout
+    <com.bsw.mydemo.widget.cropImange.ClipLayout
         android:id="@+id/id_clipImageLayout"
         android:layout_width="fill_parent"
         android:layout_height="match_parent" />
@@ -15,9 +15,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginBottom="50dp"
         android:padding="20dp"
-        android:text="取消"
+        android:text="@string/cancel"
         android:textColor="@android:color/white" />
 
     <TextView
@@ -25,10 +26,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="50dp"
         android:padding="20dp"
-        android:text="确定"
-        android:textColor="@android:color/white" />
+        android:text="@string/confirm"
+        android:textColor="@android:color/white"
+        tools:ignore="RelativeOverlap" />
 
 </RelativeLayout>

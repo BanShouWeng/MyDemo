@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.bsw.mydemo.R;
 import com.bsw.mydemo.Utils.Const;
 import com.bsw.mydemo.base.BaseActivity;
-import com.bsw.mydemo.widget.ImgAndVideo.BitmapUtil;
+import com.bsw.mydemo.Utils.BitmapUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class PicCropActivity extends BaseActivity {
 
     @Override
     protected void formatViews() {
-        setOnClickListener(R.id.pic_crop, R.id.get_img, R.id.get_video, R.id.get_capture);
+        setOnClickListener(R.id.pic_crop, R.id.get_img, R.id.get_video);
     }
 
     @Override
@@ -60,19 +60,7 @@ public class PicCropActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.pic_crop:
-//                jumpTo(CropDiaryHomepageActivity.class, 505);
-                break;
-
-            case R.id.get_img:
-                Intent in = new Intent(Intent.ACTION_GET_CONTENT);
-                in.setType("image/*");
-                startActivityForResult(in, IMG_CODE);
-                break;
-
-            case R.id.get_video:
-                break;
-
-            case R.id.get_capture:
+//                jumpTo(CropImageActivity.class, 505);
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 mPhotoPath = Environment.getExternalStorageDirectory() + "/"
                         + System.currentTimeMillis() + ".jpg";
@@ -96,6 +84,15 @@ public class PicCropActivity extends BaseActivity {
                     e.printStackTrace();
                 }
                 break;
+
+            case R.id.get_img:
+                Intent in = new Intent(Intent.ACTION_GET_CONTENT);
+                in.setType("image/*");
+                startActivityForResult(in, IMG_CODE);
+                break;
+
+            case R.id.get_video:
+                break;
         }
     }
 
@@ -109,13 +106,13 @@ public class PicCropActivity extends BaseActivity {
                     Uri uri = data.getData();
                     mPhotoPath = BitmapUtil.uri2StringPath(context, uri);
                     bundleIC.putString("bitmap", mPhotoPath);
-                    jumpTo(CropDiaryHomepageActivity.class, PHOTO_CROP, bundleIC);
+                    jumpTo(CropImageActivity.class, PHOTO_CROP, bundleIC);
                     break;
 
                 case PHOTO_CODE:
                     Bundle bundlePC = new Bundle();
                     bundlePC.putString("bitmap", mPhotoPath);
-                    jumpTo(CropDiaryHomepageActivity.class, PHOTO_CROP, bundlePC);
+                    jumpTo(CropImageActivity.class, PHOTO_CROP, bundlePC);
                     break;
 
                 case PHOTO_CROP:

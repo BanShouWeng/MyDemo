@@ -16,6 +16,7 @@ import com.bsw.mydemo.activity.BluetoothActivity;
 import com.bsw.mydemo.activity.DbActivity;
 import com.bsw.mydemo.activity.GestureLockActivity;
 import com.bsw.mydemo.activity.GifActivity;
+import com.bsw.mydemo.activity.ImgMarkerActivity;
 import com.bsw.mydemo.activity.LanguageActivity;
 import com.bsw.mydemo.activity.LinkmanActivity;
 import com.bsw.mydemo.activity.NavigationActivity;
@@ -159,6 +160,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, GifActivity.class));
+            }
+        });
+
+        findViewById(R.id.jumpImgMarker).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ImgMarkerActivity.class));
             }
         });
 

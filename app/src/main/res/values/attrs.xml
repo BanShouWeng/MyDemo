@@ -29,8 +29,16 @@
 
     <!--hint图片居中的EditText-->
     <declare-styleable name="CenterImgHintTextView">
-        <attr name="imagewidth" format="dimension" />
+        <attr name="image_width" format="dimension" />
         <attr name="textSize" format="dimension" />
         <attr name="textColor" format="color" />
+    </declare-styleable>
+
+    <!--截图参数定义-->
+    <declare-styleable name="CropImage">
+        <attr name="horizontal_crop" format="dimension" />
+        <attr name="vertical_crop" format="dimension" />
+        <attr name="horizontal_crop_percent" format="float" />
+        <attr name="vertical_crop_percent" format="float" />
     </declare-styleable>
 </resources>

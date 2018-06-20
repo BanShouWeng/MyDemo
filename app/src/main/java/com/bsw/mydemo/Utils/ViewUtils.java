@@ -1,4 +1,4 @@
-package com.bsw.mydemo.widget.ImgAndVideo;
+package com.bsw.mydemo.Utils;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,10 +12,7 @@ import android.widget.ImageView;
 
 import java.io.IOException;
 
-/**
- * Created by jinzifu on 15/11/19.
- */
-public class viewUtils {
+public class ViewUtils {
 
     private static long mLastClickTime = 0;
 

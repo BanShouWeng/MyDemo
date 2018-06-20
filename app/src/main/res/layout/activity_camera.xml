@@ -10,7 +10,7 @@
         android:id="@+id/jcameraview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:duration_max="10000"
+        app:duration_max="30000"
         app:iconLeft="@drawable/ic_back"
         app:iconMargin="20dp"
         app:iconRight="@drawable/ic_photo"

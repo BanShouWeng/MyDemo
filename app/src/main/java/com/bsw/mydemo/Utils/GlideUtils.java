@@ -30,12 +30,30 @@ public class GlideUtils {
 
     //默认加载
     public static void loadImageView(Context mContext, String path, ImageView mImageView) {
-        Glide.with(mContext).load(path).into(mImageView);
+        loadImageViewAsBitmap(mContext, path, mImageView, false);
     }
 
     //默认加载
     public static void loadImageView(Context mContext, Uri path, ImageView mImageView) {
         Glide.with(mContext).load(path).into(mImageView);
+    }
+
+    //默认加载
+    public static void loadImageViewAsBitmap(Context mContext, String imgUrl, ImageView mImageView, boolean asBitmap) {
+        if (asBitmap) {
+            Glide.with(mContext).asBitmap().load(imgUrl).into(mImageView);
+        } else {
+            Glide.with(mContext).load(imgUrl).into(mImageView);
+        }
+    }
+
+    //默认加载
+    public static void loadImageViewAsBitmap(Context mContext, int imgResId, ImageView mImageView, boolean asBitmap) {
+        if (asBitmap) {
+            Glide.with(mContext).asBitmap().load(imgResId).into(mImageView);
+        } else {
+            Glide.with(mContext).load(imgResId).into(mImageView);
+        }
     }
 
     //加载指定大小

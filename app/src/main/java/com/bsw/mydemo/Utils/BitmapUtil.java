@@ -1,4 +1,4 @@
-package com.bsw.mydemo.widget.ImgAndVideo;
+package com.bsw.mydemo.Utils;
 
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
@@ -15,7 +15,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

@@ -34,7 +34,7 @@ public class CenterImgHintTextView extends AppCompatEditText {
     private void InitResource(Context context, AttributeSet attrs) {
         TypedArray mTypedArray = context.obtainStyledAttributes(attrs, R.styleable.CenterImgHintTextView);
         float density = context.getResources().getDisplayMetrics().density;
-        searchSize = mTypedArray.getDimension(R.styleable.CenterImgHintTextView_imagewidth, 18 * density + 0.5F);
+        searchSize = mTypedArray.getDimension(R.styleable.CenterImgHintTextView_image_width, 18 * density + 0.5F);
         textColor = mTypedArray.getColor(R.styleable.CenterImgHintTextView_textColor, 0xFF848484);
         textSize = mTypedArray.getDimension(R.styleable.CenterImgHintTextView_textSize, 14 * density + 0.5F);
         mTypedArray.recycle();

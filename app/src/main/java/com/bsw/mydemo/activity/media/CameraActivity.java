@@ -37,12 +37,12 @@ public class CameraActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_camera);
-        jCameraView = (JCameraView) findViewById(R.id.jcameraview);
+        jCameraView = findViewById(R.id.jcameraview);
         //设置视频保存路径
         jCameraView.setSaveVideoPath(Environment.getExternalStorageDirectory().getPath() + File.separator + "JCamera");
         jCameraView.setFeatures(JCameraView.BUTTON_STATE_BOTH);
         jCameraView.setTip("JCameraView Tip");
-        jCameraView.setMediaQuality(JCameraView.MEDIA_QUALITY_MIDDLE);
+        jCameraView.setMediaQuality(JCameraView.MEDIA_QUALITY_POOR);
         jCameraView.setErrorLisenter(new ErrorListener() {
             @Override
             public void onError() {

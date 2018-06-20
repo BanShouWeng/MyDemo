@@ -1,4 +1,4 @@
-package com.bsw.mydemo.widget.ImgAndVideo.crophomepage;
+package com.bsw.mydemo.widget.cropImange;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,7 +13,7 @@ import android.view.View;
  * @author zhy
  *         http://blog.csdn.net/lmj623565791/article/details/39761281
  */
-public class ClipHomepageBorderView extends View {
+public class ClipBorderView extends View {
     /**
      * 水平方向与View的边距
      */
@@ -37,15 +37,15 @@ public class ClipHomepageBorderView extends View {
 
     private Paint mPaint;
 
-    public ClipHomepageBorderView(Context context) {
+    public ClipBorderView(Context context) {
         this(context, null);
     }
 
-    public ClipHomepageBorderView(Context context, AttributeSet attrs) {
+    public ClipBorderView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ClipHomepageBorderView(Context context, AttributeSet attrs, int defStyle) {
+    public ClipBorderView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         mBorderWidth = (int) TypedValue.applyDimension(

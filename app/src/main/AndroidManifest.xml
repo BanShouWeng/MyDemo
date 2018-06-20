@@ -108,7 +108,7 @@
         <activity android:name=".activity.WifiActivity" />
         <activity android:name=".activity.ScanCodeActivity" />
         <activity android:name=".activity.GifActivity" />
-        <activity android:name=".activity.media.CropDiaryHomepageActivity" />
+        <activity android:name=".activity.media.CropImageActivity" />
 
         <!-- 拨打电话监听Receiver -->
         <receiver android:name=".receiver.PhoneBroadcastReceiver">
@@ -121,10 +121,9 @@
         <activity android:name=".activity.media.PicCropActivity" />
         <activity android:name=".activity.media.RecordingActivity" />
         <activity android:name=".activity.media.CameraActivity" />
-        <activity
-            android:name=".activity.media.MediaActivity"
-            android:label="@string/title_activity_media"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.media.MediaActivity" />
+        <activity android:name=".activity.ImgMarkerActivity" />
+        <activity android:name=".activity.DragAndZoomImgActivity"></activity>
     </application>
 
 </manifest>
