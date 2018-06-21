@@ -13,6 +13,7 @@ import android.view.View;
 
 /**
  * http://www.cnblogs.com/linjzong/p/4211661.html
+ * https://www.cnblogs.com/linjzong/p/4212474.html
  *
  * @ClassName: MatrixImageView
  * @Description:  带放大、缩小、移动效果的ImageView
