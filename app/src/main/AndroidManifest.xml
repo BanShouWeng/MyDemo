@@ -107,7 +107,7 @@
         <activity android:name=".activity.GestureLockActivity" />
         <activity android:name=".activity.WifiActivity" />
         <activity android:name=".activity.ScanCodeActivity" />
-        <activity android:name=".activity.GifActivity" />
+        <activity android:name=".activity.gif.GifActivity" />
         <activity android:name=".activity.media.CropImageActivity" />
 
         <!-- 拨打电话监听Receiver -->
@@ -122,8 +122,9 @@
         <activity android:name=".activity.media.RecordingActivity" />
         <activity android:name=".activity.media.CameraActivity" />
         <activity android:name=".activity.media.MediaActivity" />
-        <activity android:name=".activity.ImgMarkerActivity" />
-        <activity android:name=".activity.DragAndZoomImgActivity"></activity>
+        <activity android:name=".activity.DragAndZoomImgActivity" />
+        <activity android:name=".activity.gif.PhotoViewAndGifActivity" />
+        <activity android:name=".activity.WebViewActivity"></activity>
     </application>
 
 </manifest>

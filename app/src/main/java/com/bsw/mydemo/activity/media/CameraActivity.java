@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.bsw.mydemo.R;
+import com.bsw.mydemo.activity.VideoActivity;
 import com.cjt2325.cameralibrary.JCameraView;
 import com.cjt2325.cameralibrary.listener.ClickListener;
 import com.cjt2325.cameralibrary.listener.ErrorListener;
@@ -49,8 +50,7 @@ public class CameraActivity extends AppCompatActivity {
                 //错误监听
                 Log.i("CJT", "camera error");
                 Intent intent = new Intent();
-                setResult(103, intent);
-                finish();
+//                setResult(103, intent);
             }
 
             @Override
@@ -65,10 +65,10 @@ public class CameraActivity extends AppCompatActivity {
                 //获取图片bitmap
 //                Log.i("JCameraView", "bitmap = " + bitmap.getWidth());
                 String path = FileUtil.saveBitmap("JCamera", bitmap);
-                Intent intent = new Intent();
+                Intent intent = new Intent(CameraActivity.this, VideoActivity.class);
                 intent.putExtra("path", path);
-                setResult(101, intent);
-                finish();
+//                setResult(101, intent);
+                startActivity(intent);
             }
 
             @Override
@@ -76,10 +76,12 @@ public class CameraActivity extends AppCompatActivity {
                 //获取视频路径
                 String path = FileUtil.saveBitmap("JCamera", firstFrame);
                 Log.i("CJT", "url = " + url + ", Bitmap = " + path);
-                Intent intent = new Intent();
+                Intent intent = new Intent(CameraActivity.this, VideoActivity.class);
                 intent.putExtra("path", path);
-                setResult(101, intent);
-                finish();
+                intent.putExtra("url", url);
+//                setResult(101, intent);
+//                finish();
+                startActivity(intent);
             }
         });
 
@@ -92,7 +94,7 @@ public class CameraActivity extends AppCompatActivity {
         jCameraView.setRightClickListener(new ClickListener() {
             @Override
             public void onClick() {
-                Toast.makeText(CameraActivity.this,"Right",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CameraActivity.this, "Right", Toast.LENGTH_SHORT).show();
             }
         });
 

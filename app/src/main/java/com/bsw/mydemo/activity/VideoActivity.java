@@ -1,6 +1,7 @@
 package com.bsw.mydemo.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bsw.mydemo.R;
+import com.bsw.mydemo.Utils.Const;
 
 /**
  * @author 半寿翁
@@ -51,6 +53,11 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
         textureView = (TextureView) findViewById(R.id.video_view);
         imageView.setOnClickListener(this);
         textureView.setSurfaceTextureListener(this);
+
+        Intent intent = getIntent();
+        if (Const.notEmpty(intent)){
+            path1 = intent.getStringExtra("url");
+        }
     }
 
 

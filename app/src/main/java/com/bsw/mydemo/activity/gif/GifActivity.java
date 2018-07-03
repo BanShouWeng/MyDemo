@@ -1,6 +1,5 @@
-package com.bsw.mydemo.activity;
+package com.bsw.mydemo.activity.gif;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +11,7 @@ import com.bumptech.glide.Glide;
 public class GifActivity extends BaseActivity {
 
     private ImageView gifIv;
+    private ImageView svgIV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +27,14 @@ public class GifActivity extends BaseActivity {
     @Override
     protected void findViews() {
         gifIv = getView(R.id.gif_iv);
+        svgIV = getView(R.id.svg);
     }
 
     @Override
     protected void formatViews() {
+        svgIV.setImageResource(R.drawable.ic_fire);
         Glide.with(this).load(R.drawable.gif).into(gifIv);
+        setOnClickListener(R.id.jumpPhotoViewGif);
     }
 
     @Override
@@ -46,6 +49,10 @@ public class GifActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.jumpPhotoViewGif:
+                jumpTo(PhotoViewAndGifActivity.class);
+                break;
+        }
     }
 }

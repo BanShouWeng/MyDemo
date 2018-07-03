@@ -98,9 +98,9 @@
             android:text="@string/main_activity_btn_gif" />
 
         <Button
-            android:id="@+id/jumpImgMarker"
+            android:id="@+id/jumpWebView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_img_marker" />
+            android:text="@string/main_activity_btn_gif" />
     </LinearLayout>
 </ScrollView>

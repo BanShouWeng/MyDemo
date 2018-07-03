@@ -24,16 +24,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="btnPlay" />
-
-    <Button
-        android:id="@+id/btnUpLoad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="btnUpLoad" />
-
-    <Button
-        android:id="@+id/btnDownLoad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="btnDownLoad" />
 </LinearLayout>

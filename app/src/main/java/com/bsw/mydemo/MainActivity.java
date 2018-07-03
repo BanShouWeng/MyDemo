@@ -15,15 +15,14 @@ import com.bsw.mydemo.Utils.PermissionUtils;
 import com.bsw.mydemo.activity.BluetoothActivity;
 import com.bsw.mydemo.activity.DbActivity;
 import com.bsw.mydemo.activity.GestureLockActivity;
-import com.bsw.mydemo.activity.GifActivity;
-import com.bsw.mydemo.activity.ImgMarkerActivity;
+import com.bsw.mydemo.activity.WebViewActivity;
+import com.bsw.mydemo.activity.gif.GifActivity;
 import com.bsw.mydemo.activity.LanguageActivity;
 import com.bsw.mydemo.activity.LinkmanActivity;
 import com.bsw.mydemo.activity.NavigationActivity;
 import com.bsw.mydemo.activity.RTMPActivity;
 import com.bsw.mydemo.activity.ScanCodeActivity;
 import com.bsw.mydemo.activity.media.MediaActivity;
-import com.bsw.mydemo.activity.media.ShakeAndFlashActivity;
 import com.bsw.mydemo.activity.VideoActivity;
 import com.bsw.mydemo.activity.WifiActivity;
 import com.bsw.mydemo.activity.nfc.NFCActivity;
@@ -163,10 +162,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.jumpImgMarker).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.jumpWebView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ImgMarkerActivity.class));
+                startActivity(new Intent(MainActivity.this, WebViewActivity.class));
             }
         });
 
