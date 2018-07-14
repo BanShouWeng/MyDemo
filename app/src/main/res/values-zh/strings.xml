@@ -21,8 +21,11 @@
     <string name="main_activity_btn_webview">WebView</string>
     <string name="main_activity_btn_img_marker">图片标点</string>
 
+    <!--toast-->
     <string name="crop_picture_error">图片资源获取失败，请重新选择</string>
+    <string name="file_error">文件异常</string>
 
+    <!--权限-->
     <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启获取通讯录权限。</string>
     <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启获取手机状态权限。</string>
     <string name="permission_call_phone_hint">没有此权限，无法开启这个功能，请开启拨打电话权限权限。</string>
@@ -40,4 +43,5 @@
 
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>
+
 </resources>
