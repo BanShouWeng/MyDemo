@@ -19,6 +19,7 @@
     <string name="main_activity_btn_gesture_lock">手势解锁</string>
     <string name="main_activity_btn_wifi">wifi</string>
     <string name="main_activity_btn_gif">Gif</string>
+    <string name="main_activity_btn_view">View</string>
     <string name="main_activity_btn_webview">WebView</string>
     <string name="main_activity_btn_img_marker">图片标点</string>
 

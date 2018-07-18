@@ -26,6 +26,7 @@ import com.bsw.mydemo.activity.media.MediaActivity;
 import com.bsw.mydemo.activity.VideoActivity;
 import com.bsw.mydemo.activity.WifiActivity;
 import com.bsw.mydemo.activity.nfc.NFCActivity;
+import com.bsw.mydemo.activity.view.ToolbarActivity;
 
 import java.util.List;
 
@@ -166,6 +167,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, WebViewActivity.class));
+            }
+        });
+
+        findViewById(R.id.jumpView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ToolbarActivity.class));
             }
         });
 

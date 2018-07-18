@@ -101,6 +101,12 @@
             android:id="@+id/jumpWebView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_gif" />
+            android:text="@string/main_activity_btn_webview" />
+
+        <Button
+            android:id="@+id/jumpView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_activity_btn_view" />
     </LinearLayout>
 </ScrollView>

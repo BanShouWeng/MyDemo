@@ -27,6 +27,7 @@ public class NFCReadActivity extends BaseNfcActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("读NFC");
     }
 
     @Override

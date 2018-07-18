@@ -28,23 +28,20 @@ android {
         multiDexEnabled true
     }
     buildTypes {
-        release {
-            debug {
-                minifyEnabled false
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //                buildConfigField "String", "BASE_URL", "\"https://api.douban.com/v2/movie/\""
-                buildConfigField "String", "BASE_URL", "\"http://121.40.50.44:10000/api/v1/stream/\""
-                buildConfigField "int", "INT", "0"
-                buildConfigField "boolean", "BOOLEAN", "true"
-                signingConfig signingConfigs.debug
-            }
+            buildConfigField "String", "BASE_URL", "\"http://121.40.50.44:10000/api/v1/stream/\""
+            buildConfigField "int", "INT", "0"
+            buildConfigField "boolean", "BOOLEAN", "true"
+            signingConfig signingConfigs.debug
+        }
+        release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://api.douban.com/v2/movie/\""
             signingConfig signingConfigs.release
-        }
-        debug {
-            signingConfig signingConfigs.debug
         }
     }
 }
