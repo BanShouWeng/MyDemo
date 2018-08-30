@@ -3,7 +3,7 @@ package com.bsw.mydemo.bean;
 /**
  * 记住用户历史账号
  *
- * @author leiming
+ * @author 半寿翁
  * @date 2018/4/2.
  */
 public class UserAccountBean {

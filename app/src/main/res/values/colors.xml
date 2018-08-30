@@ -9,4 +9,5 @@
 
     <color name="toolbar_meun">#AAAAFF</color>
     <color name="divider_color">#F0F0F0</color>
+    <color name="divider_line_color">#F0F0F0</color>
 </resources>

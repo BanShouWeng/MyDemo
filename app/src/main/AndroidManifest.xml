@@ -125,7 +125,10 @@
         <activity android:name=".activity.DragAndZoomImgActivity" />
         <activity android:name=".activity.gif.PhotoViewAndGifActivity" />
         <activity android:name=".activity.WebViewActivity" />
-        <activity android:name=".activity.view.ToolbarActivity"></activity>
+        <activity android:name=".activity.view.ToolbarActivity" />
+        <activity android:name=".activity.EmailActivity" />
+        <activity android:name=".Utils.KeepAlive.KeepAliveActivity" />
+        <activity android:name=".activity.OSActivity"></activity>
     </application>
 
 </manifest>

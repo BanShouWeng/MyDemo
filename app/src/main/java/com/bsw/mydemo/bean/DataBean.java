@@ -3,7 +3,7 @@ package com.bsw.mydemo.bean;
 import com.bsw.mydemo.base.BaseBean;
 
 /**
- * @author leiming
+ * @author 半寿翁
  * @date 2018/4/28.
  */
 

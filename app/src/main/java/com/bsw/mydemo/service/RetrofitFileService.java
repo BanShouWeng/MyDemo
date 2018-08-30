@@ -13,7 +13,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 /**
- * @author leiming
+ * @author 半寿翁
  * @date 2017/10/11
  */
 public interface RetrofitFileService {

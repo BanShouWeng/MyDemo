@@ -20,7 +20,7 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * @author leiming
+ * @author 半寿翁
  * @date 2018/6/13.
  */
 

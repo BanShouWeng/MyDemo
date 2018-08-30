@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">我的例子</string>
 
+    <string name="main_activity_btn_OS">OS</string>
     <string name="main_activity_btn_NFC">NFC</string>
     <string name="main_activity_btn_video_play">视频播放</string>
     <string name="main_activity_btn_rtmp">rtmp视频播放</string>
@@ -22,6 +23,11 @@
     <string name="main_activity_btn_view">View</string>
     <string name="main_activity_btn_webview">WebView</string>
     <string name="main_activity_btn_img_marker">图片标点</string>
+    <string name="main_activity_btn_email">Email</string>
+
+    <string name="email_address">接收人</string>
+    <string name="email_content">邮件内容</string>
+    <string name="email_annex">附件</string>
 
     <!--resId-->
     <string name="img">img</string>
@@ -50,5 +56,6 @@
 
     <string name="confirm">确认</string>
     <string name="cancel">取消</string>
+    <string name="all_loaded">已全部加载</string>
 
 </resources>

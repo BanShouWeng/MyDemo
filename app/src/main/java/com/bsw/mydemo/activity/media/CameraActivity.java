@@ -26,7 +26,7 @@ import java.io.File;
 /**
  * http://p.codekk.com/detail/Android/CJT2325/CameraView
  *
- * @author leiming
+ * @author 半寿翁
  * @date 2018/6/12 13:28
  */
 public class CameraActivity extends AppCompatActivity {

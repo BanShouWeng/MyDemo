@@ -20,6 +20,12 @@
             android:padding="@dimen/size_8" />
 
         <Button
+            android:id="@+id/jumpOS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/main_activity_btn_OS" />
+
+        <Button
             android:id="@+id/jumpNFC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

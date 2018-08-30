@@ -18,7 +18,7 @@ package com.bsw.mydemo.Utils;
 import android.content.Context;
 
 /**
- * @author leiming
+ * @author 半寿翁
  * @date 2017/10/11
  */
 public class DensityUtils {

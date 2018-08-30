@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">MyDemo</string>
 
+    <string name="main_activity_btn_OS">OS</string>
     <string name="main_activity_btn_NFC">NFC</string>
     <string name="main_activity_btn_video_play">video play</string>
     <string name="main_activity_btn_rtmp">rtmp</string>
@@ -21,10 +22,18 @@
     <string name="main_activity_btn_wifi">wifi</string>
     <string name="main_activity_btn_gif">Gif</string>
     <string name="main_activity_btn_view">View</string>
-
     <string name="main_activity_btn_webview">WebView</string>
     <string name="main_activity_btn_img_marker">add_marker_on_img</string>
+    <string name="main_activity_btn_email">Email</string>
 
+    <!--resId-->
+    <string name="img">img</string>
+    <string name="video">video</string>
+    <string name="capture">capture</string>
+
+    <string name="email_address">receiver</string>
+    <string name="email_content">content</string>
+    <string name="email_annex">annex</string>
 
     <!--toast-->
     <string name="crop_picture_error">Failed to get the picture resource. Please reselect</string>

@@ -32,7 +32,6 @@ public class App extends Application {
 
 
         String a = getDirPath();
-        Logger.i("a", a);
     }
 
     /**

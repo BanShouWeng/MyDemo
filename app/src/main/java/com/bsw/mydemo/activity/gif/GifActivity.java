@@ -5,6 +5,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bsw.mydemo.R;
+import com.bsw.mydemo.Utils.Logger;
+import com.bsw.mydemo.Utils.MeasureUtil;
+import com.bsw.mydemo.Utils.TimerUtils;
 import com.bsw.mydemo.base.BaseActivity;
 import com.bumptech.glide.Glide;
 

@@ -3,6 +3,7 @@ package com.bsw.mydemo.activity.media;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.media.AudioManager;
@@ -11,6 +12,7 @@ import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.bsw.mydemo.Utils.PermissionUtils;
 import com.bsw.mydemo.base.BaseActivity;
 
 import java.util.List;
+
 /**
  * @author 半寿翁
  */
@@ -70,13 +73,13 @@ public class ShakeAndFlashActivity extends BaseActivity {
      */
     private void setMaxVoice() {
         if (PermissionUtils.hasPermission(getApplicationContext(), PermissionUtils.CODE_PROCESS_OUTGOING_CALLS)) {
-            NotificationManager notificationManager = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                    && !notificationManager.isNotificationPolicyAccessGranted()) {
+//            NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+//                    && ! notificationManager.isNotificationPolicyAccessGranted()) {
 //                Intent intent = new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
 //                getApplicationContext().startActivity(intent);
-                return;
-            }
+//                return;
+//            }
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxMusic, 0);
             mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, maxSystem, 0);
         }
@@ -87,13 +90,13 @@ public class ShakeAndFlashActivity extends BaseActivity {
      */
     private void setCurrentVoice() {
         if (PermissionUtils.hasPermission(getApplicationContext(), PermissionUtils.CODE_PROCESS_OUTGOING_CALLS)) {
-            NotificationManager notificationManager = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                    && !notificationManager.isNotificationPolicyAccessGranted()) {
+//            NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+//                    && ! notificationManager.isNotificationPolicyAccessGranted()) {
 //                Intent intent = new Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
 //                getApplicationContext().startActivity(intent);
-                return;
-            }
+//                return;
+//            }
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentMusic, 0);
             mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, currentSystem, 0);
         }
@@ -293,7 +296,7 @@ public class ShakeAndFlashActivity extends BaseActivity {
                 PermissionUtils.setRequestPermissions(activity, new PermissionUtils.PermissionGrant() {
                     @Override
                     public Integer[] onPermissionGranted() {
-                        return new Integer[]{PermissionUtils.CODE_CAMERA};
+                        return new Integer[] {PermissionUtils.CODE_CAMERA};
                     }
 
                     @Override
@@ -315,7 +318,7 @@ public class ShakeAndFlashActivity extends BaseActivity {
                 if (vibrator == null) {
                     vibrator = (Vibrator) getApplication().getSystemService(Service.VIBRATOR_SERVICE);
                 }
-                vibrator.vibrate(new long[]{300, 1000}, 0);
+                vibrator.vibrate(new long[] {300, 1000}, 0);
                 break;
 
             case R.id.stopShake:
