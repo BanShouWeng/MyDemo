@@ -3,6 +3,8 @@ package com.bsw.mydemo.widget.BswRecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Looper;
+import android.support.annotation.IntDef;
+import android.support.annotation.IntRange;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 
 import com.bsw.mydemo.R;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 
 /**
@@ -24,14 +28,7 @@ import java.util.List;
  * @date 2018/4/22 11:26
  */
 public class BswFilterRecyclerView<T> extends RecyclerView {
-    /**
-     * 纵向布局
-     */
-    public static int VERTICAL = 0;
-    /**
-     * 横向布局
-     */
-    private static int HORIZONTAL = 1;
+
 
     /**
      * 上下文
@@ -92,7 +89,7 @@ public class BswFilterRecyclerView<T> extends RecyclerView {
      * @return 当前RecyclerView
      */
     @SuppressWarnings("UnusedReturnValue")
-    private BswFilterRecyclerView setDecoration(int type) {
+    private BswFilterRecyclerView setDecoration(@LimitAnnotation.DecorationType int type) {
         addItemDecoration(new BswDecoration(context, type));
         return this;
     }
@@ -104,7 +101,7 @@ public class BswFilterRecyclerView<T> extends RecyclerView {
      */
     @SuppressWarnings("UnusedReturnValue")
     public BswFilterRecyclerView setDecoration() {
-        setDecoration(BswDecoration.BOTTOM_DECORATION);
+        setDecoration(LimitAnnotation.BOTTOM_DECORATION);
         return this;
     }
 
@@ -122,7 +119,7 @@ public class BswFilterRecyclerView<T> extends RecyclerView {
      *
      * @param mData 所要展示的数据
      */
-    public void setData(List<T> mData, int pageNumber, int pageSize) {
+    public void setData(List<T> mData,@IntRange(from = 1) int pageNumber,@IntRange(from = 1) int pageSize) {
         adapter.setData(mData, pageNumber, pageSize);
     }
 
@@ -132,7 +129,7 @@ public class BswFilterRecyclerView<T> extends RecyclerView {
      * @param mData 用来替换的数据
      */
     @SuppressWarnings("unused")
-    public void replaceData(List<T> mData, int pageNumber, int pageSize) {
+    public void replaceData(List<T> mData,@IntRange(from = 1) int pageNumber, @IntRange(from = 1) int pageSize) {
         adapter.replaceData(mData, pageNumber, pageSize);
     }
 
@@ -178,7 +175,7 @@ public class BswFilterRecyclerView<T> extends RecyclerView {
      * @return 当前RecyclerView
      */
     public BswFilterRecyclerView setLayoutManager() {
-        setLayoutManager(VERTICAL);
+        setLayoutManager(LimitAnnotation.VERTICAL);
         return this;
     }
 
@@ -188,7 +185,7 @@ public class BswFilterRecyclerView<T> extends RecyclerView {
      * @param layoutType 布局样式
      * @return 当前RecyclerView
      */
-    public BswFilterRecyclerView setLayoutManager(int layoutType) {
+    public BswFilterRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType) {
         if (layoutType == HORIZONTAL) // 横向列表
         {
             setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -206,7 +203,7 @@ public class BswFilterRecyclerView<T> extends RecyclerView {
      * @param reverseLayout 横向布局是否可以循环滑动标志位： true，可以；false，不可以
      * @return 当前RecyclerView
      */
-    private BswFilterRecyclerView setLayoutManager(int layoutType, boolean reverseLayout) {
+    private BswFilterRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, boolean reverseLayout) {
         if (layoutType == HORIZONTAL) // 横向列表
         {
             setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, reverseLayout));
@@ -224,7 +221,7 @@ public class BswFilterRecyclerView<T> extends RecyclerView {
      * @param spanCount  拓展到多少行/列
      * @return 当前RecyclerView
      */
-    public BswFilterRecyclerView setLayoutManager(int layoutType, int spanCount) {
+    public BswFilterRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, int spanCount) {
         if (spanCount == 1) // 当spanCount为的时候，为线性列表
         {
             return setLayoutManager(layoutType);
@@ -247,7 +244,7 @@ public class BswFilterRecyclerView<T> extends RecyclerView {
      * @param reverseLayout 横向布局是否可以循环滑动标志位： true，可以；false，不可以
      * @return 当前RecyclerView
      */
-    public BswFilterRecyclerView setLayoutManager(int layoutType, int spanCount, boolean reverseLayout) {
+    public BswFilterRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, int spanCount, boolean reverseLayout) {
         if (spanCount == 1) {
             return setLayoutManager(layoutType, reverseLayout);
         }

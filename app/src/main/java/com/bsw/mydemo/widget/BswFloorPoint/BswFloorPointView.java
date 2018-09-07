@@ -26,7 +26,6 @@ import java.util.List;
  * 此控件是根据点x/y位于地图百分比标注的，这也是现阶段比较准确的一种使用方式；
  * 若使用坐标的需注意，这里使用的底图承载控件是PhotoView，会根据屏幕大小约束图片，因此需要添加一个
  *
- *
  * @author 半寿翁
  * @date 2018/8/28.
  */
@@ -192,7 +191,12 @@ public class BswFloorPointView extends RelativeLayout {
         for (PointBean pointBean : pointList) {
             ImageView imageView = pointBean.getPointView();
             addView(imageView, lp100);
-            GlideUtils.loadImageView(mContext, pointBean.getPath(), imageView);
+            int imgRes = pointBean.getImgRes();
+            if (imgRes == 0) {
+                GlideUtils.loadImageView(mContext, pointBean.getPath(), imageView);
+            } else {
+                GlideUtils.loadImageView(mContext, imgRes, imageView);
+            }
         }
         new TimerUtils(2000, 50, new TimerUtils.OnBaseTimerCallBack() {
             @Override

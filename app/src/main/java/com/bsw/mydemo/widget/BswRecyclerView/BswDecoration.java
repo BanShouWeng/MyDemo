@@ -4,10 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.annotation.IntDef;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.bsw.mydemo.R;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * @author 半寿翁
@@ -15,14 +19,13 @@ import com.bsw.mydemo.R;
  */
 
 public class BswDecoration extends RecyclerView.ItemDecoration {
-    public static final int BOTTOM_DECORATION = 0x010;
-    public static final int ROUND_DECORATION = 0x011;
+
 
     private int mydevider;
     private Paint dividerPaint;
     private int type;
 
-    public BswDecoration(Context context, int type) {
+    public BswDecoration(Context context, @LimitAnnotation.DecorationType int type) {
         this.type = type;
         dividerPaint = new Paint();
         //设置分割线颜色
@@ -41,7 +44,7 @@ public class BswDecoration extends RecyclerView.ItemDecoration {
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         int childCount = parent.getChildCount();
         switch (type) {
-            case BOTTOM_DECORATION:
+            case LimitAnnotation.BOTTOM_DECORATION:
                 int left = parent.getPaddingLeft();
                 int right = parent.getWidth() - parent.getPaddingRight();
                 for (int i = 0; i < childCount - 1; i++) {
@@ -52,7 +55,7 @@ public class BswDecoration extends RecyclerView.ItemDecoration {
                 }
                 break;
 
-            case ROUND_DECORATION:
+            case LimitAnnotation.ROUND_DECORATION:
                 for (int i = 0; i < childCount; i++) {
                     View view = parent.getChildAt(i);
                     float leftV = view.getLeft();

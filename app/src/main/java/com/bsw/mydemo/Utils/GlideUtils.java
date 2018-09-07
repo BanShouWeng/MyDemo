@@ -3,6 +3,7 @@ package com.bsw.mydemo.Utils;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -31,6 +32,10 @@ public class GlideUtils {
     //默认加载
     public static void loadImageView(Context mContext, String path, ImageView mImageView) {
         loadImageViewAsBitmap(mContext, path, mImageView, false);
+    }
+
+    public static void loadImageView(Context mContext, @DrawableRes int imgRes, ImageView mImageView) {
+        loadImageViewAsBitmap(mContext, imgRes, mImageView, false);
     }
 
     //默认加载

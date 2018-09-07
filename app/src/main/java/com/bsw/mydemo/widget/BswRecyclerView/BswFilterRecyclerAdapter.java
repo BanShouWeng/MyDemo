@@ -2,6 +2,7 @@ package com.bsw.mydemo.widget.BswRecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.IntRange;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -144,7 +145,7 @@ class BswFilterRecyclerAdapter<T> extends RecyclerView.Adapter implements Filter
      * @param mData      所要展示的数据列表
      * @param pageNumber 页码
      */
-    public void setData(List<T> mData, int pageNumber, int pageSize) {
+    public void setData(List<T> mData, @IntRange(from = 1) int pageNumber, @IntRange(from = 1) int pageSize) {
         this.mData = mData;
         if (pageNumber == 1) {
             setData(mData);
@@ -189,7 +190,7 @@ class BswFilterRecyclerAdapter<T> extends RecyclerView.Adapter implements Filter
      *
      * @param mData 替换的数据
      */
-    void replaceData(List<T> mData, int pageNumber, int pageSize) {
+    void replaceData(List<T> mData,@IntRange(from = 1) int pageNumber,@IntRange(from = 1) int pageSize) {
         int dataSize = Const.judgeListNull(mData);
         int startPosition = pageSize * (pageNumber - 1);
         for (int i = startPosition; i < startPosition + dataSize; i++) {

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Looper;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,15 +23,6 @@ import java.util.List;
  * @date 2018/4/22 11:26
  */
 public class BswRecyclerView<T> extends RecyclerView {
-    /**
-     * 纵向布局
-     */
-    public static int VERTICAL = 0;
-    /**
-     * 横向布局
-     */
-    private static int HORIZONTAL = 1;
-
     /**
      * 上下文
      */
@@ -102,7 +94,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @return 当前RecyclerView
      */
     @SuppressWarnings("UnusedReturnValue")
-    public BswRecyclerView setDecoration(int type) {
+    public BswRecyclerView setDecoration(@LimitAnnotation.DecorationType int type) {
         addItemDecoration(new BswDecoration(context, type));
         return this;
     }
@@ -114,7 +106,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      */
     @SuppressWarnings("UnusedReturnValue")
     public BswRecyclerView setDecoration() {
-        setDecoration(BswDecoration.BOTTOM_DECORATION);
+        setDecoration(LimitAnnotation.BOTTOM_DECORATION);
         return this;
     }
 
@@ -194,7 +186,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @return 当前RecyclerView
      */
     public BswRecyclerView setLayoutManager() {
-        setLayoutManager(VERTICAL);
+        setLayoutManager(LimitAnnotation.VERTICAL);
         return this;
     }
 
@@ -204,7 +196,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param layoutType 布局样式
      * @return 当前RecyclerView
      */
-    public BswRecyclerView setLayoutManager(int layoutType) {
+    public BswRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType) {
         if (layoutType == HORIZONTAL) // 横向列表
         {
             setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -222,7 +214,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param reverseLayout 横向布局是否可以循环滑动标志位： true，可以；false，不可以
      * @return 当前RecyclerView
      */
-    private BswRecyclerView setLayoutManager(int layoutType, boolean reverseLayout) {
+    private BswRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, boolean reverseLayout) {
         if (layoutType == HORIZONTAL) // 横向列表
         {
             setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, reverseLayout));
@@ -240,7 +232,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param spanCount  拓展到多少行/列
      * @return 当前RecyclerView
      */
-    public BswRecyclerView setLayoutManager(int layoutType, int spanCount) {
+    public BswRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, int spanCount) {
         if (spanCount == 1) // 当spanCount为的时候，为线性列表
         {
             return setLayoutManager(layoutType);
@@ -263,7 +255,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param reverseLayout 横向布局是否可以循环滑动标志位： true，可以；false，不可以
      * @return 当前RecyclerView
      */
-    public BswRecyclerView setLayoutManager(int layoutType, int spanCount, boolean reverseLayout) {
+    public BswRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, int spanCount, boolean reverseLayout) {
         if (spanCount == 1) {
             return setLayoutManager(layoutType, reverseLayout);
         }
@@ -356,7 +348,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param messageId 提示消息文本ID
      */
     @SuppressLint("ShowToast")
-    private void toast(int messageId) {
+    private void toast(@StringRes int messageId) {
         try {
             if (toast != null) {
                 toast.setText(messageId);

@@ -1,6 +1,7 @@
 package com.bsw.mydemo.widget.BswFloorPoint;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntDef;
 import android.support.annotation.Size;
@@ -34,6 +35,7 @@ public class PointBean {
     private double x;
     private double y;
     private String path;
+    private int imgRes;
     private ImageView pointView;
     private int positionLimit;
 
@@ -52,6 +54,18 @@ public class PointBean {
         this.positionLimit = positionLimit;
     }
 
+    /**
+     * @param x      横坐标
+     * @param y      纵坐标
+     * @param imgRes 显示文件的路径
+     */
+    public PointBean(@FloatRange(from = 0, to = 1) double x, @FloatRange(from = 0, to = 1) double y, @DrawableRes int imgRes, @pointPositionLimit int positionLimit) {
+        this.x = x;
+        this.y = y;
+        this.imgRes = imgRes;
+        this.positionLimit = positionLimit;
+    }
+
     public double getX() {
         return x;
     }
@@ -62,6 +76,10 @@ public class PointBean {
 
     public String getPath() {
         return path;
+    }
+
+    public int getImgRes() {
+        return imgRes;
     }
 
     ImageView getPointView() {
@@ -89,4 +107,5 @@ public class PointBean {
     public int getPositionLimit() {
         return positionLimit;
     }
+
 }
