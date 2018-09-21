@@ -13,6 +13,7 @@ public class NFCActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.main_activity_btn_NFC);
     }
 
     @Override

@@ -16,6 +16,7 @@ import com.bsw.mydemo.R;
 import com.bsw.mydemo.base.BaseNfcActivity;
 
 import java.io.UnsupportedEncodingException;
+
 /**
  * @author 半寿翁
  */
@@ -27,7 +28,7 @@ public class NFCReadActivity extends BaseNfcActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("读NFC");
+        setTitle(R.string.NFC_write);
     }
 
     @Override
@@ -112,7 +113,7 @@ public class NFCReadActivity extends BaseNfcActivity {
         String[] hex = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
         String out = "";
 
-        for (j = 0; j < inarray.length; ++j) {
+        for (j = 0; j < inarray.length; ++ j) {
             in = (int) inarray[j] & 0xff;
             i = (in >> 4) & 0x0f;
             out += hex[i];

@@ -1,4 +1,4 @@
-package com.bsw.mydemo.activity;
+package com.bsw.mydemo.activity.Utils;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;

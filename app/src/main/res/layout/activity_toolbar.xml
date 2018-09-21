@@ -11,14 +11,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--app:layout_scrollFlags="scroll|enterAlways"  上拉时隐藏toolbar-->
+        <!--app:layout_scrollFlags="scroll|enterAlways"  上拉时隐藏toolbar，且下拉时有限展示Toolbar内容-->
+        <!--app:layout_scrollFlags="scroll|enterAlwaysCollapsed"  上拉时隐藏toolbar，且下拉时，滑动布局完全展示后，再展示Toolbar内容-->
+        <!--app:contentInsetStart="0dp"  当Toolbar内包含其他子布局时，去掉Toolbar左侧留白-->
         <android.support.v7.widget.Toolbar
             android:id="@+id/test_tlb"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways"
             android:background="@color/blue"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/toolbarMenuStyle" />
+        <!--android:id="@+id/test_tlb"-->
+        <!--app:layout_scrollFlags="scroll|enterAlways"-->
+        <!--android:layout_width="match_parent"-->
+        <!--app:popupTheme="@style/toolbarMenuStyle"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:text="fsdfsdfd"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_height="200dp" />-->
+        <!--</android.support.v7.widget.Toolbar>-->
+
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -51,5 +66,4 @@
                 android:textSize="17sp" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
 </android.support.design.widget.CoordinatorLayout>

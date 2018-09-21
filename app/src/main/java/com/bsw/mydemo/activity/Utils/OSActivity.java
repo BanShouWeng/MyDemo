@@ -1,4 +1,4 @@
-package com.bsw.mydemo.activity;
+package com.bsw.mydemo.activity.Utils;
 
 import android.os.Build;
 import android.os.Bundle;

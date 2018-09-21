@@ -32,23 +32,23 @@ public class ToolbarActivity extends AppCompatActivity {
 
         parentCdl = findViewById(R.id.parent_cdl);
         Toolbar toolbar = findViewById(R.id.test_tlb);
-        // Logo
-        toolbar.setLogo(R.drawable.logo);
-
-        // 主标题s
-        toolbar.setTitle("Title");
-
-        // 副标题
-        toolbar.setSubtitle("Sub Title");
+//        // Logo
+//        toolbar.setLogo(R.drawable.logo);
+//
+//        // 主标题s
+//        toolbar.setTitle("Title");
+//
+//        // 副标题
+//        toolbar.setSubtitle("Sub Title");
 
         //设置toolbar
         setSupportActionBar(toolbar);
 
         //左边的小箭头（注意需要在setSupportActionBar(toolbar)之后才有效果）
-        toolbar.setNavigationIcon(R.mipmap.back);
+//        toolbar.setNavigationIcon(R.mipmap.back);
 
         //菜单点击事件（注意需要在setSupportActionBar(toolbar)之后才有效果）
-        toolbar.setOnMenuItemClickListener(onMenuItemClick);
+//        toolbar.setOnMenuItemClickListener(onMenuItemClick);
     }
 
 

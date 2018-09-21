@@ -135,6 +135,8 @@ public abstract class CaptureActivity extends BaseActivity implements Callback, 
      */
     protected abstract int setAutoCloseTime();
 
+    protected abstract void getResultString(String resultString);
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -233,7 +235,7 @@ public abstract class CaptureActivity extends BaseActivity implements Callback, 
     private void handlerScanResult(Result rawResult) {
         String resultString = rawResult.getText();
         Logger.i("resultString", String.format("resultString = %s", resultString));
-        toast(resultString);
+        getResultString(resultString);
         restartPreviewAfterDelay(0);
     }
 

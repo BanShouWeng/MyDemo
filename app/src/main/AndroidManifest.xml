@@ -24,7 +24,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
     <!-- 联系人权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
@@ -97,7 +98,7 @@
         </activity>
         <activity android:name=".activity.VideoActivity" />
         <activity android:name=".activity.RTMPActivity" />
-        <activity android:name=".activity.BluetoothActivity" />
+        <activity android:name=".activity.Utils.BluetoothActivity" />
         <activity android:name=".activity.NavigationActivity" />
         <activity android:name=".activity.DbActivity" />
         <activity android:name=".activity.LinkmanActivity" />
@@ -126,9 +127,9 @@
         <activity android:name=".activity.gif.PhotoViewAndGifActivity" />
         <activity android:name=".activity.WebViewActivity" />
         <activity android:name=".activity.view.ToolbarActivity" />
-        <activity android:name=".activity.EmailActivity" />
         <activity android:name=".Utils.KeepAlive.KeepAliveActivity" />
-        <activity android:name=".activity.OSActivity"></activity>
+        <activity android:name=".activity.Utils.OSActivity" />
+        <activity android:name=".activity.Utils.TimeActivity"></activity>
     </application>
 
 </manifest>

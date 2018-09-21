@@ -17,10 +17,11 @@ import com.bsw.mydemo.Utils.KeepAlive.ScreenBroadcastListener;
 import com.bsw.mydemo.Utils.KeepAlive.ScreenManager;
 import com.bsw.mydemo.Utils.Logger;
 import com.bsw.mydemo.Utils.PermissionUtils;
-import com.bsw.mydemo.activity.BluetoothActivity;
+import com.bsw.mydemo.activity.Utils.BluetoothActivity;
 import com.bsw.mydemo.activity.DbActivity;
 import com.bsw.mydemo.activity.GestureLockActivity;
-import com.bsw.mydemo.activity.OSActivity;
+import com.bsw.mydemo.activity.Utils.OSActivity;
+import com.bsw.mydemo.activity.Utils.TimeActivity;
 import com.bsw.mydemo.activity.WebViewActivity;
 import com.bsw.mydemo.activity.gif.GifActivity;
 import com.bsw.mydemo.activity.LanguageActivity;
@@ -33,9 +34,6 @@ import com.bsw.mydemo.activity.VideoActivity;
 import com.bsw.mydemo.activity.WifiActivity;
 import com.bsw.mydemo.activity.nfc.NFCActivity;
 import com.bsw.mydemo.activity.view.ToolbarActivity;
-
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 
 import java.util.List;
 
@@ -208,6 +206,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ToolbarActivity.class));
+            }
+        });
+
+        findViewById(R.id.jumpTime).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TimeActivity.class));
             }
         });
 

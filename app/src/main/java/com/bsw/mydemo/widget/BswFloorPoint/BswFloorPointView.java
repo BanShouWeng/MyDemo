@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.bsw.mydemo.Utils.Const;
 import com.bsw.mydemo.Utils.GlideUtils;
 import com.bsw.mydemo.Utils.Logger;
 import com.bsw.mydemo.Utils.TimerUtils;
@@ -33,8 +34,16 @@ import java.util.List;
 public class BswFloorPointView extends RelativeLayout {
     public static final int KEEP_SIZE = 56;
     public static final int CHANGE_SIZE = 57;
+    /**
+     * 当前显示图片的宽高，用于获取点位相对位置
+     */
     private double cw;
     private double ch;
+    /**
+     * 图片实际宽高，用于获取标记点位
+     */
+    private double rw;
+    private double rh;
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({KEEP_SIZE, CHANGE_SIZE})
@@ -52,6 +61,11 @@ public class BswFloorPointView extends RelativeLayout {
     private PhotoView photoZoom;
 
     private List<PointBean> pointList;
+
+    private int maxCount = - 1;
+
+    private boolean canMarker = false;
+
     private String bgPath;
 
     private ViewGroup.LayoutParams lpM = new LayoutParams(
@@ -99,6 +113,16 @@ public class BswFloorPointView extends RelativeLayout {
             multiple = moveLength / startLength;
         }
         setGifLayout(multiple, moveL, moveT);
+    }
+
+    public BswFloorPointView setCanMarker(boolean canMarker) {
+        this.canMarker = canMarker;
+        return this;
+    }
+
+    public BswFloorPointView setMaxCount(int maxCount) {
+        this.maxCount = maxCount;
+        return this;
     }
 
     private void setGifLayout(double multiple, double moveL, double moveT) {
@@ -171,7 +195,6 @@ public class BswFloorPointView extends RelativeLayout {
 
     public BswFloorPointView setFloorBackground(String bgPath) {
         this.bgPath = bgPath;
-        GlideUtils.loadImageView(mContext, bgPath, photoZoom);
         return this;
     }
 
@@ -187,7 +210,14 @@ public class BswFloorPointView extends RelativeLayout {
 
     public void paint() {
         addView(photoZoom, lpM);
-        GlideUtils.loadImageView(mContext, bgPath, photoZoom);
+        GlideUtils.loadImageView(mContext, bgPath, photoZoom, new GlideUtils.ImgSizeCallBack() {
+
+            @Override
+            public void getImgSize(int width, int height) {
+                rw = width;
+                rh = height;
+            }
+        });
         for (PointBean pointBean : pointList) {
             ImageView imageView = pointBean.getPointView();
             addView(imageView, lp100);
@@ -215,8 +245,19 @@ public class BswFloorPointView extends RelativeLayout {
             public void onFinish() {
             }
         }).start();
+        if (canMarker) {
+            photoZoom.setOnPhotoTapListener(onPhotoTapListener);
+        }
+    }
 
-        photoZoom.setOnPhotoTapListener(onPhotoTapListener);
+    public List<Size> getSizeList() {
+        List<Size> sizeList = new ArrayList<>();
+        if (Const.judgeListNull(pointList) > 0) {
+            for (PointBean pointBean : pointList) {
+                sizeList.add(new Size(rw * pointBean.getX(), rh * pointBean.getY()));
+            }
+        }
+        return sizeList;
     }
 
     private OnPhotoTapListener onPhotoTapListener = new OnPhotoTapListener() {
@@ -227,7 +268,17 @@ public class BswFloorPointView extends RelativeLayout {
             GlideUtils.loadImageView(mContext, imgPath, imageView);
             PointBean pointBean = new PointBean(x, y, imgPath, PointBean.POSITION_CENTER);
             pointBean.setPointView(imageView);
+            int overSize = Const.judgeListNull(pointList) - maxCount;
             pointList.add(pointBean);
+            if (overSize > 0) {
+                if (overSize == 1) {
+                    pointList.remove(0);
+                }
+                else {
+                    for (int i = overSize - 1; i >= 0; i--)
+                        pointList.remove(i);
+                }
+            }
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -269,4 +320,22 @@ public class BswFloorPointView extends RelativeLayout {
             }
         }
     };
+
+    public class Size {
+        private double width;
+        private double height;
+
+        Size(double width, double height) {
+            this.width = width;
+            this.height = height;
+        }
+
+        public double getHeight() {
+            return height;
+        }
+
+        public double getWidth() {
+            return width;
+        }
+    }
 }

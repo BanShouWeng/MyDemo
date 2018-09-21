@@ -14,7 +14,8 @@ import java.util.List;
 
 public class PhotoViewAndGifActivity extends BaseActivity {
 
-    private String bg = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535451667055&di=8612f9af78a2021234bdf572fdef13b6&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01485c59587d97a8012193a32e9dce.png";
+//    private String bg = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535451667055&di=8612f9af78a2021234bdf572fdef13b6&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01485c59587d97a8012193a32e9dce.png";
+    private String bg = "http://xf.tandatech.com:1080/fileUpload/upload/file/2018-09-07/1b545c45-67cb-4349-9520-3cd7e0960603.png";
     private String imgPath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530278301610&di=f09a4c1eb4436d128f3e49220f4244d0&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20161115%2F6163765431c44d538b37d6efb32ee885_th.jpg";
 
     private BswFloorPointView imgFloorPoint;

@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
     tools:context=".activity.nfc.NFCWriteActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <com.bsw.mydemo.widget.edittext.BswEditText
+        android:id="@+id/et_nfc_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/size_8"
+        android:gravity="top"
+        android:background="@drawable/corner_gray_4_hollow"
+        android:padding="@dimen/size_8"
+        android:hint="请输入要写入的内容" />
+
+    <Button
+        android:id="@+id/to_scan_qrCode"
+        android:layout_width="match_parent"
+        android:text="获取二维码文本"
+        android:layout_height="wrap_content" />
+</LinearLayout>

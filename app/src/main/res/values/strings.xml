@@ -34,6 +34,9 @@
     <string name="video">video</string>
     <string name="capture">capture</string>
 
+    <string name="NFC_read">NFC_read</string>
+    <string name="NFC_write">NFC_write</string>
+
     <!--toast-->
     <string name="crop_picture_error">图片资源获取失败，请重新选择</string>
     <string name="file_error">文件异常</string>

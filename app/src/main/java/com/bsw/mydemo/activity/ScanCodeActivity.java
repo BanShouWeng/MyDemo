@@ -2,30 +2,47 @@ package com.bsw.mydemo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 
 import com.bsw.mydemo.R;
+import com.bsw.mydemo.Utils.Const;
 import com.bsw.mydemo.zxing.activity.CaptureActivity;
 import com.google.zxing.Result;
 
 public class ScanCodeActivity extends CaptureActivity {
 
     private final int OPEN_ALBUM = 0x78;
-
     private Button flashOn;
+
+    private boolean forResult = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.main_activity_btn_qrcode);
         setBaseRightText(R.string.album);
+        setBaseBack();
     }
 
     @Override
     protected int setAutoCloseTime() {
         return 120000;
+    }
+
+    @Override
+    protected void getResultString(String resultString) {
+        if (forResult) {
+            Intent intent = new Intent();
+            intent.putExtra("result", resultString);
+            setResult(RESULT_OK, intent);
+            finish();
+        } else {
+            toast(resultString);
+        }
     }
 
     @Override
@@ -54,7 +71,12 @@ public class ScanCodeActivity extends CaptureActivity {
 
     @Override
     protected void getBundle(Bundle bundle) {
-
+        if (Const.notEmpty(bundle)) {
+            String tag = bundle.getString("tag");
+            if (! TextUtils.isEmpty(tag) && tag.equals("getCode")) {
+                forResult = true;
+            }
+        }
     }
 
     @Override
@@ -67,7 +89,14 @@ public class ScanCodeActivity extends CaptureActivity {
                     if (null == result) {
                         toast(R.string.recognize_failed);
                     } else {
-                        toast(result.getText());
+                        if (forResult) {
+                            Intent intent = new Intent();
+                            intent.putExtra("result", result.getText());
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        } else {
+                            toast(result.getText());
+                        }
                     }
                     break;
             }
@@ -92,6 +121,25 @@ public class ScanCodeActivity extends CaptureActivity {
             case RIGHT_TEXT_ID:
                 openAlbum(OPEN_ALBUM);
                 break;
+
+            case BACK_ID:
+                if (forResult) {
+                    setResult(RESULT_CANCELED);
+                }
+                finish();
+                break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (forResult) {
+                setResult(RESULT_CANCELED);
+            }
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

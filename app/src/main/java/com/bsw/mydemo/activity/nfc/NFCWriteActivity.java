@@ -8,21 +8,33 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bsw.mydemo.R;
+import com.bsw.mydemo.Utils.TxtUtils;
+import com.bsw.mydemo.activity.ScanCodeActivity;
 import com.bsw.mydemo.base.BaseNfcActivity;
+
 /**
  * @author 半寿翁
  */
 public class NFCWriteActivity extends BaseNfcActivity {
 
-    private String mPackageName = "com.baidu.BaiduMap";//短信
+    private final int REQUEST_CODE = 102;
+
+    private String inputText = "com.zxyloud.zxwl";//短信
+    private EditText etNfcContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.NFC_write);
+        setBaseRightText(R.string.confirm);
     }
 
     @Override
@@ -32,12 +44,28 @@ public class NFCWriteActivity extends BaseNfcActivity {
 
     @Override
     protected void findViews() {
-
+        etNfcContent = getView(R.id.et_nfc_content);
     }
 
     @Override
     protected void formatViews() {
+        etNfcContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        setOnClickListener(R.id.to_scan_qrCode);
     }
 
     @Override
@@ -52,7 +80,7 @@ public class NFCWriteActivity extends BaseNfcActivity {
 
     @Override
     public void onNewIntent(Intent intent) {
-        if (mPackageName == null)
+        if (inputText == null)
             return;
         //1.获取Tag对象
         Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
@@ -68,8 +96,8 @@ public class NFCWriteActivity extends BaseNfcActivity {
         if (tag == null) {
             return;
         }
-        NdefMessage ndefMessage = new NdefMessage(new NdefRecord[]{NdefRecord
-                .createApplicationRecord(mPackageName)});
+        NdefMessage ndefMessage = new NdefMessage(new NdefRecord[] {NdefRecord
+                .createApplicationRecord(inputText)});
         //转换成字节获得大小
         int size = ndefMessage.toByteArray().length;
         try {
@@ -79,7 +107,7 @@ public class NFCWriteActivity extends BaseNfcActivity {
             if (ndef != null) {
                 ndef.connect();
                 //判断是否支持可写
-                if (!ndef.isWritable()) {
+                if (! ndef.isWritable()) {
                     return;
                 }
                 //判断标签的容量是否够用
@@ -110,6 +138,25 @@ public class NFCWriteActivity extends BaseNfcActivity {
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case RIGHT_TEXT_ID:
+                inputText = TxtUtils.getText(etNfcContent);
+                break;
 
+            case R.id.to_scan_qrCode:
+                Bundle bundle = new Bundle();
+                bundle.putString("tag", "getCode");
+                jumpTo(ScanCodeActivity.class, REQUEST_CODE, bundle);
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            inputText = data.getStringExtra("result");
+            etNfcContent.setText(inputText);
+        }
     }
 }

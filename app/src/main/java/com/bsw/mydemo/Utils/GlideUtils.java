@@ -1,9 +1,12 @@
 package com.bsw.mydemo.Utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -11,6 +14,8 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 /**
  * @author 半寿翁
@@ -41,6 +46,24 @@ public class GlideUtils {
     //默认加载
     public static void loadImageView(Context mContext, Uri path, ImageView mImageView) {
         Glide.with(mContext).load(path).into(mImageView);
+    }
+
+    //默认加载
+    public static void loadImageView(Context mContext, String path, final ImageView mImageView, final ImgSizeCallBack imgSizeCallBack) {
+        Glide.with(mContext).load(path).into(new SimpleTarget<Drawable>() {
+
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                int a = resource.getIntrinsicWidth();
+                int b = resource.getMinimumWidth();
+                int c = resource.getIntrinsicHeight();
+                int d = resource.getMinimumHeight();
+                if (Const.notEmpty(imgSizeCallBack)) {
+                    imgSizeCallBack.getImgSize(resource.getIntrinsicWidth(), resource.getIntrinsicHeight());
+                }
+                mImageView.setImageDrawable(resource);
+            }
+        });
     }
 
     //默认加载
@@ -154,5 +177,9 @@ public class GlideUtils {
     public static void GuideClearMemory(Context mContext) {
         //清理内存缓存  可以在UI主线程中进行
         Glide.get(mContext).clearMemory();
+    }
+
+    public interface ImgSizeCallBack {
+        public void getImgSize(int width, int height);
     }
 }
