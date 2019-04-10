@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.TxtUtils;
-import com.bsw.mydemo.Utils.WifiAdminUtils;
-import com.bsw.mydemo.Utils.WifiConnectUtils;
+import com.bsw.mydemo.utils.TxtUtils;
+import com.bsw.mydemo.utils.WifiAdminUtils;
+import com.bsw.mydemo.utils.WifiConnectUtils;
 import com.bsw.mydemo.base.BaseActivity;
 
 public class WifiActivity extends BaseActivity {

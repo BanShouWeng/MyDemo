@@ -1,27 +1,22 @@
 package com.bsw.mydemo.activity.media;
 
 import android.annotation.SuppressLint;
-import android.graphics.Paint;
-import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.EnvironmentShare;
-import com.bsw.mydemo.Utils.Logger;
-import com.bsw.mydemo.Utils.PermissionUtils;
-import com.bsw.mydemo.Utils.TimerUtils;
+import com.bsw.mydemo.utils.EnvironmentShare;
+import com.bsw.mydemo.utils.Logger;
+import com.bsw.mydemo.utils.PermissionUtils;
+import com.bsw.mydemo.utils.TimerUtils;
 import com.bsw.mydemo.base.BaseActivity;
 
 import java.io.File;

@@ -1,15 +1,11 @@
 package com.bsw.mydemo.widget.BswFloorPoint;
 
-import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntDef;
-import android.support.annotation.Size;
-import android.view.View;
 import android.widget.ImageView;
 
-import com.bsw.mydemo.Utils.GlideUtils;
-import com.bsw.mydemo.Utils.MeasureUtil;
+import com.bsw.mydemo.utils.MeasureUtil;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -90,14 +86,23 @@ public class PointBean {
         this.pointView = pointView;
     }
 
-    int getHalfWidth() {
+    public PointBean setHalfHeight(int halfHeight) {
+        this.halfHeight = halfHeight;
+        return this;
+    }
+
+    public void setHalfWidth(int halfWidth) {
+        this.halfWidth = halfWidth;
+    }
+
+    public int getHalfWidth() {
         if (halfWidth == 0) {
             halfWidth = MeasureUtil.getWidth(pointView) / 2;
         }
         return halfWidth;
     }
 
-    int getHalfHeight() {
+    public int getHalfHeight() {
         if (halfHeight == 0) {
             halfHeight = MeasureUtil.getHeight(pointView) / 2;
         }

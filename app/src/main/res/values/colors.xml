@@ -11,4 +11,7 @@
     <color name="divider_color">#F0F0F0</color>
     <color name="divider_line_color">#F0F0F0</color>
     <color name="color_999">#999</color>
+
+    <!--涟漪-->
+    <color name="rippelColor">#FFFFFF</color>
 </resources>

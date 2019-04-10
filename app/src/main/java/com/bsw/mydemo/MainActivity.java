@@ -11,30 +11,35 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bsw.mydemo.Utils.JumpToUtils;
-import com.bsw.mydemo.Utils.KeepAlive.KeepAliveActivity;
-import com.bsw.mydemo.Utils.KeepAlive.ScreenBroadcastListener;
-import com.bsw.mydemo.Utils.KeepAlive.ScreenManager;
-import com.bsw.mydemo.Utils.Logger;
-import com.bsw.mydemo.Utils.PermissionUtils;
-import com.bsw.mydemo.activity.Utils.BluetoothActivity;
+import com.bsw.mydemo.activity.utils.NavigationActivity;
+import com.bsw.mydemo.activity.utils.GpsActivity;
+import com.bsw.mydemo.activity.view.ViewActivity;
+import com.bsw.mydemo.bean.JumpBean;
+import com.bsw.mydemo.utils.JumpToUtils;
+import com.bsw.mydemo.utils.keepAlive.KeepAliveActivity;
+import com.bsw.mydemo.utils.keepAlive.ScreenBroadcastListener;
+import com.bsw.mydemo.utils.keepAlive.ScreenManager;
+import com.bsw.mydemo.utils.Logger;
+import com.bsw.mydemo.utils.PermissionUtils;
+import com.bsw.mydemo.activity.utils.BluetoothActivity;
 import com.bsw.mydemo.activity.DbActivity;
-import com.bsw.mydemo.activity.GestureLockActivity;
-import com.bsw.mydemo.activity.Utils.OSActivity;
-import com.bsw.mydemo.activity.Utils.TimeActivity;
-import com.bsw.mydemo.activity.WebViewActivity;
-import com.bsw.mydemo.activity.gif.GifActivity;
+import com.bsw.mydemo.activity.utils.MobileActivity;
+import com.bsw.mydemo.activity.utils.TimeActivity;
 import com.bsw.mydemo.activity.LanguageActivity;
 import com.bsw.mydemo.activity.LinkmanActivity;
-import com.bsw.mydemo.activity.NavigationActivity;
 import com.bsw.mydemo.activity.RTMPActivity;
-import com.bsw.mydemo.activity.ScanCodeActivity;
 import com.bsw.mydemo.activity.media.MediaActivity;
 import com.bsw.mydemo.activity.VideoActivity;
 import com.bsw.mydemo.activity.WifiActivity;
 import com.bsw.mydemo.activity.nfc.NFCActivity;
-import com.bsw.mydemo.activity.view.ToolbarActivity;
+import com.bsw.mydemo.utils.rxbus2.RxBus;
+import com.bsw.mydemo.utils.rxbus2.Subscribe;
+import com.bsw.mydemo.utils.rxbus2.ThreadMode;
+import com.bsw.mydemo.widget.BswRecyclerView.BswRecyclerView;
+import com.bsw.mydemo.widget.BswRecyclerView.ConvertViewCallBack;
+import com.bsw.mydemo.widget.BswRecyclerView.RecyclerViewHolder;
 
+import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -47,6 +52,21 @@ import io.reactivex.functions.Function;
  * @date 2017/11/1
  */
 public class MainActivity extends AppCompatActivity {
+    private JumpBean[] jumpBeanList = {new JumpBean(R.string.main_activity_btn_mobile, MobileActivity.class)
+            , new JumpBean(R.string.main_activity_btn_view, ViewActivity.class)
+            , new JumpBean(R.string.main_activity_btn_NFC, NFCActivity.class)
+            , new JumpBean(R.string.main_activity_btn_video_play, VideoActivity.class)
+            , new JumpBean(R.string.main_activity_btn_rtmp, RTMPActivity.class)
+            , new JumpBean(R.string.main_activity_btn_navigation, NavigationActivity.class)
+            , new JumpBean(R.string.main_activity_btn_bluetooth, BluetoothActivity.class)
+            , new JumpBean(R.string.main_activity_btn_db, DbActivity.class)
+            , new JumpBean(R.string.main_activity_btn_linkman, LinkmanActivity.class)
+            , new JumpBean(R.string.main_activity_btn_media, MediaActivity.class)
+            , new JumpBean(R.string.main_activity_btn_language, LanguageActivity.class)
+            , new JumpBean(R.string.main_activity_btn_wifi, WifiActivity.class)
+            , new JumpBean(R.string.main_activity_btn_time_zone, TimeActivity.class)
+            , new JumpBean(R.string.main_activity_btn_gps, GpsActivity.class)
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
                 screenManager.startActivity();
             }
         });
+
+        BswRecyclerView<JumpBean> bswRecyclerView = findViewById(R.id.main_rv);
+        bswRecyclerView.initAdapter(R.layout.item_main_layout, convertViewCallBack)
+                .setDecoration()
+                .setLayoutManager();
+        bswRecyclerView.setData(Arrays.asList(jumpBeanList));
 
         if (Intent.ACTION_VIEW.equals(action)) {
             Uri uri = i_getvalue.getData();
@@ -97,125 +123,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.jumpOS).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, OSActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpNFC).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NFCActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpVideo).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, VideoActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpRtmp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RTMPActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpBluetooth).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BluetoothActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpNavigation).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NavigationActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpDb).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, DbActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpLinkman).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LinkmanActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpMedia).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MediaActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpQrCode).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ScanCodeActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpLanguage).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LanguageActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpGestureLock).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GestureLockActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpWifi).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WifiActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpGif).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GifActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpWebView).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WebViewActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpView).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ToolbarActivity.class));
-            }
-        });
-
-        findViewById(R.id.jumpTime).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TimeActivity.class));
-            }
-        });
-
         PermissionUtils.setRequestPermissions(this, new PermissionUtils.PermissionGrant() {
             @Override
             public Integer[] onPermissionGranted() {
@@ -239,29 +146,60 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .subscribe(new Observer<Boolean>() {
-                            @Override
-                            public void onError(Throwable e) {
-                                //出现错误会调用这个方法
-                            }
+                               @Override
+                               public void onError(Throwable e) {
+                                   //出现错误会调用这个方法
+                               }
 
-                            @Override
-                            public void onComplete() {
-                                //被观察者的onCompleted()事件会走到这里;
-                                Log.d("DDDDDD", "结束观察...\n");
-                            }
+                               @Override
+                               public void onComplete() {
+                                   //被观察者的onCompleted()事件会走到这里;
+                                   Log.d("DDDDDD", "结束观察...\n");
+                               }
 
-                            @Override
-                            public void onSubscribe(Disposable d) {
+                               @Override
+                               public void onSubscribe(Disposable d) {
 
-                            }
+                               }
 
-                            @Override
-                            public void onNext(Boolean s) {
-                                //处理传过来的onNext事件
-                                Log.d("DDDDD", "handle this---" + s);
-                            }
-                        }
+                               @Override
+                               public void onNext(Boolean s) {
+                                   //处理传过来的onNext事件
+                                   Log.d("DDDDD", "handle this---" + s);
+                               }
+                           }
                 );
+        RxBus.get().register(this);
+        RxBus.get().send(1000, new Person("sddsd", 15));
+    }
+
+    private ConvertViewCallBack<JumpBean> convertViewCallBack = new ConvertViewCallBack<JumpBean>() {
+        @Override
+        public JumpBean convert(RecyclerViewHolder holder, final JumpBean jumpBean, int position, int layoutId) {
+            holder.setText(R.id.jumpTo, jumpBean.getBtnTextId())
+                    .setClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(MainActivity.this, jumpBean.getJumpToClass()));
+                        }
+                    });
+            return jumpBean;
+        }
+    };
+
+    @Subscribe(code = 1000, threadMode = ThreadMode.MAIN)
+    public void recieve(Person person) {
+        Logger.i(getName(), "我叫".concat(person.name).concat("今年").concat(person.age + "").concat("岁"));
+    }
+
+    private class Person {
+        private String name;
+        private int age;
+
+        public Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
     }
 
     @Override
@@ -275,9 +213,14 @@ public class MainActivity extends AppCompatActivity {
         return clazz.getSimpleName();
     }
 
+    private String getName() {
+        return getClass().getSimpleName();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        RxBus.get().unRegister(this);
         new Thread(new Runnable() {
             @Override
             public void run() {

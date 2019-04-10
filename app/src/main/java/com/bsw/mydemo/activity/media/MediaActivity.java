@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Const;
-import com.bsw.mydemo.Utils.PermissionUtils;
+import com.bsw.mydemo.utils.Const;
+import com.bsw.mydemo.utils.PermissionUtils;
 import com.bsw.mydemo.base.BaseActivity;
 
 import java.util.List;

@@ -24,7 +24,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
     <!-- 联系人权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -39,6 +40,9 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <!-- 打开公放的权限 -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -58,6 +62,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:overrideLibrary="com.bsw.mydemo,tv.danmaku.ijk.media">
         <activity android:name=".MainActivity">
+        <!--<activity android:name=".test.TestActivity">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -98,17 +103,17 @@
         </activity>
         <activity android:name=".activity.VideoActivity" />
         <activity android:name=".activity.RTMPActivity" />
-        <activity android:name=".activity.Utils.BluetoothActivity" />
-        <activity android:name=".activity.NavigationActivity" />
+        <activity android:name=".activity.utils.BluetoothActivity" />
+        <activity android:name=".activity.utils.NavigationActivity" />
         <activity android:name=".activity.DbActivity" />
         <activity android:name=".activity.LinkmanActivity" />
         <activity android:name=".activity.media.ShakeAndFlashActivity" />
-        <activity android:name=".activity.ReadPictureQrCodeActivity" />
+        <activity android:name=".activity.view.ReadPictureQrCodeActivity" />
         <activity android:name=".activity.LanguageActivity" />
-        <activity android:name=".activity.GestureLockActivity" />
+        <activity android:name=".activity.view.GestureLockActivity" />
         <activity android:name=".activity.WifiActivity" />
-        <activity android:name=".activity.ScanCodeActivity" />
-        <activity android:name=".activity.gif.GifActivity" />
+        <activity android:name=".activity.view.ScanCodeActivity" />
+        <activity android:name=".activity.view.gif.GifActivity" />
         <activity android:name=".activity.media.CropImageActivity" />
 
         <!-- 拨打电话监听Receiver -->
@@ -124,12 +129,16 @@
         <activity android:name=".activity.media.CameraActivity" />
         <activity android:name=".activity.media.MediaActivity" />
         <activity android:name=".activity.DragAndZoomImgActivity" />
-        <activity android:name=".activity.gif.PhotoViewAndGifActivity" />
+        <activity android:name=".activity.view.gif.PhotoViewAndGifActivity" />
         <activity android:name=".activity.WebViewActivity" />
         <activity android:name=".activity.view.ToolbarActivity" />
-        <activity android:name=".Utils.KeepAlive.KeepAliveActivity" />
-        <activity android:name=".activity.Utils.OSActivity" />
-        <activity android:name=".activity.Utils.TimeActivity"></activity>
+        <activity android:name=".utils.keepAlive.KeepAliveActivity" />
+        <activity android:name=".activity.utils.MobileActivity" />
+        <activity android:name=".activity.utils.TimeActivity" />
+        <activity android:name=".activity.utils.GpsActivity" />
+        <activity android:name=".activity.view.ViewActivity" />
+        <activity android:name=".activity.view.BswRecycleViewActivity" />
+        <!--<activity android:name=".test.TestActivity"></activity>-->
     </application>
 
 </manifest>

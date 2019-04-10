@@ -146,6 +146,9 @@ public final class CameraManager {
 	public void stopPreview() {
 		if (camera != null && previewing) {
 			camera.stopPreview();
+			camera.setPreviewCallback(null);
+			camera.release();
+			camera = null;
 			previewCallback.setHandler(null, 0);
 			autoFocusCallback.setHandler(null, 0);
 			previewing = false;

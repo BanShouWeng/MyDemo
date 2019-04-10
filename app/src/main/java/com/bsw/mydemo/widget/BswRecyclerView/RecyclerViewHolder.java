@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bsw.mydemo.Utils.GlideUtils;
+import com.bsw.mydemo.utils.GlideUtils;
 
 /**
  * ViewHolder
@@ -65,6 +65,21 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     public RecyclerViewHolder setText(@IdRes int viewId, @StringRes int valueId) {
         TextView view = getView(viewId);
         view.setText(valueId);
+        return this;
+    }
+
+    public RecyclerViewHolder setTextWithDrawables(@IdRes int viewId, @StringRes int stringRes, @DrawableRes int left,
+                                                   @DrawableRes int top, @DrawableRes int right, @DrawableRes int bottom) {
+        TextView view = getView(viewId);
+        view.setText(stringRes);
+        view.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);
+        return this;
+    }
+
+    public RecyclerViewHolder setTextDrawables(@IdRes int viewId, @DrawableRes int left,
+                                               @DrawableRes int top, @DrawableRes int right, @DrawableRes int bottom) {
+        TextView view = getView(viewId);
+        view.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);
         return this;
     }
 

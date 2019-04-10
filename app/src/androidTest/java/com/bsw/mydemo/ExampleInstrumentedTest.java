@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.SparseIntArray;
+
+import com.bsw.mydemo.utils.Logger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,5 +26,15 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.example.leiming.mydemo", appContext.getPackageName());
+    }
+
+    @Test
+    public void sparseIntArray() {
+        SparseIntArray array = new SparseIntArray();
+        array.put(5, 6);
+        int a = array.get(5);
+        int b = array.get(1);
+        Logger.i("SparseIntArray", a + "");
+        Logger.i("SparseIntArray", b + "");
     }
 }

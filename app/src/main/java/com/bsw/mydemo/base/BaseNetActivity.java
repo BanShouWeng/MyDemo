@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Logger;
-import com.bsw.mydemo.Utils.NetUtils;
+import com.bsw.mydemo.utils.Logger;
+import com.bsw.mydemo.utils.NetUtils;
 import com.bsw.mydemo.widget.CustomProgressDialog;
 import com.google.gson.Gson;
 

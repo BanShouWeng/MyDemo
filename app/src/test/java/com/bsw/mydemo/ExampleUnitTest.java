@@ -1,13 +1,16 @@
 package com.bsw.mydemo;
 
-import android.util.Log;
+import android.util.SparseIntArray;
 
-import com.bsw.mydemo.Utils.Logger;
+import com.bsw.mydemo.utils.Const;
 
 import org.junit.Test;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -65,5 +68,17 @@ public class ExampleUnitTest {
                                }
                            }
                 );
+    }
+
+    @Test
+    public void and() {
+        final int LEFT = 1;
+        final int TOP = 2;
+        final int RIGHT = 4;
+        final int BOTTOM = 8;
+
+        int a = LEFT | RIGHT;
+
+        System.out.println("LEFT = " + (LEFT & a) + " *** TOP = " + (TOP & a) + " *** RIGHT = " + (RIGHT & a) + " *** BOTTOM = " + (BOTTOM & a));
     }
 }

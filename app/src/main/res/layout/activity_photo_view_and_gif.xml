@@ -5,4 +5,4 @@
     android:id="@+id/img_floor_point"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bsw.mydemo.activity.gif.PhotoViewAndGifActivity" />
+    tools:context=".activity.view.gif.PhotoViewAndGifActivity" />

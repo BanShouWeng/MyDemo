@@ -18,10 +18,10 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Const;
-import com.bsw.mydemo.Utils.Logger;
-import com.bsw.mydemo.Utils.PermissionUtils;
-import com.bsw.mydemo.Utils.TimerUtils;
+import com.bsw.mydemo.utils.Const;
+import com.bsw.mydemo.utils.Logger;
+import com.bsw.mydemo.utils.PermissionUtils;
+import com.bsw.mydemo.utils.TimerUtils;
 import com.bsw.mydemo.base.BaseActivity;
 import com.bsw.mydemo.zxing.MessageIDs;
 import com.bsw.mydemo.zxing.camera.CameraManager;

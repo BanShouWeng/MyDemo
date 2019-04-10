@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Const;
+import com.bsw.mydemo.utils.Const;
 import com.bsw.mydemo.base.BaseActivity;
-import com.bsw.mydemo.Utils.BitmapUtil;
+import com.bsw.mydemo.utils.BitmapUtil;
 
 import java.io.File;
 import java.io.IOException;

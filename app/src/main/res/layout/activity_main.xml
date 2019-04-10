@@ -1,124 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/size_30"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/size_20">
+        android:padding="@dimen/size_8" />
 
-        <TextView
-            android:id="@+id/error"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/size_8" />
-
-        <Button
-            android:id="@+id/jumpOS"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_OS" />
-
-        <Button
-            android:id="@+id/jumpNFC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_NFC" />
-
-        <Button
-            android:id="@+id/jumpVideo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_video_play" />
-
-        <Button
-            android:id="@+id/jumpRtmp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_rtmp" />
-
-        <Button
-            android:id="@+id/jumpBluetooth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_bluetooth" />
-
-        <Button
-            android:id="@+id/jumpNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_navigation" />
-
-        <Button
-            android:id="@+id/jumpDb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_db" />
-
-        <Button
-            android:id="@+id/jumpLinkman"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_linkman" />
-
-        <Button
-            android:id="@+id/jumpMedia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_media" />
-
-        <Button
-            android:id="@+id/jumpQrCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_qrcode" />
-
-        <Button
-            android:id="@+id/jumpLanguage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_language" />
-
-        <Button
-            android:id="@+id/jumpGestureLock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_gesture_lock" />
-
-        <Button
-            android:id="@+id/jumpWifi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_wifi" />
-
-        <Button
-            android:id="@+id/jumpGif"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_gif" />
-
-        <Button
-            android:id="@+id/jumpWebView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_webview" />
-
-        <Button
-            android:id="@+id/jumpView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_view" />
-
-        <Button
-            android:id="@+id/jumpTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_btn_time_zone" />
-    </LinearLayout>
-</ScrollView>
+    <com.bsw.mydemo.widget.BswRecyclerView.BswRecyclerView
+        android:id="@+id/main_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

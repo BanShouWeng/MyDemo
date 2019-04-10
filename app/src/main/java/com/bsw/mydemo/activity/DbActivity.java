@@ -22,7 +22,7 @@ public class DbActivity extends BaseActivity {
         SQLdm s = new SQLdm();
         SQLiteDatabase db =s.openDatabase(getApplicationContext());
 
-        TextView textv = (TextView) findViewById(R.id.textv);
+        TextView textv =  findViewById(R.id.textv);
         //查询数据库中testid=1的数据
         Cursor cursor = db.rawQuery("select * from testbiao where testid=?", new String[]{"3"});
         String name = null;

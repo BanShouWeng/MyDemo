@@ -8,16 +8,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Logger;
+import com.bsw.mydemo.utils.Logger;
 
 import java.lang.reflect.Method;
 
@@ -36,7 +33,7 @@ public class ToolbarActivity extends AppCompatActivity {
 //        toolbar.setLogo(R.drawable.logo);
 //
 //        // 主标题s
-//        toolbar.setTitle("Title");
+        toolbar.setTitle("Title");
 //
 //        // 副标题
 //        toolbar.setSubtitle("Sub Title");
@@ -45,17 +42,19 @@ public class ToolbarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //左边的小箭头（注意需要在setSupportActionBar(toolbar)之后才有效果）
-//        toolbar.setNavigationIcon(R.mipmap.back);
+        toolbar.setNavigationIcon(R.mipmap.back);
 
         //菜单点击事件（注意需要在setSupportActionBar(toolbar)之后才有效果）
-//        toolbar.setOnMenuItemClickListener(onMenuItemClick);
+        toolbar.setOnMenuItemClickListener(onMenuItemClick);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // 绑定toobar跟menu
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.addSubMenu(0,0,0,R.string.search)
+                .setIcon(R.mipmap.search);
         return true;
     }
 
@@ -69,30 +68,28 @@ public class ToolbarActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * 如下设置，可以显示menu中的icon
-     * @param view
-     * @param menu
-     * @return
-     */
-    @SuppressLint("RestrictedApi")
-    @Override
-    protected boolean onPrepareOptionsPanel(View view, Menu menu) {
-        if (menu != null) {
-            if (menu.getClass() == MenuBuilder.class) {
-                try {
-                    @SuppressLint("PrivateApi") Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
-                    m.setAccessible(true);
-                    m.invoke(menu, true);
-                } catch (Exception e) {
-                    Logger.i(getClass().getSimpleName(), getClass().getSimpleName() + "onMenuOpened...unable to set icons for overflow menu" + e);
-                }
-            }
-        }
-        return super.onPrepareOptionsPanel(view, menu);
-    }
-
-    ;
+//    /**
+//     * 如下设置，可以显示menu中的icon
+//     * @param view
+//     * @param menu
+//     * @return
+//     */
+//    @SuppressLint("RestrictedApi")
+//    @Override
+//    protected boolean onPrepareOptionsPanel(View view, Menu menu) {
+//        if (menu != null) {
+//            if (menu.getClass() == MenuBuilder.class) {
+//                try {
+//                    @SuppressLint("PrivateApi") Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+//                    m.setAccessible(true);
+//                    m.invoke(menu, true);
+//                } catch (Exception e) {
+//                    Logger.i(getClass().getSimpleName(), getClass().getSimpleName() + "onMenuOpened...unable to set icons for overflow menu" + e);
+//                }
+//            }
+//        }
+//        return super.onPrepareOptionsPanel(view, menu);
+//    }
 
     private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
         @Override
@@ -111,8 +108,8 @@ public class ToolbarActivity extends AppCompatActivity {
             }
 
             if (! msg.equals("")) {
-                Snackbar.make(parentCdl, msg, Snackbar.LENGTH_LONG).show();
-//                Snackbar mSnackbar = Snackbar.make(parentCdl, msg, Snackbar.LENGTH_SHORT);
+//                Snackbar.make(parentCdl, msg, Snackbar.LENGTH_LONG).show();
+                Snackbar mSnackbar = Snackbar.make(parentCdl, msg, Snackbar.LENGTH_LONG);
 //                View v = mSnackbar.getView();
 //                ViewGroup.LayoutParams vl = v.getLayoutParams();
 //                CoordinatorLayout.LayoutParams cl = new CoordinatorLayout.LayoutParams(vl.width, vl.height);
@@ -136,14 +133,14 @@ public class ToolbarActivity extends AppCompatActivity {
 ////                Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) v;
 ////                snackbarLayout.addView(textView);
 //                //设置按钮为蓝色
-//                final String finalMsg = msg;
-//                mSnackbar.setActionTextColor(Color.BLUE).setAction("点我", new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-////                        Snackbar.make(parentCdl, finalMsg, Snackbar.LENGTH_LONG).show();
-//                        Toast.makeText(getApplicationContext(),finalMsg,Toast.LENGTH_LONG).show();
-//                    }
-//                }).show();
+                final String finalMsg = msg;
+                mSnackbar.setActionTextColor(Color.BLUE).setAction("点我", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        Snackbar.make(parentCdl, finalMsg, Snackbar.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),finalMsg,Toast.LENGTH_LONG).show();
+                    }
+                }).show();
             }
             return true;
         }

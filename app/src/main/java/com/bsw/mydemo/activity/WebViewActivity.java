@@ -3,18 +3,24 @@ package com.bsw.mydemo.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Logger;
+import com.bsw.mydemo.utils.Logger;
 import com.bsw.mydemo.base.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class WebViewActivity extends BaseActivity {
 
@@ -35,17 +41,19 @@ public class WebViewActivity extends BaseActivity {
     private int showType;
     private String deviceId;
 
-    private String url="http://192.168.36.35:8020/MapTest/video_play_m3u8.html?videoUrl=http://58.87.77.103:10088/hls/1234567890-1/1234567890-1_live.m3u8";
+    private String url = "http://192.168.36.35:8020/MapTest/index2.html?id=urlInput";
+//    private String url = "http://xf.tandatech.com:4080/getURL.html?id=nameByUrl";
+//    private String url="http://192.168.36.35:8020/MapTest/video_play_m3u8.html?videoUrl=http://58.87.77.103:10088/hls/1234567890-1/1234567890-1_live.m3u8";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        switch (showType) {
-            case VIDEO_LINKAGE:
-                mWebView.loadUrl(url);
-                break;
-        }
-        webViewActivity = this;
+//        switch (showType) {
+//            case VIDEO_LINKAGE:
+        mWebView.loadUrl(url);
+//                break;
+//        }
+//        webViewActivity = this;
     }
 
     @Override
@@ -105,8 +113,9 @@ public class WebViewActivity extends BaseActivity {
         // 设置定位的数据库路径
         webSettings.setGeolocationDatabasePath(dir);
         mWebView.requestFocus();
+
         if (! TextUtils.isEmpty(url)) {
-            Logger.i(getName(),"WebView load url = "  + url);
+            Logger.i(getName(), "WebView load url = " + url);
             mWebView.loadUrl(url);
         }
     }
@@ -127,9 +136,13 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
         }
+    }
+
+    public void onBtnClick(View view) {
+        mWebView.loadUrl("javascript:getUrlParam('nameByFunction')");
     }
 
     /**
@@ -144,6 +157,16 @@ public class WebViewActivity extends BaseActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Uri uri = Uri.parse(url);
+            Set<String> collection = uri.getQueryParameterNames();
+            for (String s : collection) {
+                Logger.i(getName(), s);
+            }
+            return super.shouldOverrideUrlLoading(view, url);
         }
     }
 }

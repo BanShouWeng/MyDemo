@@ -9,15 +9,15 @@ import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.TxtUtils;
-import com.bsw.mydemo.activity.ScanCodeActivity;
+import com.bsw.mydemo.utils.TxtUtils;
+import com.bsw.mydemo.activity.view.ScanCodeActivity;
 import com.bsw.mydemo.base.BaseNfcActivity;
 
 /**
@@ -27,7 +27,7 @@ public class NFCWriteActivity extends BaseNfcActivity {
 
     private final int REQUEST_CODE = 102;
 
-    private String inputText = "com.zxyloud.zxwl";//短信
+    private String inputText = "";//短信
     private EditText etNfcContent;
 
     @Override
@@ -94,6 +94,13 @@ public class NFCWriteActivity extends BaseNfcActivity {
      */
     public void writeNFCTag(Tag tag) {
         if (tag == null) {
+            return;
+        }
+        if (TextUtils.isEmpty(inputText)) {
+            inputText = TxtUtils.getText(etNfcContent);
+        }
+        if (TextUtils.isEmpty(inputText)){
+            toast(R.string.cannot_be_null);
             return;
         }
         NdefMessage ndefMessage = new NdefMessage(new NdefRecord[] {NdefRecord

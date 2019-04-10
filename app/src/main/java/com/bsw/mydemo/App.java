@@ -5,8 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.bsw.mydemo.Utils.Logger;
 import com.bsw.mydemo.activity.CrashHandler;
+import com.bsw.mydemo.utils.rxbus2.RxBus;
 
 import java.util.List;
 
@@ -27,12 +27,20 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         app = this;
+        RxBus.get().register(this);
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(getApplicationContext());
 
-
         String a = getDirPath();
     }
+
+    @Override
+    public void onTerminate() {
+        // 程序终止的时候执行
+
+        super.onTerminate();
+    }
+
 
     /**
      * 获取内部存储路径

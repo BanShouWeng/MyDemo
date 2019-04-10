@@ -9,7 +9,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Logger;
+import com.bsw.mydemo.utils.Logger;
 
 /**
  * http://www.jb51.net/article/118161.htm

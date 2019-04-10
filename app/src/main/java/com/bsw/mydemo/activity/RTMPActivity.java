@@ -138,7 +138,8 @@ public class RTMPActivity extends AppCompatActivity implements IMediaPlayer.OnPr
         mediaController.setMediaPlayerControl(mVV);
 
 //        mVV.setVideoPath("rtmp://121.40.50.44:10085/live/2b9ada97-9282-4e96-accc-97270171d978");
-        mVV.setVideoPath("rtmp://58.87.77.103:10085/hls/ns002-2");
+//        mVV.setVideoPath("rtmp://58.200.131.2:1935/livetv/hunantv");
+        mVV.setVideoPath("rtmp://192.168.32.91/liveshow/1921683613180");
         mVV.setLogEnabled(false);
 //        mVV.setDecodeMode(BDCloudMediaPlayer.DECODE_SW);
 

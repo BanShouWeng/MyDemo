@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--android:icon="@mipmap/search"-->
+
     <item
         android:id="@+id/action_edit"
-        android:icon="@mipmap/search"
         android:orderInCategory="80"
-        android:title="@string/confirm"
+        android:title="编辑"
+        app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView"/>
 
     <item
         android:id="@+id/action_share"
         android:icon="@mipmap/search"
         android:orderInCategory="90"
-        android:title="@string/confirm"
+        android:title="分享"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_settings"
         android:icon="@mipmap/search"
         android:orderInCategory="100"
-        android:title="@string/confirm"
+        android:title="搜索"
         app:showAsAction="never"/>
 </menu>

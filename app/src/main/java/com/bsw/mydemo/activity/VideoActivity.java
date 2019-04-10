@@ -10,14 +10,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Const;
+import com.bsw.mydemo.utils.Const;
 
 /**
  * @author 半寿翁

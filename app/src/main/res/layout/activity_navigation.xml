@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.NavigationActivity">
+    tools:context=".activity.utils.NavigationActivity">
 
     <EditText
         android:id="@+id/navigation_lat"

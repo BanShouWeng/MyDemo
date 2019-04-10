@@ -14,8 +14,8 @@ import android.view.TextureView;
 import android.widget.Toast;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Const;
-import com.bsw.mydemo.Utils.Logger;
+import com.bsw.mydemo.utils.Const;
+import com.bsw.mydemo.utils.Logger;
 
 /**
  * @author 半寿翁

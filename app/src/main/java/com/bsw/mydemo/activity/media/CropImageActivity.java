@@ -7,13 +7,12 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Const;
+import com.bsw.mydemo.utils.Const;
 import com.bsw.mydemo.base.BaseActivity;
-import com.bsw.mydemo.Utils.BitmapUtil;
-import com.bsw.mydemo.Utils.ViewUtils;
+import com.bsw.mydemo.utils.BitmapUtil;
+import com.bsw.mydemo.utils.ViewUtils;
 import com.bsw.mydemo.widget.cropImange.ClipLayout;
 
 /*

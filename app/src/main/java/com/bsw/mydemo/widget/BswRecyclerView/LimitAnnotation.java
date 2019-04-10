@@ -31,4 +31,13 @@ public class LimitAnnotation {
     @IntDef({BOTTOM_DECORATION, ROUND_DECORATION})
     @interface DecorationType {
     }
+
+    public static final int LAYOUT_MAIN = 0x020;
+    public static final int LAYOUT_RIGHT = 0x021;
+    public static final int LAYOUT_LEFT = 0x022;
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({LAYOUT_MAIN, LAYOUT_RIGHT, LAYOUT_LEFT})
+    @interface LayoutType {
+    }
 }

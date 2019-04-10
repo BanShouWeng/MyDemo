@@ -1,26 +1,21 @@
 package com.bsw.mydemo.activity.media;
 
-import android.app.NotificationManager;
 import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Const;
-import com.bsw.mydemo.Utils.Logger;
-import com.bsw.mydemo.Utils.PermissionUtils;
+import com.bsw.mydemo.utils.Const;
+import com.bsw.mydemo.utils.Logger;
+import com.bsw.mydemo.utils.PermissionUtils;
 import com.bsw.mydemo.base.BaseActivity;
 
 import java.util.List;

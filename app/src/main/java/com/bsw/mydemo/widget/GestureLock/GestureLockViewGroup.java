@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Logger;
+import com.bsw.mydemo.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

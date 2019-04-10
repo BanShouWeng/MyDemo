@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Logger;
+import com.bsw.mydemo.utils.Logger;
 import com.bsw.mydemo.base.BaseNfcActivity;
 /**
  * @author 半寿翁

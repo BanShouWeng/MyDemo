@@ -21,14 +21,20 @@ android {
         applicationId "com.bsw.mydemo"
         minSdkVersion project.ext.minSdkVersion
         targetSdkVersion project.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode project.ext.versionCode
+        versionName project.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         flavorDimensions "versionCode"
         multiDexEnabled true
     }
     buildTypes {
         debug {
+//            //启用代码混淆
+//            minifyEnabled true
+//            //是否优化zip
+//            zipAlignEnabled true
+//            // 移除无用的resource文件
+//            shrinkResources true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //                buildConfigField "String", "BASE_URL", "\"https://api.douban.com/v2/movie/\""
@@ -42,13 +48,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://api.douban.com/v2/movie/\""
             signingConfig signingConfigs.release
-
-            lintOptions {
-                checkReleaseBuilds false
-                // Or, if you prefer, you can continue to check for errors in release builds,
-                // but continue the build even when errors are found:
-                abortOnError false
-            }
+        }
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
         }
     }
 
@@ -67,6 +72,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-annotations:27.1.1'
     implementation "com.android.support:exifinterface:27.1.1"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'com.google.zxing:core:3.3.0'
@@ -83,5 +89,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
     implementation files('libs/agent_lss_4.6.0-20180417.jar')
     implementation files('libs/bdplayer.jar')
-    implementation project(':camera')
+    debugImplementation project(':camera')
+    releaseImplementation project(':camera')
 }

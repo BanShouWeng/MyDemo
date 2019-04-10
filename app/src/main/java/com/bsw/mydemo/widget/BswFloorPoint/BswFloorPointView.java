@@ -2,20 +2,28 @@ package com.bsw.mydemo.widget.BswFloorPoint;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.RectF;
 import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.bsw.mydemo.Utils.Const;
-import com.bsw.mydemo.Utils.GlideUtils;
-import com.bsw.mydemo.Utils.Logger;
-import com.bsw.mydemo.Utils.TimerUtils;
+import com.bsw.mydemo.utils.Const;
+import com.bsw.mydemo.utils.GlideUtils;
+import com.bsw.mydemo.utils.Logger;
+import com.bsw.mydemo.utils.MeasureUtil;
+import com.bsw.mydemo.utils.TimerUtils;
 import com.bsw.mydemo.widget.photoview.OnMatrixChangedListener;
 import com.bsw.mydemo.widget.photoview.OnPhotoTapListener;
 import com.bsw.mydemo.widget.photoview.PhotoView;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -145,7 +153,7 @@ public class BswFloorPointView extends RelativeLayout {
                     halfWidth = pointBean.getHalfWidth();
                     break;
             }
-            if (halfHeight == 0 || halfWidth == 0) {
+            if (halfHeight == 0 || halfWidth == 0 || cw == 0 || ch == 0) {
                 return;
             }
             double xTemp = (pointBean.getX() * cw * multiple + moveL);
@@ -209,45 +217,90 @@ public class BswFloorPointView extends RelativeLayout {
     }
 
     public void paint() {
-        addView(photoZoom, lpM);
-        GlideUtils.loadImageView(mContext, bgPath, photoZoom, new GlideUtils.ImgSizeCallBack() {
-
+        photoZoom.addOnLayoutChangeListener(new OnLayoutChangeListener() {
             @Override
-            public void getImgSize(int width, int height) {
-                rw = width;
-                rh = height;
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                cw = MeasureUtil.getWidth(photoZoom);
+                updateList();
             }
         });
-        for (PointBean pointBean : pointList) {
-            ImageView imageView = pointBean.getPointView();
-            addView(imageView, lp100);
-            int imgRes = pointBean.getImgRes();
-            if (imgRes == 0) {
-                GlideUtils.loadImageView(mContext, pointBean.getPath(), imageView);
-            } else {
-                GlideUtils.loadImageView(mContext, imgRes, imageView);
-            }
-        }
-        new TimerUtils(2000, 50, new TimerUtils.OnBaseTimerCallBack() {
+        addView(photoZoom, lpM);
+        SimpleTarget simpleTarget = new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
             @Override
-            public void onTick(long millisUntilFinished) {
-                try {
-                    cw = photoZoom.getDrawable().getBounds().width();
-                    ch = photoZoom.getDrawable().getBounds().height();
-                    photoZoom.update();
-                    Logger.i(getName(), "real ***** ch = " + ch + " ***** cw = " + cw);
-                } catch (NullPointerException e) {
-                    Logger.i(getName(), "稍等");
+            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                photoZoom.setImageBitmap(resource);
+                rw = resource.getWidth();
+                rh = resource.getHeight();
+                updateList();
+            }
+        };
+        GlideUtils.loadImageView(mContext, bgPath, simpleTarget);
+
+        if (Const.judgeListNull(pointList) > 0) {
+            for (int i = 0; i < pointList.size(); i++) {
+                final PointBean pointBean = pointList.get(i);
+                final ImageView imageView = pointBean.getPointView();
+                // 防止上一次退出页面是，控件没有被移除导致崩溃
+                removeView(imageView);
+                addView(imageView, lp100);
+                int imgRes = pointBean.getImgRes();
+                final int finalI = i;
+                SimpleTarget target = new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        imageView.setImageBitmap(resource);
+                        // 图片尺寸设置，防止直接测量不准确
+                        pointList.get(finalI)
+                                .setHalfHeight(resource.getHeight() / 2)
+                                .setHalfWidth(resource.getWidth() / 2);
+                    }
+                };
+                if (imgRes == 0) {
+                    GlideUtils.loadImageView(mContext, pointBean.getPath(), target);
+                } else {
+                    GlideUtils.loadImageView(mContext, imgRes, target);
                 }
             }
+        }
 
-            @Override
-            public void onFinish() {
-            }
-        }).start();
         if (canMarker) {
             photoZoom.setOnPhotoTapListener(onPhotoTapListener);
         }
+    }
+
+    private void updateList() {
+        // 防止获取ch时除数为零
+        if (cw * rw == 0){
+            return;
+        }
+
+        // 计算ch
+        if (cw == 0 || ch == 0) {
+            ch = rh / rw * cw;
+        }
+
+        // 只有当cw、ch都有值时刷新
+        if (cw * ch == 0) {
+            return;
+        }
+
+        Const.threadPoolExecute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    ((Activity) mContext).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            photoZoom.update();
+                        }
+                    });
+                }
+            }
+        });
     }
 
     public List<Size> getSizeList() {
@@ -273,8 +326,7 @@ public class BswFloorPointView extends RelativeLayout {
             if (overSize > 0) {
                 if (overSize == 1) {
                     pointList.remove(0);
-                }
-                else {
+                } else {
                     for (int i = overSize - 1; i >= 0; i--)
                         pointList.remove(i);
                 }

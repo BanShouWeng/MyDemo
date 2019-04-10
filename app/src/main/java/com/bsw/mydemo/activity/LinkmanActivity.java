@@ -18,9 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.Utils.Const;
-import com.bsw.mydemo.Utils.PermissionUtils;
-import com.bsw.mydemo.Utils.TxtUtils;
+import com.bsw.mydemo.utils.Const;
+import com.bsw.mydemo.utils.PermissionUtils;
+import com.bsw.mydemo.utils.TxtUtils;
 import com.bsw.mydemo.base.BaseActivity;
 
 import java.util.List;

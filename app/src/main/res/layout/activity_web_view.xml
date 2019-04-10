@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WebView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/web_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.bsw.mydemo.activity.WebViewActivity">
 
-</WebView>
+    <WebView
+        android:layout_marginTop="@dimen/size_20"
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </WebView>
+
+    <Button
+        android:onClick="onBtnClick"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
