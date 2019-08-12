@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -80,5 +81,11 @@ public class ExampleUnitTest {
         int a = LEFT | RIGHT;
 
         System.out.println("LEFT = " + (LEFT & a) + " *** TOP = " + (TOP & a) + " *** RIGHT = " + (RIGHT & a) + " *** BOTTOM = " + (BOTTOM & a));
+    }
+
+    @Test
+    public void math() {
+        System.out.println(Math.ceil(1.1));
+        System.out.println(Math.pow(0.75,-1));
     }
 }

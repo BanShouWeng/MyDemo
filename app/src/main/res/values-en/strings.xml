@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">MyDemo</string>
 
+    <string name="main_activity_btn_file_download">file upload</string>
+    <string name="main_activity_btn_setting">Setting Page Jump</string>
     <string name="main_activity_btn_mobile">mobile</string>
     <string name="main_activity_btn_view">View</string>
     <string name="main_activity_btn_toolbar">Toolbar</string>
@@ -28,8 +30,12 @@
     <string name="main_activity_btn_img_marker">add_marker_on_img</string>
     <string name="main_activity_btn_email">Email</string>
     <string name="main_activity_btn_swipe_view">SwipeView</string>
+    <string name="main_activity_btn_photo_picker">PhotoPicker</string>
+    <string name="main_activity_btn_gson_input">gson to translate input json</string>
     <string name="main_activity_btn_gps">gps</string>
     <string name="main_activity_btn_BswRecyclerView">BswRecyclerView</string>
+    <string name="main_activity_btn_WaveView">WaveView</string>
+    <string name="main_activity_btn_auto_hide_head">Scroll view of sliding auto-hiding head</string>
 
     <!--resId-->
     <string name="img">img</string>
@@ -68,7 +74,7 @@
     <string name="recognize_failed">Failed to recognize</string>
 
     <string name="confirm">confirm</string>
+    <string name="download">download</string>
     <string name="cancel">Cancel</string>
-
     <string name="all_loaded">is all loaded</string>
 </resources>

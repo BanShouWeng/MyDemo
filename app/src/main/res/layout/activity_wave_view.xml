@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bsw.mydemo.widget.SeismicWaveView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wave_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    app:wave_color="@android:color/holo_green_light"
+    app:wave_num="15"
+    app:wave_speed="medium"
+    app:circle_padding="150dp"
+    tools:context=".activity.view.WaveViewActivity">
+
+</com.bsw.mydemo.widget.SeismicWaveView>

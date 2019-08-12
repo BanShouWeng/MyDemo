@@ -11,27 +11,30 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bsw.mydemo.activity.utils.NavigationActivity;
-import com.bsw.mydemo.activity.utils.GpsActivity;
-import com.bsw.mydemo.activity.view.ViewActivity;
-import com.bsw.mydemo.bean.JumpBean;
-import com.bsw.mydemo.utils.JumpToUtils;
-import com.bsw.mydemo.utils.keepAlive.KeepAliveActivity;
-import com.bsw.mydemo.utils.keepAlive.ScreenBroadcastListener;
-import com.bsw.mydemo.utils.keepAlive.ScreenManager;
-import com.bsw.mydemo.utils.Logger;
-import com.bsw.mydemo.utils.PermissionUtils;
-import com.bsw.mydemo.activity.utils.BluetoothActivity;
 import com.bsw.mydemo.activity.DbActivity;
-import com.bsw.mydemo.activity.utils.MobileActivity;
-import com.bsw.mydemo.activity.utils.TimeActivity;
+import com.bsw.mydemo.activity.GsonInputActivity;
 import com.bsw.mydemo.activity.LanguageActivity;
 import com.bsw.mydemo.activity.LinkmanActivity;
 import com.bsw.mydemo.activity.RTMPActivity;
-import com.bsw.mydemo.activity.media.MediaActivity;
+import com.bsw.mydemo.activity.SettingPageJumpActivity;
 import com.bsw.mydemo.activity.VideoActivity;
 import com.bsw.mydemo.activity.WifiActivity;
+import com.bsw.mydemo.activity.media.MediaActivity;
 import com.bsw.mydemo.activity.nfc.NFCActivity;
+import com.bsw.mydemo.activity.utils.BluetoothActivity;
+import com.bsw.mydemo.activity.utils.FileDownloadActivity;
+import com.bsw.mydemo.activity.utils.GpsActivity;
+import com.bsw.mydemo.activity.utils.MobileActivity;
+import com.bsw.mydemo.activity.utils.NavigationActivity;
+import com.bsw.mydemo.activity.utils.TimeActivity;
+import com.bsw.mydemo.activity.view.ViewActivity;
+import com.bsw.mydemo.bean.JumpBean;
+import com.bsw.mydemo.utils.JumpToUtils;
+import com.bsw.mydemo.utils.Logger;
+import com.bsw.mydemo.utils.PermissionUtils;
+import com.bsw.mydemo.utils.keepAlive.KeepAliveActivity;
+import com.bsw.mydemo.utils.keepAlive.ScreenBroadcastListener;
+import com.bsw.mydemo.utils.keepAlive.ScreenManager;
 import com.bsw.mydemo.utils.rxbus2.RxBus;
 import com.bsw.mydemo.utils.rxbus2.Subscribe;
 import com.bsw.mydemo.utils.rxbus2.ThreadMode;
@@ -46,13 +49,16 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
+import me.iwf.photopicker.PhotoPickerActivity;
 
 /**
  * @author 半寿翁
  * @date 2017/11/1
  */
 public class MainActivity extends AppCompatActivity {
-    private JumpBean[] jumpBeanList = {new JumpBean(R.string.main_activity_btn_mobile, MobileActivity.class)
+    private JumpBean[] jumpBeanList = {new JumpBean(R.string.main_activity_btn_file_download, FileDownloadActivity.class)
+            , new JumpBean(R.string.main_activity_btn_setting, SettingPageJumpActivity.class)
+            , new JumpBean(R.string.main_activity_btn_mobile, MobileActivity.class)
             , new JumpBean(R.string.main_activity_btn_view, ViewActivity.class)
             , new JumpBean(R.string.main_activity_btn_NFC, NFCActivity.class)
             , new JumpBean(R.string.main_activity_btn_video_play, VideoActivity.class)
@@ -66,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             , new JumpBean(R.string.main_activity_btn_wifi, WifiActivity.class)
             , new JumpBean(R.string.main_activity_btn_time_zone, TimeActivity.class)
             , new JumpBean(R.string.main_activity_btn_gps, GpsActivity.class)
+            , new JumpBean(R.string.main_activity_btn_gson_input, GsonInputActivity.class)
+            , new JumpBean(R.string.main_activity_btn_photo_picker, PhotoPickerActivity.class)
     };
 
     @Override
@@ -108,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.error);
         String error = App.getInstance().getSharedPreferencesInstance().getString("error", "");
-        if (! TextUtils.isEmpty(error)) {
+        if (!TextUtils.isEmpty(error)) {
             textView.setText(error);
         }
         textView.setOnClickListener(new View.OnClickListener() {
@@ -126,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         PermissionUtils.setRequestPermissions(this, new PermissionUtils.PermissionGrant() {
             @Override
             public Integer[] onPermissionGranted() {
-                return new Integer[] {PermissionUtils.CODE_ALL_PERMISSION};
+                return new Integer[]{PermissionUtils.CODE_ALL_PERMISSION};
             }
 
             @Override

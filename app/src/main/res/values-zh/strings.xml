@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">我的例子</string>
 
+    <string name="main_activity_btn_file_download">文件下载</string>
+    <string name="main_activity_btn_setting">设置页跳转</string>
     <string name="main_activity_btn_mobile">OS</string>
     <string name="main_activity_btn_view">View</string>
     <string name="main_activity_btn_toolbar">Toolbar</string>
@@ -28,8 +30,12 @@
     <string name="main_activity_btn_img_marker">图片标点</string>
     <string name="main_activity_btn_email">Email</string>
     <string name="main_activity_btn_swipe_view">SwipeView</string>
+    <string name="main_activity_btn_photo_picker">PhotoPicker</string>
+    <string name="main_activity_btn_gson_input">解析输入JSON</string>
     <string name="main_activity_btn_gps">gps</string>
     <string name="main_activity_btn_BswRecyclerView">BswRecyclerView</string>
+    <string name="main_activity_btn_WaveView">WaveView</string>
+    <string name="main_activity_btn_auto_hide_head">上滑自动隐藏头的滚动视图</string>
 
     <string name="email_address">接收人</string>
     <string name="email_content">邮件内容</string>
@@ -67,7 +73,7 @@
     <string name="recognize_failed">识别失败</string>
 
     <string name="confirm">确认</string>
+    <string name="download">下载</string>
     <string name="cancel">取消</string>
-
     <string name="all_loaded">已全部加载</string>
 </resources>

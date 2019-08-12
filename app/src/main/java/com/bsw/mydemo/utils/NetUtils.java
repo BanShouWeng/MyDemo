@@ -23,6 +23,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 /**
  * @author 半寿翁
  */
@@ -64,7 +65,10 @@ public class NetUtils {
                 .client(builder.build())                                    // 配置监听请求
                 .addConverterFactory(GsonConverterFactory.create())         // 请求结果转换（当前为GSON）
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()); // 请求接受工具（当前为RxJava2）
-        builder1.baseUrl(BuildConfig.BASE_URL + action.substring(0, action.lastIndexOf("/") + 1));
+        if (action.contains("http"))
+            builder1.baseUrl(action.substring(0, action.lastIndexOf("/") + 1));
+        else
+            builder1.baseUrl(BuildConfig.BASE_URL + action.substring(0, action.lastIndexOf("/") + 1));
 
         return builder1.build();
     }
@@ -111,6 +115,28 @@ public class NetUtils {
         Logger.i("zzz", "request====" + json);
 
         jsonService.postResult(action.substring(action.lastIndexOf("/") + 1), requestBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    /**
+     * Post请求
+     *
+     * @param action   请求接口的尾址
+     * @param observer 求情观察者
+     */
+    public void getFile(final String action, Map<String, Object> params, Observer<ResponseBody> observer) {
+        RetrofitGetService getService = initBaseData(action).create(RetrofitGetService.class);
+        if (params == null) {
+            params = new HashMap<>();
+        }
+
+        Map<String, String> headerParams = new HashMap<>();
+
+        Logger.i("zzz", "request====" + new JSONObject(params));
+
+        getService.getResult(action.substring(action.lastIndexOf("/") + 1), headerParams, params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);

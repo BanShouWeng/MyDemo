@@ -1,24 +1,14 @@
-
-/**
- * @Title: WifiAdmin.java
- * @author: Xiho
- * @data: 2016年1月11日 下午3:34:17 <创建时间>
- * @history：<以下是历史记录>
- * @modifier: <修改人>
- * @modify date: 2016年1月11日 下午3:34:17 <修改时间>
- * @log: <修改内容>
- * @modifier: <修改人>
- * @modify date: 2016年1月11日 下午3:34:17 <修改时间>
- * @log: <修改内容>
- */
 package com.bsw.mydemo.utils;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.net.Inet4Address;
 import java.util.List;
@@ -28,7 +18,19 @@ import java.util.List;
  * Created by Xiho on 2016/2/1.
  */
 public class WifiAdminUtils {
+    /*
+     * 定义几种加密方式，一种是WEP，一种是WPA，还有没有密码的情况
+     */
+    public enum WifiCipherType {
+        WIFICIPHER_WEP, WIFICIPHER_WPA, WIFICIPHER_NOPASS, WIFICIPHER_INVALID
+    }
 
+    /*
+     * wifi信号强度级别，数值越小，信号越好
+     */
+    public enum WifiStateLevel {
+        WIFI_STATE_LEVEL_1, WIFI_STATE_LEVEL_2, WIFI_STATE_LEVEL_3, WIFI_STATE_LEVEL_4, WIFI_STATE_LEVEL_5
+    }
 
     // 定义一个WifiManager对象
     private WifiManager mWifiManager;
@@ -48,8 +50,10 @@ public class WifiAdminUtils {
         mWifiInfo = mWifiManager.getConnectionInfo();
 
     }
+
     /**
      * Function:关闭wifi<br>
+     *
      * @return<br>
      */
     public boolean closeWifi() {
@@ -138,10 +142,14 @@ public class WifiAdminUtils {
      * connected.
      *
      * @return the BSSID, in the form of a six-byte MAC address:
-     *         {@code XX:XX:XX:XX:XX:XX}
+     * {@code XX:XX:XX:XX:XX:XX}
      */
     public String getBSSID() {
         return (mWifiInfo == null) ? "NULL" : mWifiInfo.getBSSID();
+    }
+
+    public String getSSID() {
+        return (mWifiInfo == null) ? "NULL" : mWifiInfo.getSSID();
     }
 
     public int getIpAddress() {
@@ -176,6 +184,7 @@ public class WifiAdminUtils {
 
     /**
      * Function: 打开wifi功能<br>
+     *
      * @return true:打开成功；false:打开失败<br>
      */
     public boolean openWifi() {
@@ -192,11 +201,9 @@ public class WifiAdminUtils {
      * @param SSID
      * @param Password
      * @param Type
-     * @return <br>
      * @return true:连接成功；false:连接失败<br>
-     *
      */
-    public boolean connect(String SSID, String Password, WifiConnectUtils.WifiCipherType Type) {
+    public boolean connect(String SSID, String Password, WifiCipherType Type) {
         if (!this.openWifi()) {
             return false;
         }
@@ -251,7 +258,7 @@ public class WifiAdminUtils {
     }
 
     private WifiConfiguration createWifiInfo(String SSID, String Password,
-                                             WifiConnectUtils.WifiCipherType Type) {
+                                             WifiCipherType Type) {
         WifiConfiguration config = new WifiConfiguration();
         config.allowedAuthAlgorithms.clear();
         config.allowedGroupCiphers.clear();
@@ -259,12 +266,12 @@ public class WifiAdminUtils {
         config.allowedPairwiseCiphers.clear();
         config.allowedProtocols.clear();
         config.SSID = "\"" + SSID + "\"";
-        if (Type == WifiConnectUtils.WifiCipherType.WIFICIPHER_NOPASS) {
+        if (Type == WifiCipherType.WIFICIPHER_NOPASS) {
             config.wepKeys[0] = "";
             config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
             config.wepTxKeyIndex = 0;
         }
-        if (Type == WifiConnectUtils.WifiCipherType.WIFICIPHER_WEP) {
+        if (Type == WifiCipherType.WIFICIPHER_WEP) {
             config.preSharedKey = "\"" + Password + "\"";
             config.hiddenSSID = true;
             config.allowedAuthAlgorithms
@@ -277,7 +284,7 @@ public class WifiAdminUtils {
             config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
             config.wepTxKeyIndex = 0;
         }
-        if (Type == WifiConnectUtils.WifiCipherType.WIFICIPHER_WPA) {
+        if (Type == WifiCipherType.WIFICIPHER_WPA) {
             // 修改之后配置
             config.preSharedKey = "\"" + Password + "\"";
             config.hiddenSSID = true;
@@ -300,6 +307,7 @@ public class WifiAdminUtils {
 
     /**
      * Function:判断扫描结果是否连接上<br>
+     *
      * @param result
      * @return<br>
      */
@@ -315,6 +323,7 @@ public class WifiAdminUtils {
 
     /**
      * Function: 将int类型的IP转换成字符串形式的IP<br>
+     *
      * @param ip
      * @return<br>
      */
@@ -340,8 +349,8 @@ public class WifiAdminUtils {
     /**
      * Function:信号强度转换为字符串
      *
-     * @author Xiho
      * @param level
+     * @author Xiho
      */
     public static String singlLevToStr(int level) {
 
@@ -365,8 +374,8 @@ public class WifiAdminUtils {
     /**
      * 添加到网络
      *
-     * @author Xiho
      * @param wcg
+     * @author Xiho
      */
     public boolean addNetwork(WifiConfiguration wcg) {
         if (wcg == null) {
@@ -450,6 +459,44 @@ public class WifiAdminUtils {
         return config;
     }
 
+    /**
+     * 检查wifi强弱
+     */
+    public WifiStateLevel checkWifiState(Context context) {
+        if (isWifiConnect(context)) {
+            WifiManager mWifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            WifiInfo mWifiInfo = mWifiManager.getConnectionInfo();
+            int wifi = mWifiInfo.getRssi();//获取wifi信号强度
+            if (wifi > -50 && wifi < 0) {//最强
+                Toast.makeText(context, "WIFI信号已达到最强王者", Toast.LENGTH_LONG).show();
+                return WifiStateLevel.WIFI_STATE_LEVEL_1;
+            } else if (wifi > -70 && wifi < -50) {//较强
+                Toast.makeText(context, "WIFI信号已达到永恒钻石", Toast.LENGTH_LONG).show();
+                return WifiStateLevel.WIFI_STATE_LEVEL_2;
+            } else if (wifi > -80 && wifi < -70) {//较弱
+                Toast.makeText(context, "WIFI信号已达不屈白银", Toast.LENGTH_LONG).show();
+                return WifiStateLevel.WIFI_STATE_LEVEL_3;
+            } else if (wifi > -100 && wifi < -80) {//微弱
+                Toast.makeText(context, "WIFI信号已达到倔强青铜", Toast.LENGTH_LONG).show();
+                return WifiStateLevel.WIFI_STATE_LEVEL_4;
+            }
+        } else {
+            //无连接
+            //  mImageView.setImageResource(R.drawable.wifi_null);
+            Toast.makeText(context, "WIFI已断开，客观请观看本地视频", Toast.LENGTH_LONG).show();
+        }
+        return WifiStateLevel.WIFI_STATE_LEVEL_5;
+    }
 
+    /**
+     * 检查wifi是否处开连接状态
+     *
+     * @return
+     */
+    public boolean isWifiConnect(Context context) {
+        ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifiInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        return mWifiInfo.isConnected();
+    }
 }
 

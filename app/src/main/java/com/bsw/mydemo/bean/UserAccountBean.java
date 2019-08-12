@@ -11,6 +11,16 @@ public class UserAccountBean {
     private String password;
     private boolean rememberPW;
 
+    public UserAccountBean(String account, String password, boolean rememberPW) {
+        this.account = account;
+        this.password = password;
+        this.rememberPW = rememberPW;
+    }
+
+    public UserAccountBean() {
+
+    }
+
     public String getAccount() {
         return account;
     }

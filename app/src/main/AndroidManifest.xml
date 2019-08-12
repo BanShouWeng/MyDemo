@@ -5,19 +5,14 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.NFC" />
-    <!-- 要求当前设备必须要有NFC芯片 -->
+    <uses-permission android:name="android.permission.NFC" /> <!-- 要求当前设备必须要有NFC芯片 -->
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true" />
     <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.autofocus" />
-
-    <!-- 多媒体权限，不添加会报：setAudioSource failed -->
+    <uses-feature android:name="android.hardware.autofocus" /> <!-- 多媒体权限，不添加会报：setAudioSource failed -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 相机权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
@@ -26,14 +21,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions" />
-    <!-- 联系人权限 -->
+        tools:ignore="ProtectedPermissions" /> <!-- 联系人权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
-    <!-- 震动权限 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <!-- 以下是使用wifi访问网络所需的权限 -->
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" /> <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 以下是使用wifi访问网络所需的权限 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -42,11 +33,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <!-- 打开公放的权限 -->
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <!-- 监听通话状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 打开公放的权限 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> <!-- 监听通话状态 -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
 
     <application
@@ -61,8 +49,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:overrideLibrary="com.bsw.mydemo,tv.danmaku.ijk.media">
+        <activity android:name=".activity.view.WaveViewActivity"/>
+        <activity android:name=".activity.view.AutoHideHeaderActivity"/>
+        <activity android:name=".activity.GsonInputActivity" />
         <activity android:name=".MainActivity">
-        <!--<activity android:name=".test.TestActivity">-->
+
+            <!-- <activity android:name=".test.TestActivity"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -81,6 +73,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.nfc.NFCActivity" />
+        <activity android:name=".activity.utils.FileDownloadActivity" />
         <activity
             android:name=".activity.nfc.NFCReadActivity"
             android:launchMode="singleTask" />
@@ -102,6 +95,7 @@
                 android:resource="@xml/nfc_tech_filter" />
         </activity>
         <activity android:name=".activity.VideoActivity" />
+        <activity android:name=".activity.SettingPageJumpActivity" />
         <activity android:name=".activity.RTMPActivity" />
         <activity android:name=".activity.utils.BluetoothActivity" />
         <activity android:name=".activity.utils.NavigationActivity" />
@@ -114,9 +108,7 @@
         <activity android:name=".activity.WifiActivity" />
         <activity android:name=".activity.view.ScanCodeActivity" />
         <activity android:name=".activity.view.gif.GifActivity" />
-        <activity android:name=".activity.media.CropImageActivity" />
-
-        <!-- 拨打电话监听Receiver -->
+        <activity android:name=".activity.media.CropImageActivity" /> <!-- 拨打电话监听Receiver -->
         <receiver android:name=".receiver.PhoneBroadcastReceiver">
             <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
@@ -138,7 +130,6 @@
         <activity android:name=".activity.utils.GpsActivity" />
         <activity android:name=".activity.view.ViewActivity" />
         <activity android:name=".activity.view.BswRecycleViewActivity" />
-        <!--<activity android:name=".test.TestActivity"></activity>-->
     </application>
 
 </manifest>

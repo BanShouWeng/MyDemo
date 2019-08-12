@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context=".activity.utils.FileDownloadActivity">
+
+    <com.bsw.mydemo.widget.edittext.BswEditText
+        android:id="@+id/et_download_url"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/size_8"
+        android:background="@drawable/corner_gray_4_hollow"
+        android:gravity="top"
+        android:hint="请输入要下载的路径"
+        android:padding="@dimen/size_8" />
+
+    <Button
+        android:id="@+id/to_scan_qrCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取二维码文本" />
+</LinearLayout>

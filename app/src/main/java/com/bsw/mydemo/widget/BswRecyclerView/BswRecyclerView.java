@@ -78,7 +78,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @return 当前RecyclerView
      */
     @SuppressWarnings("UnusedReturnValue")
-    public BswRecyclerView initAdapter(@LayoutRes int layoutId, ConvertViewCallBack<T> callBack) {
+    public BswRecyclerView<T> initAdapter(@LayoutRes int layoutId, ConvertViewCallBack<T> callBack) {
         adapter = new BswRecyclerAdapter<>(context, layoutId, callBack);
         setAdapter(adapter);
         return this;
@@ -91,7 +91,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @return 当前RecyclerView
      */
     @SuppressWarnings("UnusedReturnValue")
-    private BswRecyclerView setDecoration(@LimitAnnotation.DecorationType int type) {
+    private BswRecyclerView<T> setDecoration(@LimitAnnotation.DecorationType int type) {
         addItemDecoration(new BswDecoration(context, type));
         return this;
     }
@@ -102,7 +102,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @return 当前RecyclerView
      */
     @SuppressWarnings("UnusedReturnValue")
-    public BswRecyclerView setDecoration() {
+    public BswRecyclerView<T> setDecoration() {
         setDecoration(LimitAnnotation.BOTTOM_DECORATION);
         return this;
     }
@@ -176,7 +176,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      *
      * @return 当前RecyclerView
      */
-    public BswRecyclerView setLayoutManager() {
+    public BswRecyclerView<T> setLayoutManager() {
         setLayoutManager(LimitAnnotation.VERTICAL);
         return this;
     }
@@ -187,7 +187,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param layoutType 布局样式
      * @return 当前RecyclerView
      */
-    public BswRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType) {
+    public BswRecyclerView<T> setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType) {
         if (layoutType == HORIZONTAL) // 横向列表
         {
             setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -205,7 +205,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param reverseLayout 横向布局是否可以循环滑动标志位： true，可以；false，不可以
      * @return 当前RecyclerView
      */
-    private BswRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, boolean reverseLayout) {
+    private BswRecyclerView<T> setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, boolean reverseLayout) {
         if (layoutType == HORIZONTAL) // 横向列表
         {
             setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, reverseLayout));
@@ -222,7 +222,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param filterEt              用于筛选的文本输入框
      * @param bswFilterDataCallBack 筛选条件判断回调
      */
-    public BswRecyclerView setFilterEt(EditText filterEt, BswFilterDataCallBack<T> bswFilterDataCallBack) {
+    public BswRecyclerView<T> setFilterEt(EditText filterEt, BswFilterDataCallBack<T> bswFilterDataCallBack) {
         adapter.setFilterEt(filterEt, bswFilterDataCallBack);
         return this;
     }
@@ -232,7 +232,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      *
      * @param bswFilterLayoutFilter 回调接口
      */
-    public BswRecyclerView setLayoutFilterCallBack(BswFilterLayoutFilter<T> bswFilterLayoutFilter) {
+    public BswRecyclerView<T> setLayoutFilterCallBack(BswFilterLayoutFilter<T> bswFilterLayoutFilter) {
         adapter.setLayoutFilterCallBack(bswFilterLayoutFilter);
         return this;
     }
@@ -244,7 +244,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param spanCount  拓展到多少行/列
      * @return 当前RecyclerView
      */
-    public BswRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, int spanCount) {
+    public BswRecyclerView<T> setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, int spanCount) {
         if (spanCount == 1) // 当spanCount为的时候，为线性列表
         {
             return setLayoutManager(layoutType);
@@ -267,7 +267,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param reverseLayout 横向布局是否可以循环滑动标志位： true，可以；false，不可以
      * @return 当前RecyclerView
      */
-    public BswRecyclerView setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, int spanCount, boolean reverseLayout) {
+    public BswRecyclerView<T> setLayoutManager(@LimitAnnotation.LayoutManagerType int layoutType, int spanCount, boolean reverseLayout) {
         if (spanCount == 1) {
             return setLayoutManager(layoutType, reverseLayout);
         }

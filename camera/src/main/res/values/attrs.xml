@@ -6,6 +6,7 @@
     <attr name="iconLeft" format="reference"/>
     <attr name="iconRight" format="reference"/>
     <attr name="duration_max" format="integer"/>
+
     <declare-styleable name="JCameraView">
         <attr name="iconSize"/>
         <attr name="iconMargin"/>
