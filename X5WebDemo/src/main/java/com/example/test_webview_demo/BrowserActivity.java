@@ -34,6 +34,8 @@ import android.widget.Toast;
 import com.example.test_webview_demo.utils.X5WebView;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient.CustomViewCallback;
 import com.tencent.smtt.export.external.interfaces.JsResult;
+import com.tencent.smtt.export.external.interfaces.SslError;
+import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.CookieSyncManager;
@@ -163,6 +165,11 @@ public class BrowserActivity extends Activity {
 				if (Integer.parseInt(android.os.Build.VERSION.SDK) >= 16)
 					changGoForwardButton(view);
 				/* mWebView.showLog("test Log"); */
+			}
+
+			@Override
+			public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
+				sslErrorHandler.proceed();
 			}
 		});
 
