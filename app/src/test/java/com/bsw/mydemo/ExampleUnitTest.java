@@ -6,9 +6,13 @@ import com.bsw.mydemo.utils.Const;
 
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Array;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -86,6 +90,54 @@ public class ExampleUnitTest {
     @Test
     public void math() {
         System.out.println(Math.ceil(1.1));
-        System.out.println(Math.pow(0.75,-1));
+        System.out.println(Math.pow(0.75, -1));
+    }
+
+    @Test
+    public void apkMD5Show() {
+        for (int i = 2; i <= 7; i++) {
+            getMD5("C:\\Users\\Tanda\\Desktop\\火知眼包\\在线\\火知眼在线1.0." + i + ".apk");
+        }
+    }
+
+    private void getMD5(String fileName) {
+        File file = new File(fileName);
+        MessageDigest digest = null;
+        FileInputStream fis = null;
+        byte[] buffer = new byte[1024];
+
+        try {
+            if (!file.isFile()) {
+                System.out.println("");
+            }
+
+            digest = MessageDigest.getInstance("MD5");
+            fis = new FileInputStream(file);
+
+            while (true) {
+                int len;
+                if ((len = fis.read(buffer, 0, 1024)) == -1) {
+                    fis.close();
+                    break;
+                }
+
+                digest.update(buffer, 0, len);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        BigInteger var5 = new BigInteger(1, digest.digest());
+        System.out.println(String.format("%1$032x", new Object[]{var5}));
+    }
+
+    @Test
+    public void testInteger() {
+        int a = 0x0f;
+        System.out.println(a>>>1);
+        System.out.println(a>>>2);
+        System.out.println(a>>>4);
+        System.out.println(a>>>8);
     }
 }

@@ -18,6 +18,7 @@ import com.bsw.mydemo.activity.LinkmanActivity;
 import com.bsw.mydemo.activity.RTMPActivity;
 import com.bsw.mydemo.activity.SettingPageJumpActivity;
 import com.bsw.mydemo.activity.VideoActivity;
+import com.bsw.mydemo.activity.WebSocketActivity;
 import com.bsw.mydemo.activity.WifiActivity;
 import com.bsw.mydemo.activity.media.MediaActivity;
 import com.bsw.mydemo.activity.nfc.NFCActivity;
@@ -58,6 +59,7 @@ import me.iwf.photopicker.PhotoPickerActivity;
 public class MainActivity extends AppCompatActivity {
     private JumpBean[] jumpBeanList = {new JumpBean(R.string.main_activity_btn_file_download, FileDownloadActivity.class)
             , new JumpBean(R.string.main_activity_btn_setting, SettingPageJumpActivity.class)
+            , new JumpBean(R.string.main_activity_btn_websocket, WebSocketActivity.class)
             , new JumpBean(R.string.main_activity_btn_mobile, MobileActivity.class)
             , new JumpBean(R.string.main_activity_btn_view, ViewActivity.class)
             , new JumpBean(R.string.main_activity_btn_NFC, NFCActivity.class)

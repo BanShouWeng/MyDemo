@@ -4,11 +4,34 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.bsw.mydemo.activity.CrashHandler;
 import com.bsw.mydemo.utils.rxbus2.RxBus;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.ModelLoader;
+import com.bumptech.glide.load.model.ModelLoaderFactory;
+import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.List;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
 
 /**
  * @author 半寿翁
@@ -32,6 +55,8 @@ public class App extends Application {
         crashHandler.init(getApplicationContext());
 
         String a = getDirPath();
+
+//        Glide.get(this).getRegistry().register(GlideUrl.class, InputStream.class, Factory.getInternalClient());
     }
 
     @Override

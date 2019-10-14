@@ -477,7 +477,7 @@ public class AdvancedMediaController extends RelativeLayout implements OnClickLi
 //                        try {
 //                            os.close();
 //                        } catch (Throwable t) {
-//                            Log.e(TAG, "Error occurred while saving snapshot!");
+//                            Log.e(TAG, "WebError occurred while saving snapshot!");
 //                        }
 //                    }
 //                }

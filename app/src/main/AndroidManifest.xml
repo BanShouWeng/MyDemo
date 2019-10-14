@@ -36,7 +36,10 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 打开公放的权限 -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> <!-- 监听通话状态 -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
-
+    <!-- 安卓8.0打开apk安装更新 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <!--手机不显示toast-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -49,8 +52,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:overrideLibrary="com.bsw.mydemo,tv.danmaku.ijk.media">
-        <activity android:name=".activity.view.WaveViewActivity"/>
-        <activity android:name=".activity.view.AutoHideHeaderActivity"/>
+        <activity android:name=".activity.view.WaveViewActivity" />
+        <activity android:name=".activity.view.AutoHideHeaderActivity" />
         <activity android:name=".activity.GsonInputActivity" />
         <activity android:name=".MainActivity">
 
@@ -107,7 +110,7 @@
         <activity android:name=".activity.view.GestureLockActivity" />
         <activity android:name=".activity.WifiActivity" />
         <activity android:name=".activity.view.ScanCodeActivity" />
-        <activity android:name=".activity.view.gif.GifActivity" />
+        <activity android:name=".activity.view.pic.GifActivity" />
         <activity android:name=".activity.media.CropImageActivity" /> <!-- 拨打电话监听Receiver -->
         <receiver android:name=".receiver.PhoneBroadcastReceiver">
             <intent-filter android:priority="1000">
@@ -121,7 +124,8 @@
         <activity android:name=".activity.media.CameraActivity" />
         <activity android:name=".activity.media.MediaActivity" />
         <activity android:name=".activity.DragAndZoomImgActivity" />
-        <activity android:name=".activity.view.gif.PhotoViewAndGifActivity" />
+        <activity android:name=".activity.view.pic.GlideActivity" />
+        <activity android:name=".activity.view.pic.PhotoViewAndGifActivity" />
         <activity android:name=".activity.WebViewActivity" />
         <activity android:name=".activity.view.ToolbarActivity" />
         <activity android:name=".utils.keepAlive.KeepAliveActivity" />
@@ -130,6 +134,17 @@
         <activity android:name=".activity.utils.GpsActivity" />
         <activity android:name=".activity.view.ViewActivity" />
         <activity android:name=".activity.view.BswRecycleViewActivity" />
+        <activity android:name=".activity.WebSocketActivity" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.bsw.mydemo.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

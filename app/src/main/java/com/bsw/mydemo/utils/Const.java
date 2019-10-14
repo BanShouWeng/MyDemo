@@ -2,9 +2,14 @@ package com.bsw.mydemo.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.support.v4.content.FileProvider;
 
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -155,5 +160,31 @@ public class Const {
             }
         }
         return isRunning;
+    }
+
+    public static void installApk(Context mContext, File apk) {
+
+        Uri uri = null;
+        //判断版本
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {   //如果在Android7.0以上,使用FileProvider获取Uri
+            try {
+                uri = FileProvider.getUriForFile(mContext, "com.bsw.mydemo", apk);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            }
+        } else {    //否则使用Uri.fromFile(file)方法获取Uri
+            uri = Uri.fromFile(apk);
+        }
+        //通过Intent安装APK文件
+        Intent intents = new Intent();
+        intents.setAction("android.intent.action.VIEW");
+        intents.addCategory("android.intent.category.DEFAULT");
+        intents.setDataAndType(uri, "application/vnd.android.package-archive");
+        intents.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intents.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//            android.os.Process.killProcess(android.os.Process.myPid());
+        // 如果不加上这句的话在apk安装完成之后点击单开会崩溃
+        mContext.startActivity(intents);
     }
 }

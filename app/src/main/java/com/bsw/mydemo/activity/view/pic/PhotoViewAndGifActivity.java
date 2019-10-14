@@ -1,4 +1,4 @@
-package com.bsw.mydemo.activity.view.gif;
+package com.bsw.mydemo.activity.view.pic;
 
 import android.os.Bundle;
 import android.view.View;

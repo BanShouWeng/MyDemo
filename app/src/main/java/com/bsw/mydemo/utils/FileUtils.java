@@ -31,6 +31,10 @@ import java.util.Random;
  * @date 2018/5/2 17:38
  */
 public class FileUtils {
+    /**
+     * 生成文件的路径
+     */
+    public final static String FILE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath().concat("/file_download/");
 
     public static final int AUDIO_RECORD = 0x011;
     public static final int WAV_OUTPUT = 0x012;
@@ -48,11 +52,11 @@ public class FileUtils {
         }
         // 以 content:// 开头的，比如 content://media/extenral/images/media/17766
         if (ContentResolver.SCHEME_CONTENT.equals(uri.getScheme()) && Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            Cursor cursor = context.getContentResolver().query(uri, new String[] {MediaStore.Images.Media.DATA}, null, null, null);
+            Cursor cursor = context.getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
                     int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                    if (columnIndex > - 1) {
+                    if (columnIndex > -1) {
                         path = cursor.getString(columnIndex);
                     }
                 }
@@ -93,7 +97,7 @@ public class FileUtils {
                         contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                     }
                     final String selection = "_id=?";
-                    final String[] selectionArgs = new String[] {split[1]};
+                    final String[] selectionArgs = new String[]{split[1]};
                     path = getDataColumn(context, contentUri, selection, selectionArgs);
                     return path;
                 }
@@ -245,10 +249,10 @@ public class FileUtils {
      * @param newname 新文件名
      */
     public static String renameFile(String path, String oldname, String newname) {
-        if (! oldname.equals(newname)) {//新的文件名和以前文件名不同时,才有必要进行重命名
+        if (!oldname.equals(newname)) {//新的文件名和以前文件名不同时,才有必要进行重命名
             File oldfile = new File(path + "/" + oldname);
             File newfile = new File(path + "/" + newname);
-            if (! oldfile.exists()) {
+            if (!oldfile.exists()) {
                 return "";//重命名文件不存在
             }
             if (newfile.exists()) {//若在该目录下已经有一个文件和新文件名相同，则不允许重命名
@@ -269,10 +273,10 @@ public class FileUtils {
      * @param allNewName 完整的新文件名
      */
     public static String renameFile(String allOldName, String allNewName) {
-        if (! allOldName.equals(allNewName)) {//新的文件名和以前文件名不同时,才有必要进行重命名
+        if (!allOldName.equals(allNewName)) {//新的文件名和以前文件名不同时,才有必要进行重命名
             File oldfile = new File(allOldName);
             File newfile = new File(allNewName);
-            if (! oldfile.exists()) {
+            if (!oldfile.exists()) {
                 return "";//重命名文件不存在
             }
             if (newfile.exists()) {//若在该目录下已经有一个文件和新文件名相同，则不允许重命名
@@ -316,7 +320,7 @@ public class FileUtils {
             }
         } else if (filePath.isFile()) {
             File copyFile = new File(copyPath);
-            if (! copyFile.getParentFile().exists()) {
+            if (!copyFile.getParentFile().exists()) {
                 copyFile.getParentFile().mkdirs();
             }
             read = new DataInputStream(
@@ -324,7 +328,7 @@ public class FileUtils {
             write = new DataOutputStream(
                     new BufferedOutputStream(new FileOutputStream(copyFile)));
             byte[] buf = new byte[1024 * 512];
-            while (read.read(buf) != - 1) {
+            while (read.read(buf) != -1) {
                 write.write(buf);
             }
             read.close();
@@ -336,7 +340,7 @@ public class FileUtils {
 
     public static void copyFile(String path, String copyPath) throws IOException {
         File copyFile = new File(copyPath);
-        if (! copyFile.getParentFile().exists()) {
+        if (!copyFile.getParentFile().exists()) {
             copyFile.getParentFile().mkdirs();
         }
         // 打开输入流
@@ -348,7 +352,7 @@ public class FileUtils {
         int len = 0;
         // 创建一个字节数组，当做缓冲区
         byte[] b = new byte[1024];
-        while ((len = fis.read(b)) != - 1) {
+        while ((len = fis.read(b)) != -1) {
             fos.write(b, 0, len);
         }
         // 关闭流  先开后关  后开先关
@@ -445,10 +449,10 @@ public class FileUtils {
                 ContentResolver cr = context.getContentResolver();
                 StringBuffer buff = new StringBuffer();
                 buff.append("(").append(MediaStore.Images.ImageColumns.DATA).append("=").append("'" + path + "'").append(")");
-                Cursor cur = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[] {MediaStore.Images.ImageColumns._ID, MediaStore.Images.ImageColumns.DATA}, buff.toString(), null, null);
+                Cursor cur = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Images.ImageColumns._ID, MediaStore.Images.ImageColumns.DATA}, buff.toString(), null, null);
                 int index = 0;
                 int dataIdx = 0;
-                for (cur.moveToFirst(); ! cur.isAfterLast(); cur.moveToNext()) {
+                for (cur.moveToFirst(); !cur.isAfterLast(); cur.moveToNext()) {
                     index = cur.getColumnIndex(MediaStore.Images.ImageColumns._ID);
                     index = cur.getInt(index);
                     dataIdx = cur.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
@@ -518,11 +522,11 @@ public class FileUtils {
             return null;
         }
         File file = new File(filePath);
-        if (! file.getParentFile().exists()) {
+        if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();
         }
 
-        if (! file.exists()) {
+        if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
@@ -553,7 +557,7 @@ public class FileUtils {
      */
     public static boolean delete(String fileName) {
         File file = new File(fileName);
-        if (! file.exists()) {
+        if (!file.exists()) {
             System.out.println("删除文件失败:" + fileName + "不存在！");
             return false;
         } else {
@@ -595,11 +599,11 @@ public class FileUtils {
      */
     public static boolean deleteDirectory(String dir) {
         // 如果dir不以文件分隔符结尾，自动添加文件分隔符
-        if (! dir.endsWith(File.separator))
+        if (!dir.endsWith(File.separator))
             dir = dir + File.separator;
         File dirFile = new File(dir);
         // 如果dir对应的文件不存在，或者不是一个目录，则退出
-        if ((! dirFile.exists()) || (! dirFile.isDirectory())) {
+        if ((!dirFile.exists()) || (!dirFile.isDirectory())) {
             System.out.println("删除目录失败：" + dir + "不存在！");
             return false;
         }
@@ -610,18 +614,18 @@ public class FileUtils {
             // 删除子文件
             if (files[i].isFile()) {
                 flag = FileUtils.deleteFile(files[i].getAbsolutePath());
-                if (! flag)
+                if (!flag)
                     break;
             }
             // 删除子目录
             else if (files[i].isDirectory()) {
                 flag = FileUtils.deleteDirectory(files[i]
                         .getAbsolutePath());
-                if (! flag)
+                if (!flag)
                     break;
             }
         }
-        if (! flag) {
+        if (!flag) {
             System.out.println("删除目录失败！");
             return false;
         }

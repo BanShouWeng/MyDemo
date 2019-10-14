@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.bsw.mydemo.activity.view.pic.GlideActivity;
 import com.bsw.mydemo.widget.BswRecyclerView.BswRecyclerView;
 import com.bsw.mydemo.widget.BswRecyclerView.ConvertViewCallBack;
 import com.bsw.mydemo.widget.BswRecyclerView.RecyclerViewHolder;
 import com.bsw.mydemo.R;
 import com.bsw.mydemo.activity.WebViewActivity;
 import com.bsw.mydemo.activity.utils.MobileActivity;
-import com.bsw.mydemo.activity.view.gif.GifActivity;
+import com.bsw.mydemo.activity.view.pic.GifActivity;
 import com.bsw.mydemo.base.BaseActivity;
 import com.bsw.mydemo.bean.JumpBean;
 
@@ -24,6 +25,7 @@ public class ViewActivity extends BaseActivity {
             , new JumpBean(R.string.main_activity_btn_toolbar, ToolbarActivity.class)
             , new JumpBean(R.string.main_activity_btn_qrcode, ScanCodeActivity.class)
             , new JumpBean(R.string.main_activity_btn_gesture_lock, GestureLockActivity.class)
+            , new JumpBean(R.string.main_activity_btn_glide, GlideActivity.class)
             , new JumpBean(R.string.main_activity_btn_gif, GifActivity.class)
             , new JumpBean(R.string.main_activity_btn_webview, WebViewActivity.class)
             , new JumpBean(R.string.main_activity_btn_BswRecyclerView, BswRecycleViewActivity.class)

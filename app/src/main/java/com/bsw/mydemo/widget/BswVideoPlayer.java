@@ -146,7 +146,7 @@ public class BswVideoPlayer extends TextureView {
                 mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
                     @Override
                     public boolean onError(MediaPlayer mp, int what, int extra) {
-                        Logger.d(getName(), "OnError - Error code: " + what + " Extra code: " + extra);
+                        Logger.d(getName(), "OnError - WebError code: " + what + " Extra code: " + extra);
                         switch (what) {
                             case - 1004:
                                 Logger.d(getName(), "MEDIA_ERROR_IO");

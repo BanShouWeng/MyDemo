@@ -85,8 +85,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.google.code.gson:gson:2.8.1'
     testImplementation 'junit:junit:4.12'
-    implementation 'com.github.bumptech.glide:glide:4.6.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation files('libs/agent_lss_4.6.0-20180417.jar')
     implementation files('libs/bdplayer.jar')
     debugImplementation project(':camera')

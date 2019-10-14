@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/black"
-    tools:context=".activity.view.gif.GifActivity">
+    tools:context=".activity.view.pic.GifActivity">
 
     <ImageView
         android:id="@+id/gif_iv"

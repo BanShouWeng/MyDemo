@@ -3,6 +3,7 @@
     <string name="app_name">我的例子</string>
 
     <string name="main_activity_btn_file_download">文件下载</string>
+    <string name="main_activity_btn_websocket">WebSocket</string>
     <string name="main_activity_btn_setting">设置页跳转</string>
     <string name="main_activity_btn_mobile">OS</string>
     <string name="main_activity_btn_view">View</string>
@@ -25,6 +26,7 @@
     <string name="main_activity_btn_gesture_lock">手势解锁</string>
     <string name="main_activity_btn_wifi">wifi</string>
     <string name="main_activity_btn_gif">Gif</string>
+    <string name="main_activity_btn_glide">Glide</string>
     <string name="main_activity_btn_design_view">DesignView</string>
     <string name="main_activity_btn_webview">WebView</string>
     <string name="main_activity_btn_img_marker">图片标点</string>
