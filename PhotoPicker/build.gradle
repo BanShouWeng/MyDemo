@@ -1,16 +1,16 @@
 apply plugin: 'com.android.library'
 
 android {
-  compileSdkVersion 27
-  buildToolsVersion '28.0.3'
+  compileSdkVersion project.ext.compileSdkVersion
+  buildToolsVersion project.ext.buildToolsVersion
   resourcePrefix "__picker_"
 
   dexOptions {
     javaMaxHeapSize "4g"
   }
   defaultConfig {
-    minSdkVersion 15
-    targetSdkVersion 27
+    minSdkVersion project.ext.minSdkVersion
+    targetSdkVersion project.ext.targetSdkVersion
   }
   lintOptions {
     abortOnError false
