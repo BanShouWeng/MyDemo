@@ -14,4 +14,7 @@
 
     <!--涟漪-->
     <color name="rippelColor">#FFFFFF</color>
+    <color name="load_failure">#FF0000</color>
+    <color name="load_success">#008000</color>
+    <color name="load_loading">#808080</color>
 </resources>

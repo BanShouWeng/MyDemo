@@ -213,7 +213,7 @@ public class RecordingActivity extends BaseActivity {
 
 
         });
-        setOnClickListener(R.id.btnPlay);
+        setClickView(R.id.btnPlay);
     }
 
     @Override

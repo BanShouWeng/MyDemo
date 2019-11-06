@@ -137,9 +137,7 @@ public class RTMPActivity extends AppCompatActivity implements IMediaPlayer.OnPr
         mViewHolder.addView(mVV, rllp);
         mediaController.setMediaPlayerControl(mVV);
 
-//        mVV.setVideoPath("rtmp://121.40.50.44:10085/live/2b9ada97-9282-4e96-accc-97270171d978");
-//        mVV.setVideoPath("rtmp://58.200.131.2:1935/livetv/hunantv");
-        mVV.setVideoPath("rtmp://192.168.32.91/liveshow/1921683613180");
+        mVV.setVideoPath("rtmp://58.200.131.2:1935/livetv/hunantv");
         mVV.setLogEnabled(false);
 //        mVV.setDecodeMode(BDCloudMediaPlayer.DECODE_SW);
 
@@ -159,7 +157,7 @@ public class RTMPActivity extends AppCompatActivity implements IMediaPlayer.OnPr
 
     private void initOtherUI() {
         // header
-        final ImageButton ibBack = (ImageButton) this.findViewById(R.id.ibtn_back);
+        final ImageButton ibBack = findViewById(R.id.ibtn_back);
         ibBack.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -168,7 +166,7 @@ public class RTMPActivity extends AppCompatActivity implements IMediaPlayer.OnPr
             }
 
         });
-        RelativeLayout rlback = (RelativeLayout) this.findViewById(R.id.rl_back);
+        RelativeLayout rlback = findViewById(R.id.rl_back);
         rlback.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -177,9 +175,9 @@ public class RTMPActivity extends AppCompatActivity implements IMediaPlayer.OnPr
             }
 
         });
-        TextView tvTitle = (TextView) this.findViewById(R.id.tv_top_title);
+        TextView tvTitle = findViewById(R.id.tv_top_title);
 //        tvTitle.setText(info.getTitle());
-        final ImageButton ibScreen = (ImageButton) this.findViewById(R.id.ibtn_screen_control);
+        final ImageButton ibScreen = findViewById(R.id.ibtn_screen_control);
         ibScreen.setOnClickListener(new View.OnClickListener() {
 
             @Override

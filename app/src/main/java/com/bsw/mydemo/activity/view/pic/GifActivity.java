@@ -34,7 +34,7 @@ public class GifActivity extends BaseActivity {
     protected void formatViews() {
         svgIV.setImageResource(R.drawable.ic_fire);
         Glide.with(this).load(R.drawable.gif).into(gifIv);
-        setOnClickListener(R.id.jumpPhotoViewGif);
+        setClickView(R.id.jumpPhotoViewGif);
     }
 
     @Override

@@ -12,7 +12,6 @@ import com.bsw.mydemo.activity.view.ScanCodeActivity;
 import com.bsw.mydemo.base.BaseBean;
 import com.bsw.mydemo.base.BaseNetActivity;
 import com.bsw.mydemo.utils.Logger;
-import com.bsw.mydemo.utils.TxtUtils;
 import com.bsw.mydemo.utils.download.DownloadInfo;
 import com.bsw.mydemo.utils.download.DownloadManager;
 
@@ -60,7 +59,7 @@ public class FileDownloadActivity extends BaseNetActivity {
 
     @Override
     protected void formatViews() {
-        setOnClickListener(R.id.to_scan_qrCode);
+        setClickView(R.id.to_scan_qrCode);
     }
 
     @Override

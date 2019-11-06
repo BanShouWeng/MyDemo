@@ -59,7 +59,7 @@ public class LinkmanActivity extends BaseActivity {
 
     @Override
     protected void formatData() {
-        setOnClickListener(R.id.get_linkman, R.id.insert_linkman);
+        setClickView(R.id.get_linkman, R.id.insert_linkman);
     }
 
     @Override

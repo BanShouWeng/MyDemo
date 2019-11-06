@@ -85,12 +85,11 @@ public class WebSocketActivity extends BaseActivity {
     }
 
     private void loadPrefs() {
-        mHostname.setText(mSettings.getString("hostname", "192.168.32.97"));
-        mPort.setText(mSettings.getString("port", "80"));
+        mHostname.setText(mSettings.getString("hostname", "wss://192.168.32.133"));
+        mPort.setText(mSettings.getString("port", "443"));
     }
 
     private void savePrefs() {
-
         SharedPreferences.Editor editor = mSettings.edit();
         editor.putString("hostname", mHostname.getText().toString());
         editor.putString("port", mPort.getText().toString());
@@ -134,7 +133,7 @@ public class WebSocketActivity extends BaseActivity {
         } else {
             wsuri = hostname;
         }
-        wsuri = wsuri + "/foslink/app-show/device/track/websocket/2";
+        wsuri = wsuri + "/WebSocketForApp/AdapterDeviceWebSocket/01_WF_16091402010100011078";
 
         mStatusline.setText("Status: Connecting to " + wsuri + " ..");
 

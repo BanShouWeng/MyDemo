@@ -108,10 +108,10 @@ public class AdvancedMediaController extends RelativeLayout implements OnClickLi
         View layout = inflater.inflate(R.layout.bar_advanced_media_controller, this);
 
 //        playButton = (ImageButton) layout.findViewById(R.id.ibtn_play);
-//        playButton.setOnClickListener(this);
+//        playButton.setClickView(this);
 
 //        snapshotButton = (ImageButton) layout.findViewById(R.id.ibtn_snapshot);
-//        snapshotButton.setOnClickListener(this);
+//        snapshotButton.setClickView(this);
 
 //        fitButton = (Button) layout.findViewById(R.id.btn_fitmode);
 //        if (SharedPrefsStore.isPlayerFitModeCrapping(this.getContext())) {
@@ -119,19 +119,19 @@ public class AdvancedMediaController extends RelativeLayout implements OnClickLi
 //        } else {
 //            fitButton.setText("填充");
 //        }
-//        fitButton.setOnClickListener(this);
+//        fitButton.setClickView(this);
 
 //        previousButton = (ImageButton) layout.findViewById(R.id.ibtn_previous);
-//        previousButton.setOnClickListener(this);
+//        previousButton.setClickView(this);
 
 //        nextButton = (ImageButton) layout.findViewById(R.id.ibtn_next);
-//        nextButton.setOnClickListener(this);
+//        nextButton.setClickView(this);
 
 //        resolutionButton = (Button) layout.findViewById(R.id.btn_resolution);
-//        resolutionButton.setOnClickListener(this);
+//        resolutionButton.setClickView(this);
 
 //        downloadButton = (ImageButton) layout.findViewById(R.id.ibtn_download);
-//        downloadButton.setOnClickListener(this);
+//        downloadButton.setClickView(this);
 
         positionView = (TextView) layout.findViewById(R.id.tv_position);
 //        seekBar = (SeekBar) layout.findViewById(R.id.seekbar);

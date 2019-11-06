@@ -31,6 +31,7 @@ public class ViewActivity extends BaseActivity {
             , new JumpBean(R.string.main_activity_btn_BswRecyclerView, BswRecycleViewActivity.class)
             , new JumpBean(R.string.main_activity_btn_WaveView, WaveViewActivity.class)
             , new JumpBean(R.string.main_activity_btn_auto_hide_head, AutoHideHeaderActivity.class)
+            , new JumpBean(R.string.main_activity_btn_loading_state, LoadingStateActivity.class)
     };
 
     @Override

@@ -33,7 +33,7 @@ public class NavigationActivity extends BaseActivity {
 
     @Override
     protected void formatViews() {
-        setOnClickListener(R.id.navigation_baidu, R.id.navigation_gaode);
+        setClickView(R.id.navigation_baidu, R.id.navigation_gaode);
     }
 
     @Override

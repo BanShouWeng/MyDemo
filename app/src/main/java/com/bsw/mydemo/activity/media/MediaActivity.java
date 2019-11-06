@@ -45,7 +45,7 @@ public class MediaActivity extends BaseActivity {
 
     @Override
     protected void formatViews() {
-        setOnClickListener(R.id.jumpShakeAndFlash, R.id.jumpRecording, R.id.jumpVideoRecord, R.id.jumpPicCrop);
+        setClickView(R.id.jumpShakeAndFlash, R.id.jumpRecording, R.id.jumpVideoRecord, R.id.jumpPicCrop);
     }
 
     @Override

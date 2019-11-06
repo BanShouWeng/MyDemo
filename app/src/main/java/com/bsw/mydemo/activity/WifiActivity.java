@@ -32,7 +32,7 @@ public class WifiActivity extends BaseActivity {
 
     @Override
     protected void formatViews() {
-        setOnClickListener(R.id.wifi_changed);
+        setClickView(R.id.wifi_changed);
 
         WifiAdminUtils adminUtils = new WifiAdminUtils(context);
         if (adminUtils.isWifiConnect(this))

@@ -60,7 +60,7 @@ public class ScanCodeActivity extends CaptureActivity {
 
     @Override
     protected void formatViews() {
-        setOnClickListener(R.id.flash_on);
+        setClickView(R.id.flash_on);
     }
 
     @Override

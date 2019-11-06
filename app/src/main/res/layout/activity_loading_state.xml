@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="50dp">
+
+    <com.bsw.mydemo.widget.LoadingState.LoadingStatusView
+        android:id="@+id/loading_state"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:result_with_circle="false" />
+
+    <Button
+        android:id="@+id/loading_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="成功" />
+
+    <Button
+        android:id="@+id/loading_failure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="失败" />
+
+    <Button
+        android:id="@+id/loading_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="重置" />
+</LinearLayout>

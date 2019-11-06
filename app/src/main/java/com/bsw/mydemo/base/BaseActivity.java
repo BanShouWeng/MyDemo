@@ -464,7 +464,7 @@ public abstract class BaseActivity extends AppCompatActivity implements NetBroad
      *
      * @param layouts 点击控件Id
      */
-    protected void setOnClickListener(int... layouts) {
+    protected void setClickView(int... layouts) {
         for (int layout : layouts) {
             getView(layout).setOnClickListener(this);
         }

@@ -137,6 +137,7 @@
         <activity android:name=".activity.utils.TimeActivity" />
         <activity android:name=".activity.utils.GpsActivity" />
         <activity android:name=".activity.view.ViewActivity" />
+        <activity android:name=".activity.view.LoadingStateActivity" />
         <activity android:name=".activity.view.BswRecycleViewActivity" />
         <activity android:name=".activity.WebSocketActivity" />
 

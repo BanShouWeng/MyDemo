@@ -43,7 +43,7 @@ public class PicCropActivity extends BaseActivity {
 
     @Override
     protected void formatViews() {
-        setOnClickListener(R.id.pic_crop, R.id.get_img, R.id.get_video);
+        setClickView(R.id.pic_crop, R.id.get_img, R.id.get_video);
     }
 
     @Override

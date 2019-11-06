@@ -65,7 +65,7 @@ public class NFCWriteActivity extends BaseNfcActivity {
             }
         });
 
-        setOnClickListener(R.id.to_scan_qrCode);
+        setClickView(R.id.to_scan_qrCode);
     }
 
     @Override

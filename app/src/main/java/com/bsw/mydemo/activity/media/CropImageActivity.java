@@ -87,7 +87,7 @@ public class CropImageActivity extends BaseActivity {
 
     @Override
     protected void formatViews() {
-        setOnClickListener(R.id.cancel, R.id.ok);
+        setClickView(R.id.cancel, R.id.ok);
     }
 
     @Override

@@ -28,7 +28,7 @@ public class NFCActivity extends BaseActivity {
 
     @Override
     protected void formatViews() {
-        setOnClickListener(R.id.jumpNFC_r, R.id.jumpNFC_w, R.id.jumpNFC_sp, R.id.jumpNFC_rp, R.id.jumpNFC_write_with_password);
+        setClickView(R.id.jumpNFC_r, R.id.jumpNFC_w, R.id.jumpNFC_sp, R.id.jumpNFC_rp, R.id.jumpNFC_write_with_password);
     }
 
     @Override

@@ -144,7 +144,7 @@ public class ShakeAndFlashActivity extends BaseActivity {
 
     @Override
     protected void findViews() {
-        setOnClickListener(R.id.startMusic, R.id.stopMusic, R.id.startFlash, R.id.stopFlash, R.id.startShake, R.id.stopShake);
+        setClickView(R.id.startMusic, R.id.stopMusic, R.id.startFlash, R.id.stopFlash, R.id.startShake, R.id.stopShake);
     }
 
     @Override
