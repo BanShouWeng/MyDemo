@@ -14,9 +14,10 @@ import java.util.List;
 
 public class PhotoViewAndGifActivity extends BaseActivity {
 
-//    private String bg = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535451667055&di=8612f9af78a2021234bdf572fdef13b6&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01485c59587d97a8012193a32e9dce.png";
-    private String bg = "http://xf.tandatech.com:1080/fileUpload/upload/file/2018-09-07/1b545c45-67cb-4349-9520-3cd7e0960603.png";
-    private String imgPath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1530278301610&di=f09a4c1eb4436d128f3e49220f4244d0&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20161115%2F6163765431c44d538b37d6efb32ee885_th.jpg";
+    //    private String bg = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535451667055&di=8612f9af78a2021234bdf572fdef13b6&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01485c59587d97a8012193a32e9dce.png";
+    private String bg = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575024541194&di=54090294f137c29aff53bb16117aa7c5&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fq_70%2Cc_zoom%2Cw_640%2Fimages%2F20170614%2F2e1d710bf3b2415286f37d8834dd27bc.jpg";
+            private String imgPath = "https://upload-images.jianshu.io/upload_images/2680888-7d44a92155197066.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/60";
+//    private String imgPath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545215030027&di=46741dc4c9ec3aaf5cef35b600a20b85&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F14%2F87%2F42%2F10v58PICSug_1024.jpg";
 
     private BswFloorPointView imgFloorPoint;
 
@@ -38,8 +39,8 @@ public class PhotoViewAndGifActivity extends BaseActivity {
     @Override
     protected void formatViews() {
         List<PointBean> pointBeans = new ArrayList<>();
-        pointBeans.add(new PointBean(0.5, 0.4, imgPath, PointBean.POSITION_CENTER));
-        pointBeans.add(new PointBean(0.3, 0.7, imgPath, PointBean.POSITION_CENTER));
+        pointBeans.add(new PointBean(PointBean.TYPE_REAL, 149.5, 123, imgPath, PointBean.POSITION_CENTER));
+        pointBeans.add(new PointBean(PointBean.TYPE_REAL, 436, 444, imgPath, PointBean.POSITION_CENTER));
         try {
             imgFloorPoint.setPointList(pointBeans)
                     .setFloorBackground(bg)

@@ -44,7 +44,9 @@ import com.bsw.mydemo.widget.BswRecyclerView.ConvertViewCallBack;
 import com.bsw.mydemo.widget.BswRecyclerView.RecyclerViewHolder;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         TextView textView = findViewById(R.id.error);
-        String error = App.getInstance().getSharedPreferencesInstance().getString("error", "");
+        final String error = App.getInstance().getSharedPreferencesInstance().getString("error", "");
         if (!TextUtils.isEmpty(error)) {
             textView.setText(error);
         }
@@ -149,16 +151,30 @@ public class MainActivity extends AppCompatActivity {
 
         Observable.just("On", "Off", "On", "On")
                 //在传递过程中对事件进行过滤操作
-                .map(new Function<String, Boolean>() {
+                /*
+                 * Function<传入类型，next接收类型>
+                 */
+                .map(new Function<String, String>() {
+                    Map<String, Integer> map = new HashMap<>();
+
                     @Override
-                    public Boolean apply(String s) throws Exception {
-                        return s != null;
+                    public String apply(String s) throws Exception {
+                        StringBuilder stringBuilder = new StringBuilder(s);
+                        Integer count = map.get(s);
+                        if (null == count) {
+                            map.put(s, 1);
+                        } else {
+                            map.put(s, ++count);
+                        }
+                        stringBuilder.append(s).append(" : 第").append(map.get(s)).append("次");
+                        return stringBuilder.toString();
                     }
                 })
-                .subscribe(new Observer<Boolean>() {
+                .subscribe(new Observer<String>() {
                                @Override
                                public void onError(Throwable e) {
                                    //出现错误会调用这个方法
+                                   Log.d("DDDDDD", "异常..." + e.getMessage() + "\n");
                                }
 
                                @Override
@@ -169,11 +185,11 @@ public class MainActivity extends AppCompatActivity {
 
                                @Override
                                public void onSubscribe(Disposable d) {
-
+                                   Log.d("DDDDDD", d.toString());
                                }
 
                                @Override
-                               public void onNext(Boolean s) {
+                               public void onNext(String s) {
                                    //处理传过来的onNext事件
                                    Log.d("DDDDD", "handle this---" + s);
                                }
@@ -198,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @Subscribe(code = 1000, threadMode = ThreadMode.MAIN)
-    public void recieve(Person person) {
+    public void receive(Person person) {
         Logger.i(getName(), "我叫".concat(person.name).concat("今年").concat(person.age + "").concat("岁"));
     }
 

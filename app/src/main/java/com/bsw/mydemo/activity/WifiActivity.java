@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 import com.bsw.mydemo.R;
 import com.bsw.mydemo.base.BaseActivity;
-import com.bsw.mydemo.utils.TxtUtils;
+import com.bsw.mydemo.utils.StringFormatUtils;
 import com.bsw.mydemo.utils.WifiAdminUtils;
 
 public class WifiActivity extends BaseActivity {
@@ -36,7 +36,7 @@ public class WifiActivity extends BaseActivity {
 
         WifiAdminUtils adminUtils = new WifiAdminUtils(context);
         if (adminUtils.isWifiConnect(this))
-              wifiSsid.setText(adminUtils.getSSID());
+            wifiSsid.setText(adminUtils.getSSID());
     }
 
     @Override
@@ -66,7 +66,7 @@ public class WifiActivity extends BaseActivity {
 //        if (WifiConnDialog.this != null) {
 //            dismiss();
 //        }
-        boolean isConnect = mWifiAdmin.connect(TxtUtils.getText(wifiSsid), TxtUtils.getText(wifiPassword), WifiAdminUtils.WifiCipherType.WIFICIPHER_WPA);
+        boolean isConnect = mWifiAdmin.connect(StringFormatUtils.getString(wifiSsid), StringFormatUtils.getString(wifiPassword), WifiAdminUtils.WifiCipherType.WIFICIPHER_WPA);
         Log.d("WifiListActivity", isConnect + "是否去连接的值");
         if (isConnect) {
             Log.d("WifiListActivity", "去连接wifi了");

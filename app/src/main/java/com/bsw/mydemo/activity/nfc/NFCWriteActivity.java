@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bsw.mydemo.R;
-import com.bsw.mydemo.utils.TxtUtils;
+import com.bsw.mydemo.utils.StringFormatUtils;
 import com.bsw.mydemo.activity.view.ScanCodeActivity;
 import com.bsw.mydemo.base.BaseNfcActivity;
 
@@ -97,7 +97,7 @@ public class NFCWriteActivity extends BaseNfcActivity {
             return;
         }
         if (TextUtils.isEmpty(inputText)) {
-            inputText = TxtUtils.getText(etNfcContent);
+            inputText = StringFormatUtils.getString(etNfcContent);
         }
         if (TextUtils.isEmpty(inputText)){
             toast(R.string.cannot_be_null);
@@ -147,7 +147,7 @@ public class NFCWriteActivity extends BaseNfcActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case RIGHT_TEXT_ID:
-                inputText = TxtUtils.getText(etNfcContent);
+                inputText = StringFormatUtils.getString(etNfcContent);
                 break;
 
             case R.id.to_scan_qrCode:

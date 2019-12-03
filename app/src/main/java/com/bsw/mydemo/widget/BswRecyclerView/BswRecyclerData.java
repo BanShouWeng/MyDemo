@@ -11,7 +11,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import com.bsw.mydemo.utils.Const;
-import com.bsw.mydemo.utils.TxtUtils;
+import com.bsw.mydemo.utils.StringFormatUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -329,7 +329,7 @@ public class BswRecyclerData<T> {
         if (filterUseState >= FILTER_DATA) {     // 需要根据输入框文本过滤之后刷新
             mShowLayoutData = mLayoutData;
             filterable.setNotify(isNotify);
-            filterable.getFilter().filter(TxtUtils.getText(filterEt));
+            filterable.getFilter().filter(StringFormatUtils.getString(filterEt));
         } else {                                // 不需要根据输入框文本过滤，直接刷新
             if (isNotify)
                 adapter.notifyDataSetChanged();

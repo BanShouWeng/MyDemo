@@ -16,17 +16,39 @@ import java.lang.annotation.RetentionPolicy;
  */
 
 public class PointBean {
-    public static final int POSITION_DOWN = 21;
-    public static final int POSITION_TOP = 22;
+    public static final int TYPE_PROPORTION = 1;
+    public static final int TYPE_REAL = 2;
+
+    /**
+     * 点位类型
+     * {@link PointBean#TYPE_PROPORTION 比例尺寸}
+     * {@link PointBean#TYPE_REAL 真实尺寸}
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({TYPE_PROPORTION, TYPE_REAL})
+    public @interface PointType {
+    }
+
+    public static final int POSITION_BELOW = 21;
+    public static final int POSITION_ABOVE = 22;
     public static final int POSITION_CENTER = 23;
     public static final int POSITION_LEFT = 24;
     public static final int POSITION_RIGHT = 25;
 
-    // 不添加到.class文件中
+    /**
+     * 横纵坐标在icon的相对位置
+     * {@link PointBean#POSITION_BELOW 在横纵坐标点下方}
+     * {@link PointBean#POSITION_ABOVE 在横纵坐标点上方}
+     * {@link PointBean#POSITION_BELOW 横纵坐标在icon中间}
+     * {@link PointBean#POSITION_LEFT 在横纵坐标点左侧}
+     * {@link PointBean#POSITION_BELOW 在横纵坐标点右侧}
+     */
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({POSITION_DOWN, POSITION_TOP, POSITION_CENTER, POSITION_LEFT, POSITION_RIGHT})
-    public @interface pointPositionLimit {
+    @IntDef({POSITION_BELOW, POSITION_ABOVE, POSITION_CENTER, POSITION_LEFT, POSITION_RIGHT})
+    public @interface PointPositionLimit {
     }
+
+    private int type;
 
     private double x;
     private double y;
@@ -39,11 +61,13 @@ public class PointBean {
     private int halfWidth = 0;
 
     /**
+     * @param type 是比例（0~1），还是实际在图片上的坐标
      * @param x    横坐标
      * @param y    纵坐标
      * @param path 显示文件的路径
      */
-    public PointBean(@FloatRange(from = 0, to = 1) double x, @FloatRange(from = 0, to = 1) double y, String path, @pointPositionLimit int positionLimit) {
+    public PointBean(@PointType int type, double x, double y, String path, @PointPositionLimit int positionLimit) {
+        this.type = type;
         this.x = x;
         this.y = y;
         this.path = path;
@@ -55,19 +79,24 @@ public class PointBean {
      * @param y      纵坐标
      * @param imgRes 显示文件的路径
      */
-    public PointBean(@FloatRange(from = 0, to = 1) double x, @FloatRange(from = 0, to = 1) double y, @DrawableRes int imgRes, @pointPositionLimit int positionLimit) {
+    public PointBean(@PointType int type, double x, double y, @DrawableRes int imgRes, @PointPositionLimit int positionLimit) {
+        this.type = type;
         this.x = x;
         this.y = y;
         this.imgRes = imgRes;
         this.positionLimit = positionLimit;
     }
 
-    public double getX() {
-        return x;
+    public int getType() {
+        return type;
     }
 
-    public double getY() {
-        return y;
+    public double getX(double bgWidth) {
+        return type == TYPE_PROPORTION ? x : (x / bgWidth);
+    }
+
+    public double getY(double bgHeight) {
+        return type == TYPE_PROPORTION ? y : (y / bgHeight);
     }
 
     public String getPath() {
@@ -95,17 +124,16 @@ public class PointBean {
         this.halfWidth = halfWidth;
     }
 
-    public int getHalfWidth() {
-        if (halfWidth == 0) {
-            halfWidth = MeasureUtil.getWidth(pointView) / 2;
-        }
+    public void resetXY(@FloatRange(from = 0, to = 1) double x, @FloatRange(from = 0, to = 1) double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    int getHalfWidth() {
         return halfWidth;
     }
 
-    public int getHalfHeight() {
-        if (halfHeight == 0) {
-            halfHeight = MeasureUtil.getHeight(pointView) / 2;
-        }
+    int getHalfHeight() {
         return halfHeight;
     }
 

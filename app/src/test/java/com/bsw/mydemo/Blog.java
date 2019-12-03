@@ -1,37 +1,58 @@
 package com.bsw.mydemo;
 
-import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.Test;
 
 public class Blog {
     @Test
-    public void jsonTest() {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("aBoolean", true);
-            jsonObject.put("string", "hasController");
-            jsonObject.put("param", new Param());
+    public void order() {
+        MySelf mySelf = new MySelf();
+        mySelf.cookColaChickenWings(new CuteGirl());
+    }
+}
 
-            MyChange change = new Gson().fromJson(jsonObject.toString(), MyChange.class);
-            System.out.println("转换成功   \n****************************\naBoolean = " + change.aBoolean
-                    + " \nstring = " + change.string
-                    + " \nparam = " + change.param
-                    + "\n****************************");
-        } catch (JSONException e) {
-            e.printStackTrace();
+class ColaChickenWings {
+    private Calorie calorie = new Calorie();
+    private Garlic garlic = new Garlic();
+
+    public Calorie getCalorie() {
+        return calorie;
+    }
+
+    public void setCalorie(Calorie calorie) {
+        this.calorie = calorie;
+    }
+
+    public Garlic getGarlic() {
+        return garlic;
+    }
+
+    public void setGarlic(Garlic garlic) {
+        this.garlic = garlic;
+    }
+
+    class Calorie {
+
+    }
+
+    class Garlic {
+
+    }
+}
+
+class MySelf {
+    public void cookColaChickenWings(CuteGirl cuteGirl) {
+        cuteGirl.eat(new ColaChickenWings());
+    }
+}
+
+class CuteGirl {
+    public void eat(ColaChickenWings colaChickenWings) {
+        if (null != colaChickenWings.getGarlic()) {
+            colaChickenWings.setGarlic(null);
         }
-    }
-
-    public class MyChange {
-        boolean aBoolean;
-        boolean string = true;
-        boolean param = true;
-    }
-
-    private class Param {
-
+        if (null != colaChickenWings.getCalorie()) {
+            colaChickenWings.setCalorie(null);
+        }
+        System.out.println("味道还行");
     }
 }

@@ -3,7 +3,7 @@ package com.bsw.mydemo.widget.photoview;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
-class Util {
+public class Util {
 
     static void checkZoomLevels(float minZoom, float midZoom,
                                 float maxZoom) {

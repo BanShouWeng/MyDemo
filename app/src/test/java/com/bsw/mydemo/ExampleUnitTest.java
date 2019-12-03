@@ -135,9 +135,9 @@ public class ExampleUnitTest {
     @Test
     public void testInteger() {
         int a = 0x0f;
-        System.out.println(a>>>1);
-        System.out.println(a>>>2);
-        System.out.println(a>>>4);
-        System.out.println(a>>>8);
+        System.out.println(a >>> 1);
+        System.out.println(a >>> 2);
+        System.out.println(a >>> 4);
+        System.out.println(a >>> 8);
     }
 }

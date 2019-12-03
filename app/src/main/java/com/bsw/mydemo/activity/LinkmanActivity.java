@@ -20,7 +20,7 @@ import android.widget.EditText;
 import com.bsw.mydemo.R;
 import com.bsw.mydemo.utils.Const;
 import com.bsw.mydemo.utils.PermissionUtils;
-import com.bsw.mydemo.utils.TxtUtils;
+import com.bsw.mydemo.utils.StringFormatUtils;
 import com.bsw.mydemo.base.BaseActivity;
 
 import java.util.List;
@@ -99,7 +99,7 @@ public class LinkmanActivity extends BaseActivity {
                     @Override
                     public void onRequestResult(List<String> deniedPermission) {
                         if (Const.judgeListNull(deniedPermission) == 0) {
-                            addContact(TxtUtils.getText(linkmanName), TxtUtils.getText(linkmanPhone));
+                            addContact(StringFormatUtils.getString(linkmanName), StringFormatUtils.getString(linkmanPhone));
                         } else {
                             toast("已拒绝添加联系人权限");
                         }

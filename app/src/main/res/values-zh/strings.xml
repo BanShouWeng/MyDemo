@@ -39,6 +39,7 @@
     <string name="main_activity_btn_WaveView">WaveView</string>
     <string name="main_activity_btn_auto_hide_head">上滑自动隐藏头的滚动视图</string>
     <string name="main_activity_btn_loading_state">加载状态</string>
+    <string name="main_activity_btn_bulk_format">TextView文字批量格式化</string>
 
     <string name="email_address">接收人</string>
     <string name="email_content">邮件内容</string>

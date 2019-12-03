@@ -39,6 +39,7 @@
     <string name="main_activity_btn_WaveView">WaveView</string>
     <string name="main_activity_btn_auto_hide_head">Scroll view of sliding auto-hiding head</string>
     <string name="main_activity_btn_loading_state">Loading State</string>
+    <string name="main_activity_btn_bulk_format">Textview text bulk format</string>
 
 
     <!--resId-->
