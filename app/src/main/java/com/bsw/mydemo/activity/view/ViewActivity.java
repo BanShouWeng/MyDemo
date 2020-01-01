@@ -17,6 +17,12 @@ import com.bsw.mydemo.bean.JumpBean;
 
 import java.util.Arrays;
 
+/**
+ * 图片控件展示
+ *
+ * @author 半寿翁
+ * @date 2019-12-31
+ */
 public class ViewActivity extends BaseActivity {
 
     private BswRecyclerView<JumpBean> viewRv;
@@ -33,6 +39,7 @@ public class ViewActivity extends BaseActivity {
             , new JumpBean(R.string.main_activity_btn_auto_hide_head, AutoHideHeaderActivity.class)
             , new JumpBean(R.string.main_activity_btn_loading_state, LoadingStateActivity.class)
             , new JumpBean(R.string.main_activity_btn_bulk_format, TextBulkFormatActivity.class)
+            , new JumpBean(R.string.main_activity_btn_bsw_toolbar, BswToolbarActivity.class)
     };
 
     @Override
@@ -76,7 +83,7 @@ public class ViewActivity extends BaseActivity {
 
     private ConvertViewCallBack<JumpBean> convertViewCallBack = new ConvertViewCallBack<JumpBean>() {
         @Override
-        public JumpBean convert(RecyclerViewHolder holder, final JumpBean jumpBean, int position, int layoutId) {
+        public void convert(RecyclerViewHolder holder, final JumpBean jumpBean, int position, int layoutId) {
             holder.setText(R.id.jumpTo, jumpBean.getBtnTextId())
                     .setClickListener(new View.OnClickListener() {
                         @Override
@@ -84,7 +91,6 @@ public class ViewActivity extends BaseActivity {
                             startActivity(new Intent(ViewActivity.this, jumpBean.getJumpToClass()));
                         }
                     });
-            return jumpBean;
         }
     };
 }

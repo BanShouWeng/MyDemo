@@ -6,7 +6,7 @@ import android.util.SparseIntArray;
 /**
  * 每个Item布局设置类
  *
- * @author leiming
+ * @author 半寿翁
  * @date 2019/3/12.
  */
 public class BswLayoutItem {

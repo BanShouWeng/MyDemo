@@ -16,9 +16,19 @@ import com.bsw.mydemo.R;
 
 public class BswDecoration extends RecyclerView.ItemDecoration {
 
-
-    private int mydevider;
+    /**
+     * 分割线的宽度
+     */
+    private int myDividerWidth;
+    /**
+     * 分割线画笔
+     */
     private Paint dividerPaint;
+    /**
+     * 分割线类型
+     * {@link LimitAnnotation#BOTTOM_DECORATION 底部横线}
+     * {@link LimitAnnotation#ROUND_DECORATION 描边}
+     */
     private int type;
 
     public BswDecoration(Context context, @LimitAnnotation.DecorationType int type) {
@@ -27,13 +37,13 @@ public class BswDecoration extends RecyclerView.ItemDecoration {
         //设置分割线颜色
         dividerPaint.setColor(context.getResources().getColor(R.color.divider_line_color));
         //设置分割线宽度
-        mydevider = context.getResources().getDimensionPixelSize(R.dimen.line_height);
+        myDividerWidth = context.getResources().getDimensionPixelSize(R.dimen.line_height);
     }
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-        outRect.bottom = mydevider;
+        outRect.bottom = myDividerWidth;
     }
 
     @Override
@@ -46,7 +56,7 @@ public class BswDecoration extends RecyclerView.ItemDecoration {
                 for (int i = 0; i < childCount - 1; i++) {
                     View view = parent.getChildAt(i);
                     float bTop = view.getBottom();
-                    float bBottom = view.getBottom() + mydevider;
+                    float bBottom = view.getBottom() + myDividerWidth;
                     c.drawRect(left, bTop, right, bBottom, dividerPaint);
                 }
                 break;
@@ -59,24 +69,28 @@ public class BswDecoration extends RecyclerView.ItemDecoration {
                     float topV = view.getTop();
                     float bottomV = view.getBottom();
 
-                    //noinspection UnnecessaryLocalVariable
+                    // 顶部横线绘制
+                    // noinspection UnnecessaryLocalVariable
                     float tTop = topV;
-                    float tBottom = view.getTop() + mydevider;
+                    float tBottom = view.getTop() + myDividerWidth;
                     c.drawRect(leftV, tTop, rightV, tBottom, dividerPaint);
 
-                    //noinspection UnnecessaryLocalVariable
+                    // 底部横线绘制
+                    // noinspection UnnecessaryLocalVariable
                     float bTop = bottomV;
-                    float bBottom = view.getBottom() + mydevider;
+                    float bBottom = view.getBottom() + myDividerWidth;
                     c.drawRect(leftV, bTop, rightV, bBottom, dividerPaint);
 
-                    //noinspection UnnecessaryLocalVariable
+                    // 左侧横线绘制
+                    // noinspection UnnecessaryLocalVariable
                     float lLeft = leftV;
-                    float lRight = view.getLeft() + mydevider;
+                    float lRight = view.getLeft() + myDividerWidth;
                     c.drawRect(lLeft, topV, lRight, bottomV, dividerPaint);
 
-                    //noinspection UnnecessaryLocalVariable
+                    // 右侧横线绘制
+                    // noinspection UnnecessaryLocalVariable
                     float rLeft = rightV;
-                    float rRight = view.getRight() + mydevider;
+                    float rRight = view.getRight() + myDividerWidth;
                     c.drawRect(rLeft, topV, rRight, bottomV, dividerPaint);
                 }
                 break;

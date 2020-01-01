@@ -39,7 +39,7 @@ public class TextBulkFormatActivity extends BaseActivity {
     protected void formatData() {
         String[] strings = {"我", "我的", "我的详", "我的详情", "我的详情页"};
 //        String[] strings = {"aaaaaaaaaaa", "我的就时间就撒旦法收到撒旦法阿萨德", "使用ToolBar的setTitle()方法设置标题时", "我的手机号码：12345678901", "i'm joker"};
-        Map<String, String> map = StringFormatUtils.formatStringLength(StringFormatUtils.LENGTH_FORMAT_BOTH_ENDS, false, strings);
+        Map<String, String> map = StringFormatUtils.formatStringLength(StringFormatUtils.LENGTH_FORMAT_RIGHT, false, strings);
         textViewArray.get(R.id.bulk_format_1).setText(map.get(strings[0]));
         textViewArray.get(R.id.bulk_format_2).setText(map.get(strings[1]));
         textViewArray.get(R.id.bulk_format_3).setText(map.get(strings[2]));

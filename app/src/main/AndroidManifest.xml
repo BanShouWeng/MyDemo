@@ -59,9 +59,9 @@
         <activity android:name=".activity.view.WaveViewActivity" />
         <activity android:name=".activity.view.AutoHideHeaderActivity" />
         <activity android:name=".activity.GsonInputActivity" />
-        <activity android:name=".MainActivity">
 
-            <!-- <activity android:name=".test.TestActivity"> -->
+        <!--<activity android:name=".myTest.TestActivity">-->
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -141,6 +141,7 @@
         <activity android:name=".activity.view.BswRecycleViewActivity" />
         <activity android:name=".activity.view.TextBulkFormatActivity" />
         <activity android:name=".activity.WebSocketActivity" />
+        <activity android:name=".activity.view.BswToolbarActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

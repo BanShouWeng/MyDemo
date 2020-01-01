@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * @author leiming
+ * @author 半寿翁
  * @date 2017/10/11
  */
 public class DateFormatUtils {

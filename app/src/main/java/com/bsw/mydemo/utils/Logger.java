@@ -1,234 +1,354 @@
 package com.bsw.mydemo.utils;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.bsw.mydemo.BuildConfig;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.PrintWriter;
+import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 
 /**
  * @author 半寿翁
  */
 public class Logger {
-    //设为false关闭日志
-    private static int showLength = 3999;
+    public static String TAG = "Logger";
+    public static boolean LOG_DEBUG = BuildConfig.DEBUG;
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    private static final int VERBOSE = 2;
+    private static final int DEBUG = 3;
+    private static final int INFO = 4;
+    private static final int WARN = 5;
+    private static final int ERROR = 6;
+    private static final int ASSERT = 7;
+    private static final int JSON = 8;
+    private static final int XML = 9;
 
-    /**
-     * 打印捕获的错误日志
-     *
-     * @param exception 异常
-     * @param tag       打印log的标记
-     */
-    public static <T extends Exception> void i(String tag, T exception) {
-        if (! BuildConfig.DEBUG) {
-            return;
+    private static Map<String, Long> timeTagTemp = new HashMap<>();
+
+    private static final int JSON_INDENT = 4;
+
+    public static void init(boolean isDebug, String tag) {
+        TAG = tag;
+        LOG_DEBUG = isDebug;
+    }
+
+    public static void v(String msg) {
+        log(VERBOSE, null, msg);
+    }
+
+    public static void v(String tag, String msg) {
+        log(VERBOSE, tag, msg);
+    }
+
+    public static void d(String msg) {
+        log(DEBUG, null, msg);
+    }
+
+    public static void d(String tag, String msg) {
+        log(DEBUG, tag, msg);
+    }
+
+    public static void i(Object... msg) {
+        StringBuilder sb = new StringBuilder();
+        for (Object obj : msg) {
+            sb.append(obj + "");
         }
+        log(INFO, null, String.valueOf(sb));
+    }
+
+    public static void time(boolean isBegin, String tag, Object... msg) {
+        Long lastTime = timeTagTemp.get(tag);
+        long currentTime = System.currentTimeMillis();
+        StringBuilder sb = new StringBuilder();
+        if (null == lastTime || isBegin) {
+            sb.append(tag + "   开始计时：时间 - " + currentTime);
+        } else {
+            sb.append(tag + "   当前时间：时间 - " + currentTime + " 执行时间 - " + (currentTime - lastTime));
+        }
+        timeTagTemp.put(tag, currentTime);
+        for (Object obj : msg) {
+            sb.append(obj + "");
+        }
+        log(INFO, null, String.valueOf(sb));
+    }
+
+    public static void w(String msg) {
+        log(WARN, null, msg);
+    }
+
+    public static void w(String tag, String msg) {
+        log(WARN, tag, msg);
+    }
+
+    public static void e(String msg) {
+        log(ERROR, null, msg);
+    }
+
+    public static void e(String tag, String msg) {
+        log(ERROR, tag, msg);
+    }
+
+    public static void e(String tag, Throwable throwable) {
         StringWriter stackTrace = new StringWriter();
-        exception.printStackTrace(new PrintWriter(stackTrace));
+        throwable.printStackTrace(new PrintWriter(stackTrace));
         String logContent = stackTrace.toString();
-        if (logContent.length() > showLength) {
-            String show = logContent.substring(0, showLength);
-            Log.i(tag, show);
-            /*剩余的字符串如果大于规定显示的长度，截取剩余字符串进行递归，否则打印结果*/
-            if ((logContent.length() - showLength) > showLength) {
-                String partLog = logContent.substring(showLength, logContent.length());
-                i(tag, partLog);
-            } else {
-                String printLog = logContent.substring(showLength, logContent.length());
-                Log.i(tag, printLog);
-            }
-        } else {
-            Log.i(tag, logContent);
-        }
+        log(ERROR, tag, logContent);
     }
 
-    public static void i(String tag, String logContent) {
-        if (! BuildConfig.DEBUG) {
-            return;
-        }
-        if (logContent.length() > showLength) {
-            String show = logContent.substring(0, showLength);
-            Log.i(tag, show);
-            /*剩余的字符串如果大于规定显示的长度，截取剩余字符串进行递归，否则打印结果*/
-            if ((logContent.length() - showLength) > showLength) {
-                String partLog = logContent.substring(showLength, logContent.length());
-                i(tag, partLog);
-            } else {
-                String printLog = logContent.substring(showLength, logContent.length());
-                Log.i(tag, printLog);
-            }
-        } else {
-            Log.i(tag, logContent);
-        }
+    public static void e(String tag, String span, Throwable throwable) {
+        StringWriter stackTrace = new StringWriter();
+        throwable.printStackTrace(new PrintWriter(stackTrace));
+        String logContent = stackTrace.toString();
+        log(ERROR, tag, span.concat(logContent));
     }
 
-    public static void v(String tag, String logContent) {
-        if (! BuildConfig.DEBUG) {
-            return;
-        }
-        if (logContent.length() > showLength) {
-            String show = logContent.substring(0, showLength);
-            Log.v(tag, show);
-            /*剩余的字符串如果大于规定显示的长度，截取剩余字符串进行递归，否则打印结果*/
-            if ((logContent.length() - showLength) > showLength) {
-                String partLog = logContent.substring(showLength, logContent.length());
-                v(tag, partLog);
-            } else {
-                String printLog = logContent.substring(showLength, logContent.length());
-                Log.v(tag, printLog);
-            }
-        } else {
-            Log.v(tag, logContent);
-        }
+    public static void e(Throwable throwable) {
+        StringWriter stackTrace = new StringWriter();
+        throwable.printStackTrace(new PrintWriter(stackTrace));
+        String logContent = stackTrace.toString();
+        log(ERROR, "", logContent);
     }
 
-    public static void d(String tag, String logContent) {
-        if (! BuildConfig.DEBUG) {
-            return;
-        }
-        if (logContent.length() > showLength) {
-            String show = logContent.substring(0, showLength);
-            Log.d(tag, show);
-            /*剩余的字符串如果大于规定显示的长度，截取剩余字符串进行递归，否则打印结果*/
-            if ((logContent.length() - showLength) > showLength) {
-                String partLog = logContent.substring(showLength, logContent.length());
-                d(tag, partLog);
-            } else {
-                String printLog = logContent.substring(showLength, logContent.length());
-                Log.d(tag, printLog);
-            }
-        } else {
-            Log.d(tag, logContent);
-        }
-    }
-
-    public static void w(String tag, String logContent) {
-        if (! BuildConfig.DEBUG) {
-            return;
-        }
-        if (logContent.length() > showLength) {
-            String show = logContent.substring(0, showLength);
-            Log.w(tag, show);
-            /*剩余的字符串如果大于规定显示的长度，截取剩余字符串进行递归，否则打印结果*/
-            if ((logContent.length() - showLength) > showLength) {
-                String partLog = logContent.substring(showLength, logContent.length());
-                w(tag, partLog);
-            } else {
-                String printLog = logContent.substring(showLength, logContent.length());
-                Log.w(tag, printLog);
-            }
-        } else {
-            Log.w(tag, logContent);
-        }
-    }
-
-    public static void e(String tag, String logContent) {
-        if (! BuildConfig.DEBUG) {
-            return;
-        }
-        if (logContent.length() > showLength) {
-            String show = logContent.substring(0, showLength);
-            Log.e(tag, show);
-            /*剩余的字符串如果大于规定显示的长度，截取剩余字符串进行递归，否则打印结果*/
-            if ((logContent.length() - showLength) > showLength) {
-                String partLog = logContent.substring(showLength, logContent.length());
-                e(tag, partLog);
-            } else {
-                String printLog = logContent.substring(showLength, logContent.length());
-                Log.e(tag, printLog);
-            }
-        } else {
-            Log.e(tag, logContent);
-        }
-    }
-
-    /**
-     * 打印捕获的错误日志
-     *
-     * @param exception 异常
-     * @param tag       打印log的标记
-     */
     public static <T extends Exception> void e(String tag, T exception) {
-        if (! BuildConfig.DEBUG) {
-            return;
-        }
         StringWriter stackTrace = new StringWriter();
         exception.printStackTrace(new PrintWriter(stackTrace));
         String logContent = stackTrace.toString();
-        if (logContent.length() > showLength) {
-            String show = logContent.substring(0, showLength);
-            Log.e(tag, show);
-            /*剩余的字符串如果大于规定显示的长度，截取剩余字符串进行递归，否则打印结果*/
-            if ((logContent.length() - showLength) > showLength) {
-                String partLog = logContent.substring(showLength, logContent.length());
-                e(tag, partLog);
-            } else {
-                String printLog = logContent.substring(showLength, logContent.length());
-                Log.e(tag, printLog);
+        log(ERROR, tag, logContent);
+    }
+
+    public static <T extends Exception> void e(T exception) {
+        StringWriter stackTrace = new StringWriter();
+        exception.printStackTrace(new PrintWriter(stackTrace));
+        String logContent = stackTrace.toString();
+        log(ERROR, "", logContent);
+    }
+
+    public static void a(String msg) {
+        log(ASSERT, null, msg);
+    }
+
+    public static void a(String tag, String msg) {
+        log(ASSERT, tag, msg);
+    }
+
+    public static void json(String json) {
+        log(JSON, null, json);
+    }
+
+    public static void json(String tag, String json) {
+        log(JSON, tag, json);
+    }
+
+    public static void xml(String xml) {
+        log(XML, null, xml);
+    }
+
+    public static void xml(String tag, String xml) {
+        log(XML, tag, xml);
+    }
+
+    private static void log(int logType, String tagStr, Object objects) {
+        String[] contents = wrapperContent(tagStr, objects);
+        String tag = contents[0];
+        String msg = contents[1];
+        String headString = contents[2];
+        if (LOG_DEBUG) {
+            switch (logType) {
+                case VERBOSE:
+                case DEBUG:
+                case INFO:
+                case WARN:
+                case ERROR:
+                case ASSERT:
+                    printDefault(logType, tag, headString + msg);
+                    break;
+                case JSON:
+                    printJson(tag, msg, headString);
+                    break;
+                case XML:
+                    printXml(tag, msg, headString);
+                    break;
+                default:
+                    break;
             }
-        } else {
-            Log.e(tag, logContent);
         }
     }
 
-    /**
-     * 打印捕获的错误日志
-     *
-     * @param exception 异常
-     * @param tag       打印log的标记
-     */
-    public static <T extends Exception> void e(String tag, String content, T exception) {
-        if (! BuildConfig.DEBUG) {
-            return;
+    private static void printDefault(int type, String tag, String msg) {
+        if (TextUtils.isEmpty(tag)) {
+            tag = TAG;
         }
-        StringWriter stackTrace = new StringWriter();
-        exception.printStackTrace(new PrintWriter(stackTrace));
-        String logContent = stackTrace.toString();
-        logContent = content + logContent;
-        if (logContent.length() > showLength) {
-            String show = logContent.substring(0, showLength);
-            Log.e(tag, show);
-            /*剩余的字符串如果大于规定显示的长度，截取剩余字符串进行递归，否则打印结果*/
-            if ((logContent.length() - showLength) > showLength) {
-                String partLog = logContent.substring(showLength, logContent.length());
-                e(tag, partLog);
-            } else {
-                String printLog = logContent.substring(showLength, logContent.length());
-                Log.e(tag, printLog);
+        int index = 0;
+        int maxLength = 4000;
+        int countOfSub = msg.length() / maxLength;
+
+        if (countOfSub > 0) {  // The log is so long
+            for (int i = 0; i < countOfSub; i++) {
+                String sub = msg.substring(index, index + maxLength);
+                printSub(type, tag, sub);
+                index += maxLength;
             }
+            //printSub(type, msg.substring(index, msg.length()));
         } else {
-            Log.e(tag, logContent);
+            printSub(type, tag, msg);
         }
     }
 
-    /**
-     * 打印捕获的错误日志
-     *
-     * @param exception 异常
-     * @param tag       打印log的标记
-     */
-    public static <T extends Throwable> void e(String tag, T exception) {
-        if (! BuildConfig.DEBUG) {
+    private static void printSub(int type, String tag, String sub) {
+        if (tag == null) {
+            tag = TAG;
+        }
+        switch (type) {
+            case VERBOSE:
+                Log.v(tag, sub);
+                break;
+            case DEBUG:
+                Log.d(tag, sub);
+                break;
+            case INFO:
+                Log.i(tag, sub);
+                break;
+            case WARN:
+                Log.w(tag, sub);
+                break;
+            case ERROR:
+                Log.e(tag, sub);
+                break;
+            case ASSERT:
+                Log.wtf(tag, sub);
+                break;
+        }
+    }
+
+    private static void printJson(String tag, String json, String headString) {
+        if (TextUtils.isEmpty(json)) {
+            d("Empty/Null json content");
             return;
         }
-        StringWriter stackTrace = new StringWriter();
-        exception.printStackTrace(new PrintWriter(stackTrace));
-        String logContent = stackTrace.toString();
-        if (logContent.length() > showLength) {
-            String show = logContent.substring(0, showLength);
-            Log.e(tag, show);
-            /*剩余的字符串如果大于规定显示的长度，截取剩余字符串进行递归，否则打印结果*/
-            if ((logContent.length() - showLength) > showLength) {
-                String partLog = logContent.substring(showLength, logContent.length());
-                e(tag, partLog);
+        if (TextUtils.isEmpty(tag)) {
+            tag = TAG;
+        }
+        String message;
+
+        try {
+            if (json.startsWith("{")) {
+                JSONObject jsonObject = new JSONObject(json);
+                message = jsonObject.toString(JSON_INDENT);
+            } else if (json.startsWith("[")) {
+                JSONArray jsonArray = new JSONArray(json);
+                message = jsonArray.toString(JSON_INDENT);
             } else {
-                String printLog = logContent.substring(showLength, logContent.length());
-                Log.e(tag, printLog);
+                message = json;
             }
+        } catch (JSONException e) {
+            message = json;
+        }
+
+        printLine(tag, true);
+        message = headString + LINE_SEPARATOR + message;
+        String[] lines = message.split(LINE_SEPARATOR);
+        for (String line : lines) {
+            Log.d(tag, "|" + line);
+        }
+        printLine(tag, false);
+    }
+
+    private static void printXml(String tag, String xml, String headString) {
+        if (TextUtils.isEmpty(tag)) {
+            tag = TAG;
+        }
+        if (xml != null) {
+            try {
+                Source xmlInput = new StreamSource(new StringReader(xml));
+                StreamResult xmlOutput = new StreamResult(new StringWriter());
+                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+                transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+                transformer.transform(xmlInput, xmlOutput);
+                xml = xmlOutput.getWriter().toString().replaceFirst(">", ">\n");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            xml = headString + "\n" + xml;
         } else {
-            Log.e(tag, logContent);
+            xml = headString + "Log with null object";
+        }
+
+        printLine(tag, true);
+        String[] lines = xml.split(LINE_SEPARATOR);
+        for (String line : lines) {
+            if (!TextUtils.isEmpty(line)) {
+                Log.d(tag, "|" + line);
+            }
+        }
+        printLine(tag, false);
+    }
+
+    private static String[] wrapperContent(String tag, Object... objects) {
+        if (TextUtils.isEmpty(tag)) {
+            tag = TAG;
+        }
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        StackTraceElement targetElement = stackTrace[5];
+        //        String className = targetElement.getClassName();
+        String fileName = targetElement.getFileName();
+        //        String[] classNameInfo = className.split("\\.");
+        //        if (classNameInfo.length > 0) {
+        //            className = classNameInfo[classNameInfo.length - 1] + ".java";
+        //        }
+        String methodName = targetElement.getMethodName();
+        int lineNumber = targetElement.getLineNumber();
+        if (lineNumber < 0) {
+            lineNumber = 0;
+        }
+        String methodNameShort = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+        String msg = (objects == null) ? "Log with null object" : getObjectsString(objects);
+        //        String headString = "[(" + className + ":" + lineNumber + ")#" + methodNameShort + " ] ";
+        String headString = "[(" + fileName + ":" + lineNumber + ")#" + methodNameShort + " ] ";
+        return new String[]{tag, msg, headString};
+    }
+
+    private static String getObjectsString(Object... objects) {
+
+        if (objects.length > 1) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("\n");
+            for (int i = 0; i < objects.length; i++) {
+                Object object = objects[i];
+                if (object == null) {
+                    stringBuilder.append("param").append("[").append(i).append("]").append(" = ").append("null").append("\n");
+                } else {
+                    stringBuilder.append("param").append("[").append(i).append("]").append(" = ").append(object.toString()).append("\n");
+                }
+            }
+            return stringBuilder.toString();
+        } else {
+            Object object = objects[0];
+            return object == null ? "null" : object.toString();
+        }
+    }
+
+    private static void printLine(String tag, boolean isTop) {
+        if (isTop) {
+            Log.d(tag, "╔═══════════════════════════════════════════════════════════════════════════════════════");
+        } else {
+            Log.d(tag, "╚═══════════════════════════════════════════════════════════════════════════════════════");
         }
     }
 }

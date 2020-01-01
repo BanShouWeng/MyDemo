@@ -42,13 +42,22 @@ class BswRecyclerAdapter<T> extends RecyclerView.Adapter {
     private int layoutId;
     private boolean showFooter = false;
 
+    /**
+     * 布局回调
+     */
     private ConvertViewCallBack<T> convertViewCallBack;
+    /**
+     * 最大显示条目数，如设置后，超出该数量后，不在显示其余数据
+     */
+    private int count;
 
+    /**
+     * 展示footer
+     */
     public void setShowFooter() {
         showFooter = true;
         notifyDataSetChanged();
     }
-
 
     /**
      * 显示单一布局的Adapter
@@ -84,7 +93,7 @@ class BswRecyclerAdapter<T> extends RecyclerView.Adapter {
         } else {
             BswLayoutItem layoutItem = bswRecyclerData.getLayoutItemByPosition(position);
             if (null == layoutItem)
-                return - 1;
+                return -1;
             else
                 return layoutItem.getTag();
         }
@@ -97,8 +106,7 @@ class BswRecyclerAdapter<T> extends RecyclerView.Adapter {
      * @return 数据
      */
     public T getItem(int position) {
-        //noinspection unchecked
-        return (T) bswRecyclerData.getDataItem(position).getT();
+        return bswRecyclerData.getDataItem(position).getT();
     }
 
     /**
@@ -123,11 +131,11 @@ class BswRecyclerAdapter<T> extends RecyclerView.Adapter {
     /**
      * 设置数据
      *
-     * @param mData      所要展示的数据列表
-     * @param pageNumber 页码
+     * @param mData     所要展示的数据列表
+     * @param pageIndex 页码
      */
-    public void setData(List<T> mData, @IntRange(from = 1) int pageNumber, @IntRange(from = 1) int pageSize) {
-        bswRecyclerData.setData(mData, pageNumber, pageSize);
+    public void setData(List<T> mData, @IntRange(from = 1) int pageIndex, @IntRange(from = 1) int pageSize) {
+        bswRecyclerData.setData(mData, pageIndex, pageSize);
     }
 
     /**
@@ -145,7 +153,35 @@ class BswRecyclerAdapter<T> extends RecyclerView.Adapter {
      * @param pos 被移除数据的位置
      */
     public void removeItem(int pos) {
-        this.notifyItemRemoved(pos);
+        bswRecyclerData.removeItem(pos);
+    }
+
+    @Override
+    public int getItemCount() {
+        int mDataSize = bswRecyclerData.getDataSize();
+        if (showFooter) {
+            mDataSize++;
+        }
+        if (count > 0) {
+            return mDataSize > count ? count : mDataSize;
+        }
+        return mDataSize;
+    }
+
+    public void addData(List<T> mData) {
+        bswRecyclerData.addData(mData);
+    }
+
+    public void addData(T data) {
+        bswRecyclerData.addData(data);
+    }
+
+    public void addData(int position, T data) {
+        bswRecyclerData.addData(position, data);
+    }
+
+    public List<T> getData() {
+        return bswRecyclerData.getData();
     }
 
     /**
@@ -174,7 +210,7 @@ class BswRecyclerAdapter<T> extends RecyclerView.Adapter {
             // inflate形式是避免内部布局宽高失效
             return new RecyclerViewHolder(context, layoutInflater.inflate(R.layout.footer_laoding_layout, parent, false));
         } else {
-            if (viewType == - 1) {
+            if (viewType == -1) {
                 // inflate形式是避免内部布局宽高失效
                 return new RecyclerViewHolder(context, layoutInflater.inflate(layoutId, parent, false));
             } else {
@@ -225,19 +261,18 @@ class BswRecyclerAdapter<T> extends RecyclerView.Adapter {
             return;
         }
         BswLayoutItem layoutItem = bswRecyclerData.getLayoutItemByPosition(position);
-        //noinspection unchecked
         convertViewCallBack.convert((RecyclerViewHolder) holder
                 , bswRecyclerData.getDataItem(position).getT()
                 , position
-                , null == layoutItem ? - 1 : layoutItem.getLayoutTag());
+                , null == layoutItem ? -1 : layoutItem.getLayoutTag());
     }
 
-    @Override
-    public int getItemCount() {
-        int mDataSize = bswRecyclerData.getDataSize();
-        if (showFooter) {
-            mDataSize++;
-        }
-        return mDataSize;
+    /**
+     * 设置最大显示数量
+     *
+     * @param count 最大显示数量
+     */
+    public void setMaxCount(int count) {
+        this.count = count;
     }
 }

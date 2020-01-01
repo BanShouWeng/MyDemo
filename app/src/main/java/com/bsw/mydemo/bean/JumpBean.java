@@ -1,7 +1,7 @@
 package com.bsw.mydemo.bean;
 
 /**
- * @author leiming
+ * @author 半寿翁
  * @date 2018/11/23.
  */
 public class JumpBean {

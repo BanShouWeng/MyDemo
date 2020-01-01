@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--android:background="@color/__picker_black_40"-->
+
+    <com.bsw.mydemo.widget.BswToolbar
+        android:id="@+id/bsw_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:subtitle="我是副标题"
+        app:subtitle_color="@android:color/holo_blue_light"
+        app:subtitle_size="15dp"
+        app:title="测试Toolbar"
+        app:title_color="@android:color/holo_purple"
+        app:title_size="@dimen/size_30" />
+</LinearLayout>

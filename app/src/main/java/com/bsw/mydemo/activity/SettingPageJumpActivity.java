@@ -103,7 +103,7 @@ public class SettingPageJumpActivity extends BaseActivity {
 
     private ConvertViewCallBack<SettingBean> convertViewCallBack = new ConvertViewCallBack<SettingBean>() {
         @Override
-        public SettingBean convert(RecyclerViewHolder holder, final SettingBean settingBean, int position, int layoutId) {
+        public void convert(RecyclerViewHolder holder, final SettingBean settingBean, int position, int layoutId) {
             holder.setText(R.id.jumpTo, settingBean.name)
                     .setClickListener(new View.OnClickListener() {
                         @Override
@@ -111,7 +111,6 @@ public class SettingPageJumpActivity extends BaseActivity {
                             startActivity(new Intent(settingBean.settingAction));
                         }
                     });
-            return settingBean;
         }
     };
 

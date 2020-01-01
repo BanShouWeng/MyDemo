@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ConvertViewCallBack<JumpBean> convertViewCallBack = new ConvertViewCallBack<JumpBean>() {
         @Override
-        public JumpBean convert(RecyclerViewHolder holder, final JumpBean jumpBean, int position, int layoutId) {
+        public void convert(RecyclerViewHolder holder, final JumpBean jumpBean, int position, int layoutId) {
             holder.setText(R.id.jumpTo, jumpBean.getBtnTextId())
                     .setClickListener(new View.OnClickListener() {
                         @Override
@@ -209,7 +209,6 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(MainActivity.this, jumpBean.getJumpToClass()));
                         }
                     });
-            return jumpBean;
         }
     };
 

@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * 列表数据处理类
  *
- * @author leiming
+ * @author 半寿翁
  * @date 2019/3/12.
  */
 public class BswRecyclerData<T> {
@@ -45,7 +45,7 @@ public class BswRecyclerData<T> {
     /**
      * 页号缓存，当列表刷新时，用于判断数据添加形式
      */
-    private int pageNumber;
+    private int pageIndex;
 
     /**
      * 数据存储列表
@@ -101,22 +101,29 @@ public class BswRecyclerData<T> {
     /**
      * 设置数据
      *
-     * @param mData      所要展示的数据列表
-     * @param pageNumber 页码
+     * @param mData     所要展示的数据列表
+     * @param pageIndex 页码
      */
-    public void setData(List<T> mData, @IntRange(from = 1) int pageNumber, @IntRange(from = 1) int pageSize) {
-        this.mData = mData;
-        if (pageNumber == 1) {
+    public void setData(List<T> mData, @IntRange(from = 1) int pageIndex, @IntRange(from = 1) int pageSize) {
+        if (pageIndex == 1) {
             setData(mData);
-        } else if (pageNumber == this.pageNumber) {
-            replaceData(mData, pageNumber, pageSize);
+        } else if (pageIndex == this.pageIndex) {
+            replaceData(mData, pageIndex, pageSize);
         } else {
             addData(mData);
         }
-        this.pageNumber = pageNumber;
+        this.pageIndex = pageIndex;
     }
 
     private void formatData(boolean isNotify) {
+        if (null == mData) {
+            mShowLayoutData = null;
+            mLayoutData = null;
+            if (isNotify) {
+                adapter.notifyDataSetChanged();
+            }
+            return;
+        }
         startFilter(isNotify);
     }
 
@@ -141,6 +148,28 @@ public class BswRecyclerData<T> {
      */
     public void addData(List<T> mData) {
         this.mData.addAll(mData);
+        pageIndex++;
+        formatData();
+    }
+
+    /**
+     * 设置数据
+     *
+     * @param mData 需要显示的数据
+     */
+    public void addData(T mData) {
+        this.mData.add(mData);
+        formatData();
+    }
+
+    /**
+     * 设置数据
+     *
+     * @param mData    需要显示的数据
+     * @param position 添加的位置
+     */
+    public void addData(int position, T mData) {
+        this.mData.add(position, mData);
         formatData();
     }
 
@@ -152,14 +181,14 @@ public class BswRecyclerData<T> {
 //    /**
 //     * 数据替换（替换对应页码的数据）
 //     * 原始数据：{1,2,3,4,5,6,7,8,9,0}
-//     * pageNumber = 2，pageSize = 3，数据：{1,2,3}
+//     * pageIndex = 2，pageSize = 3，数据：{1,2,3}
 //     * 结果：{1,2,3,1,2,3,7,8,9,0}
 //     *
 //     * @param mData 替换的数据
 //     */
-//    private void replaceData(List<T> mData, @IntRange(from = 1) int pageNumber, @IntRange(from = 1) int pageSize) {
+//    private void replaceData(List<T> mData, @IntRange(from = 1) int pageIndex, @IntRange(from = 1) int pageSize) {
 //        int dataSize = Const.judgeListNull(mData);
-//        int startPosition = pageSize * (pageNumber - 1);
+//        int startPosition = pageSize * (pageIndex - 1);
 //        for (int i = startPosition; i < startPosition + dataSize; i++) {
 //            this.mData.remove(i);
 //            this.mData.add(i, mData.get(i - startPosition));
@@ -168,21 +197,31 @@ public class BswRecyclerData<T> {
 //    }
 
     /**
-     * 数据替换（替换当前页码第一条以及之后的所有数据：当前缓存50条数据，pageNumber = 2；pageSize ）
+     * 数据替换（替换当前页码第一条以及之后的所有数据：当前缓存50条数据，pageIndex = 2；pageSize ）
      * 原始数据：{1,2,3,4,5,6,7,8,9,0}
-     * pageNumber = 2，pageSize = 3，数据：{1,2,3}
+     * pageIndex = 2，pageSize = 3，数据：{1,2,3}
      * 结果：{1,2,3,1,2,3}
      *
      * @param mData 替换的数据
      */
-    private void replaceData(List<T> mData, @IntRange(from = 1) int pageNumber, @IntRange(from = 1) int pageSize) {
+    private void replaceData(List<T> mData, @IntRange(from = 1) int pageIndex, @IntRange(from = 1) int pageSize) {
         int dataSize = Const.judgeListNull(this.mData);
-        int startPosition = pageSize * (pageNumber - 1);
+        int startPosition = pageSize * (pageIndex - 1);
         for (int i = dataSize - 1; i >= startPosition; i--) {
             this.mData.remove(i);
         }
         this.mData.addAll(mData);
         formatData();
+    }
+
+    public void removeItem(int pos) {
+        try {
+            mData.remove(pos);
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        } finally {
+            formatData(true);
+        }
     }
 
     /**
@@ -209,7 +248,7 @@ public class BswRecyclerData<T> {
         } else {                                            // 如果同时筛选数据和条目布局，则获取筛选后的格式化布局数据数量
             return Const.judgeListNull(mShowLayoutData);
         }*/
-        if ((filterUseState & FILTER_LAYOUT) == 0) {
+        if ((filterUseState & FILTER_DATA) == 0) {
             return Const.judgeListNull(mLayoutData);
         } else {
             return Const.judgeListNull(mShowLayoutData);
@@ -251,10 +290,9 @@ public class BswRecyclerData<T> {
     }
 
     /**
-     * 根据位置获取数据条目
+     * 根据位置替换条目
      *
      * @param position 位置
-     * @return 数据条目
      */
     void replaceItem(int position, T t) {
         if ((filterUseState & FILTER_DATA) == 0) {     // 如果只需要筛选数据，则获取筛选后的基本数据的对应位置项
@@ -305,7 +343,7 @@ public class BswRecyclerData<T> {
     /**
      * 开始布局筛选
      *
-     * @param isNotify
+     * @param isNotify 是否需要刷新数据
      */
     @SuppressLint("UseSparseArrays")
     private void startFilter(boolean isNotify) {
@@ -405,9 +443,19 @@ public class BswRecyclerData<T> {
                             }
                         }
 
-                        if (Const.judgeListNull(filteredLayoutArray) == 0) {
-                            filteredLayoutArray = mLayoutData;
-                        }
+//                        if (CommonUtils.judgeListNull(filteredLayoutArray) == 0) {
+//                            filteredLayoutArray = mLayoutData;
+//                        }
+//
+//                        if (TextUtils.isEmpty(constraint)) {
+//                            mShowLayoutData = mLayoutData;
+//                        } else {
+//                            mShowLayoutData = filteredLayoutArray;
+//                        }
+//
+//                        if (isNotify) {
+//                            adapter.notifyDataSetChanged();
+//                        }
                         results.count = filteredLayoutArray.size();
                         results.values = filteredLayoutArray;
 //                    }

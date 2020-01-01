@@ -16,8 +16,6 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.bsw.mydemo.utils.Logger;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -63,10 +61,6 @@ public class SwipeItemLayout extends FrameLayout {
 
     public SwipeItemLayout(Context context) {
         this(context, null);
-        mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        mVelocity = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
-        mDragHelper = ViewDragHelper.create(this, new DragCallBack());
-
     }
 
     public SwipeItemLayout(Context context, AttributeSet attrs) {
@@ -115,31 +109,18 @@ public class SwipeItemLayout extends FrameLayout {
         int action = ev.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                if (getParent() != null) {
-                    // 解决和父控件的滑动冲突。
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
                 mIsDragged = false;
                 mDownX = ev.getX();
                 mDownY = ev.getY();
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (getParent() != null) {
-                    // 解决和父控件的滑动冲突。
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
                 checkCanDragged(ev);
                 break;
-
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 if (mIsDragged) {
                     mDragHelper.processTouchEvent(ev);
                     mIsDragged = false;
-                }
-                if (getParent() != null) {
-                    // 解决和父控件的滑动冲突。
-                    getParent().requestDisallowInterceptTouchEvent(false);
                 }
                 break;
             default:
@@ -204,7 +185,6 @@ public class SwipeItemLayout extends FrameLayout {
      */
     @SuppressLint("RtlHardcoded")
     private void checkCanDragged(MotionEvent ev) {
-        Logger.i("SwipeItemLayout", "checkCanDragged");
         if (mIsDragged) {
             return;
         }
@@ -240,6 +220,10 @@ public class SwipeItemLayout extends FrameLayout {
             MotionEvent obtain = MotionEvent.obtain(ev);
             obtain.setAction(MotionEvent.ACTION_DOWN);
             mDragHelper.processTouchEvent(obtain);
+            if (getParent() != null) {
+                // 解决和父控件的滑动冲突。
+                getParent().requestDisallowInterceptTouchEvent(true);
+            }
         }
     }
 

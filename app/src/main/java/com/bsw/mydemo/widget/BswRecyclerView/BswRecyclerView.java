@@ -77,7 +77,6 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param callBack 布局配置回调接口
      * @return 当前RecyclerView
      */
-    @SuppressWarnings("UnusedReturnValue")
     public BswRecyclerView<T> initAdapter(@LayoutRes int layoutId, ConvertViewCallBack<T> callBack) {
         adapter = new BswRecyclerAdapter<>(context, layoutId, callBack);
         setAdapter(adapter);
@@ -90,7 +89,6 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param type divider类型
      * @return 当前RecyclerView
      */
-    @SuppressWarnings("UnusedReturnValue")
     private BswRecyclerView<T> setDecoration(@LimitAnnotation.DecorationType int type) {
         addItemDecoration(new BswDecoration(context, type));
         return this;
@@ -116,13 +114,25 @@ public class BswRecyclerView<T> extends RecyclerView {
         adapter.setData(mData);
     }
 
+    public void addData(List<T> mData) {
+        adapter.addData(mData);
+    }
+
+    public void addData(T data) {
+        adapter.addData(data);
+    }
+
+    public void addData(int position, T data) {
+        adapter.addData(position, data);
+    }
+
     /**
      * 设置数据
      *
      * @param mData 所要展示的数据
      */
-    public void setData(List<T> mData, @IntRange(from = 1) int pageNumber, @IntRange(from = 1) int pageSize) {
-        adapter.setData(mData, pageNumber, pageSize);
+    public void setData(List<T> mData, @IntRange(from = 1) int pageIndex, @IntRange(from = 1) int pageSize) {
+        adapter.setData(mData, pageIndex, pageSize);
     }
 
     /**
@@ -141,7 +151,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param position 被替换位置
      * @param t        替换数据
      */
-    void replaceItem(int position, T t) {
+    public void replaceItem(int position, T t) {
         adapter.replaceItem(position, t);
     }
 
@@ -169,6 +179,14 @@ public class BswRecyclerView<T> extends RecyclerView {
     @SuppressWarnings("unused")
     public void removeItem(int pos) {
         adapter.removeItem(pos);
+    }
+
+    public List<T> getData() {
+        return adapter.getData();
+    }
+
+    public int getItemCount() {
+        return adapter.getItemCount();
     }
 
     /**
@@ -286,7 +304,7 @@ public class BswRecyclerView<T> extends RecyclerView {
      * @param loadListener 下拉刷新监听接口
      */
     @SuppressWarnings("unused")
-    public void setLoadListener(final OnLoadListener loadListener) {
+    public BswRecyclerView<T> setLoadListener(final OnLoadListener loadListener) {
         // 滑动事件监听
         //noinspection deprecation
         setOnScrollListener(new OnScrollListener() {
@@ -318,13 +336,19 @@ public class BswRecyclerView<T> extends RecyclerView {
                  * SCROLL_STATE_TOUCH_SCROLL是当用户在以触屏方式滚动屏幕并且手指仍然还在屏幕上时
                  * SCROLL_STATE_FLING是当用户由于之前划动屏幕并抬起手指，屏幕产生惯性滑动时
                  */
-                if (newState == SCROLL_STATE_IDLE) {
-                    boolean toBottom = recyclerView.getBottom() == recyclerView.getLayoutManager().getChildAt(recyclerView.getLayoutManager().getChildCount() - 1).getBottom();
-                    if (lastPosition > 0 && lastVisibleItem == adapter.getItemCount() - 1 && toBottom) {
+//                if (newState == SCROLL_STATE_IDLE) {
+                try {
+                    View bottomView = recyclerView.getLayoutManager().getChildAt(recyclerView.getLayoutManager().getChildCount() - 1);
+                    MarginLayoutParams lp = (MarginLayoutParams) bottomView.getLayoutParams();
+                    boolean toBottom = recyclerView.getBottom() - bottomView.getBottom() <= lp.bottomMargin + 150;
+                    if (/*lastPosition > 0 && */lastVisibleItem == adapter.getItemCount() - 1 && toBottom) {
+                        Logger.i("load");
                         if (loadListener.allLoaded()) {
                             toast(R.string.all_loaded);
+                            Logger.i("allLoaded");
                         } else {
                             if (loadListener.canLoadMore()) {
+                                Logger.i("canLoadMore");
                                 if (isSmoothToEnd) {
                                     isSmoothToEnd = false;
                                 } else {
@@ -336,7 +360,10 @@ public class BswRecyclerView<T> extends RecyclerView {
                             }
                         }
                     }
+                } catch (NullPointerException e) {
+                    Logger.e("BswRecyclerView", e);
                 }
+//                }
             }
 
             /**
@@ -352,6 +379,7 @@ public class BswRecyclerView<T> extends RecyclerView {
                 lastPosition = dy;
             }
         });
+        return this;
     }
 
     /**
@@ -390,17 +418,12 @@ public class BswRecyclerView<T> extends RecyclerView {
                 SwipeItemLayout swipeItemLayout = findSwipeItemLayout(openItem);
                 if (swipeItemLayout != null) {
                     swipeItemLayout.close();
-                    Logger.i("BswRecyclerView", "swipeItemLayout.close");
                     return false;
                 }
             }
-            Logger.i("BswRecyclerView", "ACTION_DOWN");
         } else if (action == MotionEvent.ACTION_POINTER_DOWN) {
             // FIXME: 2017/3/22 不知道怎么解决多点触控导致可以同时打开多个菜单的bug，先暂时禁止多点触控
-            Logger.i("BswRecyclerView", "多点触控");
             return false;
-        } else {
-            Logger.i("BswRecyclerView", "其他");
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -456,5 +479,9 @@ public class BswRecyclerView<T> extends RecyclerView {
             }
         }
         return null;
+    }
+
+    public void setMaxCount(int count) {
+        adapter.setMaxCount(count);
     }
 }

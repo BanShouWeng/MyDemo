@@ -1,4 +1,4 @@
-package com.bsw.mydemo.test;
+package com.bsw.mydemo.myTest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

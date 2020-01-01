@@ -29,6 +29,8 @@ public class PointBean {
     public @interface PointType {
     }
 
+    private int type;
+
     public static final int POSITION_BELOW = 21;
     public static final int POSITION_ABOVE = 22;
     public static final int POSITION_CENTER = 23;
@@ -39,24 +41,37 @@ public class PointBean {
      * 横纵坐标在icon的相对位置
      * {@link PointBean#POSITION_BELOW 在横纵坐标点下方}
      * {@link PointBean#POSITION_ABOVE 在横纵坐标点上方}
-     * {@link PointBean#POSITION_BELOW 横纵坐标在icon中间}
+     * {@link PointBean#POSITION_CENTER 横纵坐标在icon中间}
      * {@link PointBean#POSITION_LEFT 在横纵坐标点左侧}
-     * {@link PointBean#POSITION_BELOW 在横纵坐标点右侧}
+     * {@link PointBean#POSITION_RIGHT 在横纵坐标点右侧}
      */
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({POSITION_BELOW, POSITION_ABOVE, POSITION_CENTER, POSITION_LEFT, POSITION_RIGHT})
     public @interface PointPositionLimit {
     }
 
-    private int type;
-
-    private double x;
-    private double y;
-    private String path;
-    private int imgRes;
-    private ImageView pointView;
     private int positionLimit;
 
+    /**
+     * 横纵坐标
+     */
+    private double x;
+    private double y;
+    /**
+     * 图片地址
+     * {@link PointBean#path 网络路径}
+     * {@link PointBean#imgRes 图片资源Id}
+     */
+    private String path;
+    private int imgRes;
+    /**
+     * 点位视图
+     */
+    private ImageView pointView;
+
+    /**
+     * 图片宽/高度的一半（由于存在{@link PointBean#POSITION_CENTER}，因此需要存储宽高的一半）
+     */
     private int halfHeight = 0;
     private int halfWidth = 0;
 
@@ -124,7 +139,7 @@ public class PointBean {
         this.halfWidth = halfWidth;
     }
 
-    public void resetXY(@FloatRange(from = 0, to = 1) double x, @FloatRange(from = 0, to = 1) double y) {
+    public void resetXY(double x, double y) {
         this.x = x;
         this.y = y;
     }

@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 /**
  * 文本格式化类
  *
- * @author leiming
+ * @author 半寿翁
  * @date 2018/12/21.
  */
 public class StringFormatUtils {

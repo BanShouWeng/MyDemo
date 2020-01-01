@@ -75,7 +75,7 @@ public class BswRecycleViewActivity extends BaseActivity {
 
     private ConvertViewCallBack<User> convertViewCallBack = new ConvertViewCallBack<User>() {
         @Override
-        public User convert(RecyclerViewHolder holder, User user, int position, int layoutTag) {
+        public void convert(RecyclerViewHolder holder, User user, int position, int layoutTag) {
                 if (layoutTag == LAYOUT_TAG_FIRST) {
                     holder.setText(R.id.user_name, user.name + "马上出生了呢");
                 } else {
@@ -115,7 +115,6 @@ public class BswRecycleViewActivity extends BaseActivity {
                             break;
                     }
                 }
-            return user;
         }
     };
 

@@ -3,7 +3,7 @@ package com.bsw.mydemo.widget.BswRecyclerView;
 /**
  * 缓存条目与标识的数据项
  *
- * @author leiming
+ * @author 半寿翁
  * @date 2019/3/12.
  */
 public class BswDataItem<T> {
@@ -27,6 +27,11 @@ public class BswDataItem<T> {
         this.t = t;
     }
 
+    /**
+     * 设置条目
+     *
+     * @param t
+     */
     public void setT(T t) {
         this.t = t;
     }

@@ -1,7 +1,7 @@
 package com.bsw.mydemo.widget.BswRecyclerView;
 
 /**
- * RecyclerView过滤筛选回调
+ * RecyclerView数据过滤筛选回调
  *
  * @author 半寿翁
  * @date 2018/4/22 11:26

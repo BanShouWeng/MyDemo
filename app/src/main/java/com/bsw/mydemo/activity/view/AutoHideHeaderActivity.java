@@ -71,9 +71,8 @@ public class AutoHideHeaderActivity extends BaseActivity {
 
     private ConvertViewCallBack<String> convertViewCallBack = new ConvertViewCallBack<String>() {
         @Override
-        public String convert(RecyclerViewHolder holder, String s, int position, int layoutTag) {
+        public void convert(RecyclerViewHolder holder, String s, int position, int layoutTag) {
             holder.setText(R.id.jumpTo, s);
-            return s;
         }
     };
 

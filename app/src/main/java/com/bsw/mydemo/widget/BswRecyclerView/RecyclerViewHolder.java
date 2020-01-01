@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
+import android.support.annotation.IntDef;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spanned;
@@ -14,6 +15,9 @@ import android.widget.TextView;
 
 import com.bsw.mydemo.utils.GlideUtils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * ViewHolder
  *
@@ -22,8 +26,12 @@ import com.bsw.mydemo.utils.GlideUtils;
  */
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;//集合类，layout里包含的View,以view的id作为key，value是view对象
-    @SuppressWarnings("FieldCanBeLocal")
     private Context mContext;//上下文对象
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({View.VISIBLE, View.GONE, View.INVISIBLE})
+    @interface Visibility {
+    }
 
     public RecyclerViewHolder(Context ctx, View itemView) {
         super(itemView);
@@ -56,6 +64,29 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
+    public RecyclerViewHolder setTextWithDrawables(@IdRes int viewId, @StringRes int stringRes, @DrawableRes int left,
+                                                   @DrawableRes int top, @DrawableRes int right, @DrawableRes int bottom) {
+        TextView view = getView(viewId);
+        view.setText(stringRes);
+        view.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);
+        return this;
+    }
+
+    public RecyclerViewHolder setTextWithDrawables(@IdRes int viewId, String string, @DrawableRes int left,
+                                                   @DrawableRes int top, @DrawableRes int right, @DrawableRes int bottom) {
+        TextView view = getView(viewId);
+        view.setText(string);
+        view.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);
+        return this;
+    }
+
+    public RecyclerViewHolder setTextDrawables(@IdRes int viewId, @DrawableRes int left,
+                                               @DrawableRes int top, @DrawableRes int right, @DrawableRes int bottom) {
+        TextView view = getView(viewId);
+        view.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);
+        return this;
+    }
+
     public RecyclerViewHolder setText(@IdRes int viewId, Spanned value) {
         TextView view = getView(viewId);
         view.setText(value);
@@ -68,22 +99,14 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
-    public RecyclerViewHolder setTextWithDrawables(@IdRes int viewId, @StringRes int stringRes, @DrawableRes int left,
-                                                   @DrawableRes int top, @DrawableRes int right, @DrawableRes int bottom) {
+    public RecyclerViewHolder setText(@IdRes int viewId, int color, @StringRes int valueId) {
         TextView view = getView(viewId);
-        view.setText(stringRes);
-        view.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);
+        view.setText(valueId);
+        view.setTextColor(color);
         return this;
     }
 
-    public RecyclerViewHolder setTextDrawables(@IdRes int viewId, @DrawableRes int left,
-                                               @DrawableRes int top, @DrawableRes int right, @DrawableRes int bottom) {
-        TextView view = getView(viewId);
-        view.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);
-        return this;
-    }
-
-    public RecyclerViewHolder setVisibility(@IdRes int viewId, int visibility) {
+    public RecyclerViewHolder setVisibility(@IdRes int viewId, @Visibility int visibility) {
         View view = getView(viewId);
         view.setVisibility(visibility);
         return this;
@@ -132,6 +155,12 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     @SuppressWarnings("UnusedReturnValue")
     public RecyclerViewHolder setClickListener(@IdRes int viewId, View.OnClickListener listener) {
         getView(viewId).setOnClickListener(listener);
+        return this;
+    }
+
+    @SuppressWarnings("UnusedReturnValue")
+    public RecyclerViewHolder setTouchListener(@IdRes int viewId, View.OnTouchListener listener) {
+        getView(viewId).setOnTouchListener(listener);
         return this;
     }
 

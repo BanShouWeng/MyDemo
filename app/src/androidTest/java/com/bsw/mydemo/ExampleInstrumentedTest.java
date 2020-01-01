@@ -25,7 +25,7 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.leiming.mydemo", appContext.getPackageName());
+        assertEquals("com.bsw.mydemo", appContext.getPackageName());
     }
 
     @Test
