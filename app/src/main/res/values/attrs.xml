@@ -84,7 +84,7 @@
     </declare-styleable>
 
     <declare-styleable name="BswToolbar">
-        <attr name="title_gravity" format="enum">
+        <attr name="title_gravity" format="integer|enum">
             <enum name="right" value="0" />
             <enum name="center" value="1" />
         </attr>

@@ -65,7 +65,7 @@ public class SeismicWaveView extends View {
                         break;
 
                     case R.styleable.waveStyle_wave_speed:
-                        waveSpeedLevel = a.getColor(attr, waveSpeedLevel);
+                        waveSpeedLevel = a.getInteger(attr, waveSpeedLevel);
                         break;
                 }
             }

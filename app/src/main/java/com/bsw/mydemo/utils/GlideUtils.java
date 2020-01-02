@@ -14,6 +14,7 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
@@ -37,6 +38,11 @@ public class GlideUtils {
     //默认加载
     public static void loadImageView(Context mContext, String path, SimpleTarget<Bitmap> simpleTarget) {
         Glide.with(mContext).asBitmap().load(path).into(simpleTarget);
+    }
+
+    //默认加载
+    public static void loadImageView(Context mContext, String path, BitmapImageViewTarget target) {
+        Glide.with(mContext).asBitmap().load(path).into(target);
     }
 
     //默认加载

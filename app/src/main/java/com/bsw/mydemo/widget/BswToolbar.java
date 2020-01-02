@@ -17,7 +17,18 @@ import com.bsw.mydemo.R;
  */
 public class BswToolbar extends ViewGroup {
     /**
-     *
+     * title文字位置：右侧（默认，为右侧功能按钮预留位置）
+     */
+    private final int TITLE_GRAVITY_RIGHT = 0;
+    /**
+     * title文字位置：居中
+     */
+    private final int TITLE_GRAVITY_CENTER = 1;
+
+    /**
+     * title文字位置
+     * {@link BswToolbar#TITLE_GRAVITY_RIGHT 右侧，默认}
+     * {@link BswToolbar#TITLE_GRAVITY_CENTER 居中}
      */
     private int titleGravity;
     /**
@@ -103,7 +114,7 @@ public class BswToolbar extends ViewGroup {
                     break;
 
                 case R.styleable.BswToolbar_title_gravity:
-                    subtitleColor = a.getColor(attr, subtitleColor);
+                    titleGravity = a.getInteger(attr, TITLE_GRAVITY_RIGHT);
                     break;
 
                 default:
@@ -114,6 +125,7 @@ public class BswToolbar extends ViewGroup {
     }
 
     private void init() {
+        // ViewGroup默认不会开启绘制，通过setWillNotDraw设置为自行绘制
         setWillNotDraw(false);
         paint = new Paint();
         rect = new Rect();
@@ -131,11 +143,12 @@ public class BswToolbar extends ViewGroup {
         paint.setTextSize(titleSize);
         //	写文本
         paint.getTextBounds(title, 0, title.length(), rect);
-        //canvas.drawText(text, 0 - rect.left, 0 - rect.top, paint);//	完整显示文本内容
+        //	完整显示文本内容
+        canvas.drawText(title, 0 - rect.left, 0 - rect.top, paint);
         //居中显示文本
-        canvas.drawText(title,
-                0 - rect.left + (getWidth() - rect.width()) / 2.0f,
-                0 - rect.top + (getHeight() - rect.height()) / 2.0f,
-                paint);
+//        canvas.drawText(title,
+//                0 - rect.left + (getWidth() - rect.width()) / 2.0f,
+//                0 - rect.top + (getHeight() - rect.height()) / 2.0f,
+//                paint);
     }
 }

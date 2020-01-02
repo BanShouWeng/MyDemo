@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,7 +59,13 @@ import me.iwf.photopicker.PhotoPickerActivity;
  * @author 半寿翁
  * @date 2017/11/1
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    @Override
+    public void onClick(View view) {
+
+    }
+
     private JumpBean[] jumpBeanList = {new JumpBean(R.string.main_activity_btn_file_download, FileDownloadActivity.class)
             , new JumpBean(R.string.main_activity_btn_setting, SettingPageJumpActivity.class)
             , new JumpBean(R.string.main_activity_btn_websocket, WebSocketActivity.class)
@@ -80,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             , new JumpBean(R.string.main_activity_btn_photo_picker, PhotoPickerActivity.class)
     };
 
-    @Override
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
