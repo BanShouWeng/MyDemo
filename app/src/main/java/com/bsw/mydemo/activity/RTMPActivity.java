@@ -270,7 +270,7 @@ public class RTMPActivity extends AppCompatActivity implements IMediaPlayer.OnPr
 
         });
 
-//        mediaController.setDownloadListener(new View.OnClickListener() {
+//        mediaController.setDownloadListener(new View.OnToolbarBtnClickListener() {
 //
 //            @Override
 //            public void onClick(View v) {

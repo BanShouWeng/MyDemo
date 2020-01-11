@@ -5,7 +5,8 @@ import android.view.View;
 
 import com.bsw.mydemo.R;
 import com.bsw.mydemo.base.BaseActivity;
-import com.bsw.mydemo.widget.BswToolbar;
+import com.bsw.mydemo.widget.bswtoolbar.BswToolbar;
+import com.bsw.mydemo.widget.bswtoolbar.OnToolbarBtnClickListener;
 
 /**
  * 自定义Toolbar测试
@@ -28,7 +29,17 @@ public class BswToolbarActivity extends BaseActivity {
 
     @Override
     protected void formatViews() {
+        bswToolbar.setOnToolbarBtnClickListener(new OnToolbarBtnClickListener() {
+            @Override
+            public void onBackClick() {
+                toast("点击返回了");
+            }
 
+            @Override
+            public void onCloseClick() {
+                toast("点击关闭了");
+            }
+        });
     }
 
     @Override

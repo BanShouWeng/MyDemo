@@ -1,21 +1,14 @@
 package com.bsw.mydemo;
 
-import android.util.SparseIntArray;
-
-import com.bsw.mydemo.utils.Const;
-
 import org.junit.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;

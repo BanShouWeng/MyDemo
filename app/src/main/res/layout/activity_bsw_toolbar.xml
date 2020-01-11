@@ -3,16 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--android:background="@color/__picker_black_40"-->
-
-    <com.bsw.mydemo.widget.BswToolbar
+    <!--        app:can_title_back_linkage="true"-->
+    <com.bsw.mydemo.widget.bswtoolbar.BswToolbar
         android:id="@+id/bsw_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/white"
+        android:paddingLeft="@dimen/size_10"
+        android:paddingTop="40dp"
+        android:paddingBottom="@dimen/size_10"
+        app:back_color="@android:color/holo_green_dark"
+        app:back_padding="@dimen/size_3"
+        app:back_src="@drawable/ic_back"
+        app:back_text="返回"
+        app:back_text_color="@android:color/holo_orange_light"
+        app:back_text_size="@dimen/size_13"
+        app:close_color="@android:color/holo_red_light"
+        app:close_padding="@dimen/size_3"
+        app:close_src="@drawable/ic_close"
         app:subtitle="我是副标题"
         app:subtitle_color="@android:color/holo_blue_light"
         app:subtitle_size="15dp"
         app:title="测试Toolbar"
         app:title_color="@android:color/holo_purple"
-        app:title_size="@dimen/size_30" />
+        app:title_gravity="center"
+        app:title_padding="15dp"
+        app:title_row_spacing="5dp"
+        app:title_size="@dimen/size_20" />
 </LinearLayout>

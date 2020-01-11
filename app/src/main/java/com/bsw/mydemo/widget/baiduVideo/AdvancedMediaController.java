@@ -83,7 +83,7 @@ public class AdvancedMediaController extends RelativeLayout implements OnClickLi
 
     boolean mbIsDragging = false;
 
-    // private View.OnClickListener playListener;
+    // private View.OnToolbarBtnClickListener playListener;
     private View.OnClickListener preListener;
     private View.OnClickListener nextListener;
     private View.OnClickListener downloadListener;

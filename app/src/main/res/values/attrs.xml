@@ -88,11 +88,28 @@
             <enum name="right" value="0" />
             <enum name="center" value="1" />
         </attr>
+        <attr name="title_padding" format="dimension" />
         <attr name="title" format="string" />
         <attr name="title_size" format="dimension" />
         <attr name="title_color" format="color" />
         <attr name="subtitle" format="string" />
         <attr name="subtitle_size" format="dimension" />
         <attr name="subtitle_color" format="color" />
+        <attr name="title_row_spacing" format="dimension" />
+        <attr name="can_title_back_linkage" format="boolean" />
+        <attr name="back_src" format="reference|color" />
+        <attr name="back_color" format="color" />
+        <attr name="back_text_color" format="color" />
+        <attr name="back_icon_color" format="color" />
+        <attr name="back_text" format="string" />
+        <attr name="back_text_size" format="dimension" />
+        <attr name="back_padding" format="dimension" />
+        <attr name="back_type" format="integer|enum">
+            <enum name="text" value="10" />
+            <enum name="icon" value="11" />
+        </attr>
+        <attr name="close_src" format="reference|color" />
+        <attr name="close_color" format="color" />
+        <attr name="close_padding" format="dimension" />
     </declare-styleable>
 </resources>
