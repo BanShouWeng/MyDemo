@@ -7,7 +7,7 @@
     <com.bsw.mydemo.widget.bswtoolbar.BswToolbar
         android:id="@+id/bsw_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:paddingLeft="@dimen/size_10"
         android:paddingTop="40dp"
@@ -26,7 +26,7 @@
         app:subtitle_size="15dp"
         app:title="测试Toolbar"
         app:title_color="@android:color/holo_purple"
-        app:title_gravity="center"
+        app:title_gravity="start"
         app:title_padding="15dp"
         app:title_row_spacing="5dp"
         app:title_size="@dimen/size_20" />

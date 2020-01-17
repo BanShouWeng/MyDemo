@@ -85,7 +85,7 @@
 
     <declare-styleable name="BswToolbar">
         <attr name="title_gravity" format="integer|enum">
-            <enum name="right" value="0" />
+            <enum name="start" value="0" />
             <enum name="center" value="1" />
         </attr>
         <attr name="title_padding" format="dimension" />

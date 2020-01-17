@@ -40,6 +40,7 @@ public class BswToolbarActivity extends BaseActivity {
                 toast("点击关闭了");
             }
         });
+        bswToolbar.inflateMenu(R.menu.menu_main);
     }
 
     @Override

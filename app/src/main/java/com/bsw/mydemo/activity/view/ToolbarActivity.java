@@ -48,7 +48,7 @@ public class ToolbarActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // 绑定toobar跟menu
 //        getMenuInflater().inflate(R.menu.menu_main, menu);
-        menu.addSubMenu(0,0,0,R.string.search)
+        menu.addSubMenu(0, 0, 0, R.string.search)
                 .setIcon(R.mipmap.search);
         return true;
     }
@@ -58,6 +58,9 @@ public class ToolbarActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                break;
+
+            default:
                 break;
         }
         return true;
@@ -102,7 +105,7 @@ public class ToolbarActivity extends AppCompatActivity {
                     break;
             }
 
-            if (! msg.equals("")) {
+            if (!msg.equals("")) {
 //                Snackbar.make(parentCdl, msg, Snackbar.LENGTH_LONG).show();
                 Snackbar mSnackbar = Snackbar.make(parentCdl, msg, Snackbar.LENGTH_LONG);
 //                View v = mSnackbar.getView();
@@ -133,7 +136,7 @@ public class ToolbarActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 //                        Snackbar.make(parentCdl, finalMsg, Snackbar.LENGTH_LONG).show();
-                        Toast.makeText(getApplicationContext(),finalMsg,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), finalMsg, Toast.LENGTH_LONG).show();
                     }
                 }).show();
             }

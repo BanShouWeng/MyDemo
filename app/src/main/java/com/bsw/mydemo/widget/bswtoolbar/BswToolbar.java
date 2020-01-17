@@ -13,14 +13,17 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
+import android.support.annotation.MenuRes;
 import android.support.annotation.StringRes;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.widget.ActionMenuView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.bsw.mydemo.R;
@@ -135,11 +138,13 @@ public class BswToolbar extends FrameLayout {
 
     private OnToolbarBtnClickListener btnClickListener;
 
+    private ActionMenuView mMenuView;
+
     /*---------------------------------------控件属性------------------------------------------*/
     /**
      * title文字位置：左侧（默认，为左侧功能按钮预留位置）
      */
-    public static final int TITLE_GRAVITY_RIGHT = 0;
+    public static final int TITLE_GRAVITY_START = 0;
     /**
      * title文字位置：居中
      */
@@ -152,16 +157,17 @@ public class BswToolbar extends FrameLayout {
      * 点击事件Y坐标缓存，用于抬手时取消计算
      */
     private int clickDownY;
+    private ContextMenu mMenu;
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({TITLE_GRAVITY_RIGHT, TITLE_GRAVITY_CENTER})
+    @IntDef({TITLE_GRAVITY_START, TITLE_GRAVITY_CENTER})
     @interface TitleGravity {
 
     }
 
     /**
      * title文字位置
-     * {@link BswToolbar#TITLE_GRAVITY_RIGHT 左侧，默认}
+     * {@link BswToolbar#TITLE_GRAVITY_START 左侧，默认}
      * {@link BswToolbar#TITLE_GRAVITY_CENTER 居中}
      */
     private int titleGravity;
@@ -330,7 +336,7 @@ public class BswToolbar extends FrameLayout {
             int attr = a.getIndex(i);
             switch (attr) {
                 case R.styleable.BswToolbar_title_gravity:
-                    titleGravity = a.getInteger(attr, TITLE_GRAVITY_RIGHT);
+                    titleGravity = a.getInteger(attr, TITLE_GRAVITY_START);
                     break;
 
                 case R.styleable.BswToolbar_title_padding:
@@ -875,7 +881,7 @@ public class BswToolbar extends FrameLayout {
         Rect rect = calculateText(RECT_TYPE_TITLE);
         paint = getPaint(RECT_TYPE_TITLE);
         float backRight;
-        if (TITLE_GRAVITY_RIGHT == titleGravity) {
+        if (TITLE_GRAVITY_START == titleGravity) {
             backRight = titlePadding - rect.left + titleStartPadding;
             // 左侧显示文本
             canvas.drawText(title
@@ -907,16 +913,11 @@ public class BswToolbar extends FrameLayout {
         Rect rect = calculateText(RECT_TYPE_TITLE);
         Rect subtitleRect = calculateText(RECT_TYPE_SUBTITLE);
 
-        int titleTop;
-        if (MeasureSpec.EXACTLY != heightMeasureMode) {
-            titleTop = (int) ((getHeight() - getPaddingTop() - getPaddingBottom() - rect.height() - subtitleRect.height() - titleRowSpacing) / NUMBER_COMMON_HALF + getPaddingTop());
-        } else {
-            titleTop = +getPaddingTop();
-        }
+        int titleTop=(int) ((getHeight() - getPaddingTop() - getPaddingBottom() - rect.height() - subtitleRect.height() - titleRowSpacing) / NUMBER_COMMON_HALF + getPaddingTop());
 
         int backRight;
 
-        if (TITLE_GRAVITY_RIGHT == titleGravity) {
+        if (TITLE_GRAVITY_START == titleGravity) {
             // 左侧title
             paint = getPaint(RECT_TYPE_TITLE);
             canvas.drawText(title
@@ -1476,6 +1477,26 @@ public class BswToolbar extends FrameLayout {
                 break;
         }
         return super.onTouchEvent(event);
+    }
+
+    /**
+     * 解析menu
+     *
+     * @param menuRes menu资源Id
+     */
+    public void inflateMenu(@MenuRes int menuRes) {
+        showContextMenu();
+        new MenuInflater(mContext).inflate(menuRes, mMenu);
+    }
+
+    public Menu getMenu() {
+        return mMenu;
+    }
+
+    @Override
+    protected void onCreateContextMenu(ContextMenu menu) {
+        super.onCreateContextMenu(menu);
+        mMenu = menu;
     }
 
     /**
