@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bsw.mydemo.R;
+import com.bsw.mydemo.utils.Logger;
 import com.bsw.mydemo.utils.StringFormatUtils;
 import com.bsw.mydemo.activity.view.ScanCodeActivity;
 import com.bsw.mydemo.base.BaseNfcActivity;
@@ -80,8 +81,9 @@ public class NFCWriteActivity extends BaseNfcActivity {
 
     @Override
     public void onNewIntent(Intent intent) {
-        if (inputText == null)
+        if (inputText == null) {
             return;
+        }
         //1.获取Tag对象
         Tag detectedTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         writeNFCTag(detectedTag);
@@ -99,11 +101,11 @@ public class NFCWriteActivity extends BaseNfcActivity {
         if (TextUtils.isEmpty(inputText)) {
             inputText = StringFormatUtils.getString(etNfcContent);
         }
-        if (TextUtils.isEmpty(inputText)){
+        if (TextUtils.isEmpty(inputText)) {
             toast(R.string.cannot_be_null);
             return;
         }
-        NdefMessage ndefMessage = new NdefMessage(new NdefRecord[] {NdefRecord
+        NdefMessage ndefMessage = new NdefMessage(new NdefRecord[]{NdefRecord
                 .createApplicationRecord(inputText)});
         //转换成字节获得大小
         int size = ndefMessage.toByteArray().length;
@@ -114,16 +116,21 @@ public class NFCWriteActivity extends BaseNfcActivity {
             if (ndef != null) {
                 ndef.connect();
                 //判断是否支持可写
-                if (! ndef.isWritable()) {
+                if (!ndef.isWritable()) {
+                    Toast.makeText(this, "标签不可写入", Toast.LENGTH_SHORT).show();
+                    Logger.i("标签不可写入");
                     return;
                 }
                 //判断标签的容量是否够用
                 if (ndef.getMaxSize() < size) {
+                    Toast.makeText(this, "标签内存不足", Toast.LENGTH_SHORT).show();
+                    Logger.i("标签内存不足");
                     return;
                 }
                 //3.写入数据
                 ndef.writeNdefMessage(ndefMessage);
                 Toast.makeText(this, "写入成功", Toast.LENGTH_SHORT).show();
+                Logger.i("写入成功: " + inputText);
             } else { //当我们买回来的NFC标签是没有格式化的，或者没有分区的执行此步
                 //Ndef格式类
                 NdefFormatable format = NdefFormatable.get(tag);
@@ -133,13 +140,16 @@ public class NFCWriteActivity extends BaseNfcActivity {
                     format.connect();
                     //格式化并将信息写入标签
                     format.format(ndefMessage);
+                    Logger.i("写入成功: " + inputText);
                     Toast.makeText(this, "写入成功", Toast.LENGTH_SHORT).show();
                 } else {
+                    Logger.i("写入失败: " + inputText);
                     Toast.makeText(this, "写入失败", Toast.LENGTH_SHORT).show();
                 }
             }
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            Logger.e(e);
         }
     }
 
@@ -154,6 +164,9 @@ public class NFCWriteActivity extends BaseNfcActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("tag", "getCode");
                 jumpTo(ScanCodeActivity.class, REQUEST_CODE, bundle);
+                break;
+
+            default:
                 break;
         }
     }
