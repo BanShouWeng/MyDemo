@@ -95,4 +95,6 @@ dependencies {
     releaseImplementation project(':camera')
     debugImplementation project(':PhotoPicker')
     releaseImplementation project(':PhotoPicker')
+    implementation 'com.kevin:loopview:1.5.6'
+    implementation 'com.amap.api:3dmap:7.4.0'
 }

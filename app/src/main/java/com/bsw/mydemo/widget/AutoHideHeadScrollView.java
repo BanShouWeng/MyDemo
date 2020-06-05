@@ -1,6 +1,8 @@
 package com.bsw.mydemo.widget;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.IdRes;

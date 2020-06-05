@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +28,7 @@ import com.bsw.mydemo.activity.utils.GpsActivity;
 import com.bsw.mydemo.activity.utils.MobileActivity;
 import com.bsw.mydemo.activity.utils.NavigationActivity;
 import com.bsw.mydemo.activity.utils.TimeActivity;
+import com.bsw.mydemo.activity.utils.UtilsActivity;
 import com.bsw.mydemo.activity.view.ViewActivity;
 import com.bsw.mydemo.bean.JumpBean;
 import com.bsw.mydemo.utils.JumpToUtils;
@@ -37,9 +37,6 @@ import com.bsw.mydemo.utils.PermissionUtils;
 import com.bsw.mydemo.utils.keepAlive.KeepAliveActivity;
 import com.bsw.mydemo.utils.keepAlive.ScreenBroadcastListener;
 import com.bsw.mydemo.utils.keepAlive.ScreenManager;
-import com.bsw.mydemo.utils.rxbus2.RxBus;
-import com.bsw.mydemo.utils.rxbus2.Subscribe;
-import com.bsw.mydemo.utils.rxbus2.ThreadMode;
 import com.bsw.mydemo.widget.BswRecyclerView.BswRecyclerView;
 import com.bsw.mydemo.widget.BswRecyclerView.ConvertViewCallBack;
 import com.bsw.mydemo.widget.BswRecyclerView.RecyclerViewHolder;
@@ -60,13 +57,12 @@ import me.iwf.photopicker.PhotoPickerActivity;
  * @date 2017/11/1
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
     @Override
     public void onClick(View view) {
 
     }
 
-    private JumpBean[] jumpBeanList = {new JumpBean(R.string.main_activity_btn_file_download, FileDownloadActivity.class)
+    private JumpBean[] jumpBeanList = {new JumpBean(R.string.main_activity_btn_utils, UtilsActivity.class)
             , new JumpBean(R.string.main_activity_btn_setting, SettingPageJumpActivity.class)
             , new JumpBean(R.string.main_activity_btn_websocket, WebSocketActivity.class)
             , new JumpBean(R.string.main_activity_btn_mobile, MobileActivity.class)
@@ -74,20 +70,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             , new JumpBean(R.string.main_activity_btn_NFC, NFCActivity.class)
             , new JumpBean(R.string.main_activity_btn_video_play, VideoActivity.class)
             , new JumpBean(R.string.main_activity_btn_rtmp, RTMPActivity.class)
-            , new JumpBean(R.string.main_activity_btn_navigation, NavigationActivity.class)
-            , new JumpBean(R.string.main_activity_btn_bluetooth, BluetoothActivity.class)
             , new JumpBean(R.string.main_activity_btn_db, DbActivity.class)
             , new JumpBean(R.string.main_activity_btn_linkman, LinkmanActivity.class)
             , new JumpBean(R.string.main_activity_btn_media, MediaActivity.class)
             , new JumpBean(R.string.main_activity_btn_language, LanguageActivity.class)
             , new JumpBean(R.string.main_activity_btn_wifi, WifiActivity.class)
-            , new JumpBean(R.string.main_activity_btn_time_zone, TimeActivity.class)
-            , new JumpBean(R.string.main_activity_btn_gps, GpsActivity.class)
             , new JumpBean(R.string.main_activity_btn_gson_input, GsonInputActivity.class)
             , new JumpBean(R.string.main_activity_btn_photo_picker, PhotoPickerActivity.class)
     };
 
-   @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -202,8 +194,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                }
                            }
                 );
-        RxBus.get().register(this);
-        RxBus.get().send(1000, new Person("sddsd", 15));
     }
 
     private ConvertViewCallBack<JumpBean> convertViewCallBack = new ConvertViewCallBack<JumpBean>() {
@@ -218,11 +208,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     });
         }
     };
-
-    @Subscribe(code = 1000, threadMode = ThreadMode.MAIN)
-    public void receive(Person person) {
-        Logger.i(getName(), "我叫".concat(person.name).concat("今年").concat(person.age + "").concat("岁"));
-    }
 
     private class Person {
         private String name;
@@ -252,7 +237,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RxBus.get().unRegister(this);
         new Thread(new Runnable() {
             @Override
             public void run() {

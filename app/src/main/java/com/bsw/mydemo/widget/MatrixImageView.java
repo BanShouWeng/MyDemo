@@ -1,5 +1,6 @@
 package com.bsw.mydemo.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -10,6 +11,8 @@ import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.ArrayList;
 
 /**
  * http://www.cnblogs.com/linjzong/p/4211661.html
@@ -360,8 +363,5 @@ public class MatrixImageView extends AppCompatImageView {
             // TODO Auto-generated method stub
             return super.onSingleTapConfirmed(e);
         }
-
     }
-
-
 }

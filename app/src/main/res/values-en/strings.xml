@@ -5,6 +5,7 @@
     <string name="main_activity_btn_file_download">file upload</string>
     <string name="main_activity_btn_websocket">WebSocket</string>
     <string name="main_activity_btn_setting">Setting Page Jump</string>
+    <string name="main_activity_btn_utils">Utils</string>
     <string name="main_activity_btn_mobile">mobile</string>
     <string name="main_activity_btn_view">View</string>
     <string name="main_activity_btn_toolbar">Toolbar</string>

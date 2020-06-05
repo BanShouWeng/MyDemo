@@ -62,9 +62,12 @@ public class NetUtils {
         });
 
         Retrofit.Builder builder1 = new Retrofit.Builder()
-                .client(builder.build())                                    // 配置监听请求
-                .addConverterFactory(GsonConverterFactory.create())         // 请求结果转换（当前为GSON）
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()); // 请求接受工具（当前为RxJava2）
+                // 配置监听请求
+                .client(builder.build())
+                // 请求结果转换（当前为GSON）
+                .addConverterFactory(GsonConverterFactory.create())
+                // 请求接受工具（当前为RxJava2）
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         if (action.contains("http"))
             builder1.baseUrl(action.substring(0, action.lastIndexOf("/") + 1));
         else

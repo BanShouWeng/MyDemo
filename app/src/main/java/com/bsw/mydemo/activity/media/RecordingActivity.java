@@ -117,10 +117,14 @@ public class RecordingActivity extends BaseActivity {
                         msg = "正在播放录音...";
                     }
                     break;
+
+                default:
+                    break;
             }
             // 更新标题栏 并用 Toast弹出信息提示用户
-            if (! msg.equals("")) {
+            if (!"".equals(msg)) {
                 setTitle(msg);
+
                 Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
@@ -138,7 +142,7 @@ public class RecordingActivity extends BaseActivity {
 
         }
         if (mediaRecorder != null) {
-//          mediaRecorder.reset();
+            mediaRecorder.reset();
 
             mediaRecorder.release();
             mediaRecorder = null;
@@ -172,11 +176,13 @@ public class RecordingActivity extends BaseActivity {
                             // 设置音频来源(一般为麦克风)
                             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
                             // 设置音频输出格式（默认的输出格式）
-                            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+//                            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
+                            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
                             // 设置音频编码方式（默认的编码方式）
-                            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+//                            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+                            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
                             // 创建一个临时的音频输出文件.record_是文件的前缀名 .amr是后缀名
-                            audioFile = File.createTempFile("myDemoTest", ".MP3", EnvironmentShare.getAudioRecordDir());
+                            audioFile = File.createTempFile("myDemoTest", ".amr", EnvironmentShare.getAudioRecordDir());
                             // audioFile =new
                             // File(Environment.getExternalStorageDirectory().getCanonicalPath()+"/sound.amr");
                             // 设置录制器的文件保留路径
@@ -206,6 +212,9 @@ public class RecordingActivity extends BaseActivity {
                             toast("已放弃");
                             setTitle("已放弃");
                         }
+                        break;
+
+                    default:
                         break;
                 }
                 return false;

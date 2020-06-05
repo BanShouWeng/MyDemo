@@ -5,6 +5,7 @@
     <string name="main_activity_btn_file_download">文件下载</string>
     <string name="main_activity_btn_websocket">WebSocket</string>
     <string name="main_activity_btn_setting">设置页跳转</string>
+    <string name="main_activity_btn_utils">工具</string>
     <string name="main_activity_btn_mobile">OS</string>
     <string name="main_activity_btn_view">View</string>
     <string name="main_activity_btn_toolbar">Toolbar</string>

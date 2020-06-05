@@ -20,7 +20,7 @@ public class MediaActivity extends BaseActivity {
         PermissionUtils.setRequestPermissions(activity, new PermissionUtils.PermissionGrant() {
             @Override
             public Integer[] onPermissionGranted() {
-                return new Integer[] {PermissionUtils.CODE_CAMERA};
+                return new Integer[]{PermissionUtils.CODE_CAMERA};
             }
 
             @Override
@@ -75,6 +75,9 @@ public class MediaActivity extends BaseActivity {
 
             case R.id.jumpPicCrop:
                 jumpTo(PicCropActivity.class);
+                break;
+
+            default:
                 break;
         }
     }

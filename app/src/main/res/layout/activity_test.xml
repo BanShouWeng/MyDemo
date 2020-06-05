@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="150dp"
     android:id="@+id/test_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".myTest.TestActivity">
 
-    <!--<TextView-->
-        <!--android:id="@+id/left_menu"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_gravity="left"-->
-        <!--android:background="@android:color/holo_blue_bright"-->
-        <!--android:gravity="center"-->
-        <!--android:text="left"-->
-        <!--android:textColor="@android:color/white" />-->
+    <com.bsw.mydemo.widget.BatteryView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.bsw.mydemo.widget.BatteryView>
 
     <!--<TextView-->
-        <!--android:id="@+id/right_menu"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_gravity="right"-->
-        <!--android:background="@android:color/holo_green_light"-->
-        <!--android:gravity="center"-->
-        <!--android:text="right"-->
-        <!--android:textColor="@android:color/white" />-->
+    <!--android:id="@+id/left_menu"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_gravity="left"-->
+    <!--android:background="@android:color/holo_blue_bright"-->
+    <!--android:gravity="center"-->
+    <!--android:text="left"-->
+    <!--android:textColor="@android:color/white" />-->
 
     <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="@android:color/white" />-->
+    <!--android:id="@+id/right_menu"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_gravity="right"-->
+    <!--android:background="@android:color/holo_green_light"-->
+    <!--android:gravity="center"-->
+    <!--android:text="right"-->
+    <!--android:textColor="@android:color/white" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="@android:color/white" />-->
 </FrameLayout>

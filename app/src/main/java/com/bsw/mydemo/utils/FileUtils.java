@@ -24,18 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * 文件工具类
- *
- * @author 半寿翁
- * @date 2018/5/2 17:38
- */
 public class FileUtils {
-    /**
-     * 生成文件的路径
-     */
-    public final static String FILE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath().concat("/file_download/");
 
+    public static final int FILE_FOLDER = 0x010;
     public static final int AUDIO_RECORD = 0x011;
     public static final int WAV_OUTPUT = 0x012;
     public static final int VIDEO_RECORD = 0x013;
@@ -136,351 +127,9 @@ public class FileUtils {
                 return cursor.getString(column_index);
             }
         } finally {
-            if (cursor != null)
+            if (cursor != null) {
                 cursor.close();
-        }
-        return null;
-    }
-
-    public static List<String> ergodic(File file, List<String> resultFileName) {
-        File[] files = file.listFiles();
-        if (files == null) return resultFileName;// 判断目录下是不是空的
-        for (File f : files) {
-            if (f.isDirectory()) {// 判断是否文件夹
-                resultFileName.add(f.getPath());
-                ergodic(f, resultFileName);// 调用自身,查找子目录
-            } else
-                resultFileName.add(f.getPath());
-        }
-        return resultFileName;
-    }
-
-    public static long getFileSizes(File f) throws Exception {
-        long s = 0;
-        if (f.exists()) {
-            FileInputStream fis = null;
-            fis = new FileInputStream(f);
-            s = fis.available();
-            fis.close();
-        } else {
-            f.createNewFile();
-            System.out.println("文件夹不存在");
-        }
-        return s;
-    }
-
-    public static long getFileSizes(String filePath) throws Exception {
-        long s = 0;
-        File f = new File(filePath);
-        if (f.exists()) {
-            FileInputStream fis = null;
-            fis = new FileInputStream(f);
-            s = fis.available();
-            fis.close();
-        } else {
-            f.createNewFile();
-            System.out.println("文件夹不存在");
-        }
-        return s;
-    }
-
-    /**
-     * 递归
-     */
-    public static long getDirectorySize(File f) {
-        long size = 0;
-        File flist[] = f.listFiles();
-        for (int i = 0; i < flist.length; i++) {
-            if (flist[i].isDirectory()) {
-                size = size + getDirectorySize(flist[i]);
-            } else {
-                size = size + flist[i].length();
             }
-        }
-        return size;
-    }
-
-    /**
-     * 转换文件大小
-     */
-    public static String formentFileSize(long fileS) {
-        DecimalFormat df = new DecimalFormat("#.00");
-        String fileSizeString = "";
-        if (fileS < 1024) {
-            fileSizeString = df.format((double) fileS) + "B";
-        } else if (fileS < 1048576) {
-            fileSizeString = df.format((double) fileS / 1024) + "K";
-        } else if (fileS < 1073741824) {
-            fileSizeString = df.format((double) fileS / 1048576) + "M";
-        } else {
-            fileSizeString = df.format((double) fileS / 1073741824) + "G";
-        }
-        return fileSizeString;
-    }
-
-    /**
-     * 转换文件大小为Kb
-     */
-    public static int formentFileSize_Kb(long fileS) {
-        return (int) fileS / 1024;
-    }
-
-    /**
-     * 获取文件类型
-     *
-     * @param filepath 文件路径
-     * @return 文件类型
-     */
-    public static int getFileType(String filepath) {
-        int type = 0;
-        if (MediaFileJudgeUtils.isImageFileType(filepath)) {
-            type = 2;
-        } else if (MediaFileJudgeUtils.isVideoFileType(filepath)) {
-            type = 1;
-        }
-        return type;
-    }
-
-    /**
-     * 文件重命名
-     *
-     * @param path    文件目录
-     * @param oldname 原来的文件名
-     * @param newname 新文件名
-     */
-    public static String renameFile(String path, String oldname, String newname) {
-        if (!oldname.equals(newname)) {//新的文件名和以前文件名不同时,才有必要进行重命名
-            File oldfile = new File(path + "/" + oldname);
-            File newfile = new File(path + "/" + newname);
-            if (!oldfile.exists()) {
-                return "";//重命名文件不存在
-            }
-            if (newfile.exists()) {//若在该目录下已经有一个文件和新文件名相同，则不允许重命名
-                newname = newNameExist(path, newname);
-                oldfile.renameTo(new File(path + "/" + newname));
-            } else {
-                oldfile.renameTo(newfile);
-            }
-            return path + "/" + newname;
-        }
-        return null;
-    }
-
-    /**
-     * 文件重命名
-     *
-     * @param allOldName 原来的完整文件名
-     * @param allNewName 完整的新文件名
-     */
-    public static String renameFile(String allOldName, String allNewName) {
-        if (!allOldName.equals(allNewName)) {//新的文件名和以前文件名不同时,才有必要进行重命名
-            File oldfile = new File(allOldName);
-            File newfile = new File(allNewName);
-            if (!oldfile.exists()) {
-                return "";//重命名文件不存在
-            }
-            if (newfile.exists()) {//若在该目录下已经有一个文件和新文件名相同，则不允许重命名
-                allNewName = newNameExist(allNewName);
-                oldfile.renameTo(new File(allNewName));
-            } else {
-                oldfile.renameTo(newfile);
-            }
-            return allNewName;
-        }
-        return null;
-    }
-
-    private static String newNameExist(String path, String newname) {
-        newname += "a";
-        if (new File(path + "/" + newname).exists()) {
-            newname = newNameExist(path, newname);
-        }
-        return newname;
-    }
-
-    private static String newNameExist(String allNewName) {
-        allNewName += "a";
-        if (new File(allNewName).exists()) {
-            allNewName = newNameExist(allNewName);
-        }
-        return allNewName;
-    }
-
-    public static void copy(String path, String copyPath) throws IOException {
-        File filePath = new File(path);
-        DataInputStream read;
-        DataOutputStream write;
-        if (filePath.isDirectory()) {
-            new File(copyPath).mkdirs();
-            File[] list = filePath.listFiles();
-            for (int i = 0; i < list.length; i++) {
-                String newPath = path + File.separator + list[i].getName();
-                String newCopyPath = copyPath + File.separator + list[i].getName();
-                copy(newPath, newCopyPath);
-            }
-        } else if (filePath.isFile()) {
-            File copyFile = new File(copyPath);
-            if (!copyFile.getParentFile().exists()) {
-                copyFile.getParentFile().mkdirs();
-            }
-            read = new DataInputStream(
-                    new BufferedInputStream(new FileInputStream(path)));
-            write = new DataOutputStream(
-                    new BufferedOutputStream(new FileOutputStream(copyFile)));
-            byte[] buf = new byte[1024 * 512];
-            while (read.read(buf) != -1) {
-                write.write(buf);
-            }
-            read.close();
-            write.close();
-        } else {
-            System.out.println("请输入正确的文件名或路径名");
-        }
-    }
-
-    public static void copyFile(String path, String copyPath) throws IOException {
-        File copyFile = new File(copyPath);
-        if (!copyFile.getParentFile().exists()) {
-            copyFile.getParentFile().mkdirs();
-        }
-        // 打开输入流
-        FileInputStream fis = new FileInputStream(path);
-        // 打开输出流
-        FileOutputStream fos = new FileOutputStream(copyPath);
-
-        // 读取和写入信息
-        int len = 0;
-        // 创建一个字节数组，当做缓冲区
-        byte[] b = new byte[1024];
-        while ((len = fis.read(b)) != -1) {
-            fos.write(b, 0, len);
-        }
-        // 关闭流  先开后关  后开先关
-        fos.close(); // 后开先关
-        fis.close(); // 先开后关
-    }
-
-//    public static String copyTempFile(String path, String copyName) throws IOException {
-//        File filePath = new File(path);
-//        File copyFile = new File(App.hfive_path + "/" + TEMPTAG + "/" + copyName);
-//        if (! copyFile.getParentFile().exists()) {
-//            copyFile.getParentFile().mkdirs();
-//        }
-//        DataInputStream read;
-//        DataOutputStream write;
-//        if (filePath.isFile()) {
-//            read = new DataInputStream(
-//                    new BufferedInputStream(new FileInputStream(path)));
-//            write = new DataOutputStream(
-//                    new BufferedOutputStream(new FileOutputStream(App.hfive_path + "/" + TEMPTAG + "/" + copyName)));
-//            byte[] buf = new byte[1024 * 512];
-//            while (read.read(buf) != - 1) {
-//                write.write(buf);
-//            }
-//            read.close();
-//            write.close();
-//            return App.hfive_path + "/" + TEMPTAG + "/" + copyName;
-//        }
-//        return null;
-//    }
-
-    public static File getCompressPhoto(Context context, String picPath) {
-        final File[] lubanPath = {null};
-        List<String> strings = new ArrayList<>();
-        strings.add(picPath);
-        LubanUtils.asynchronousCompression(context, strings, new LubanUtils.LubanImageListener() {
-            @Override
-            public void lubanSuccess(File files) {
-                lubanPath[0] = files;
-            }
-
-            @Override
-            public void lubanSuccess(List<File> files) {
-
-            }
-
-            @Override
-            public void lubanError(Throwable e) {
-
-            }
-        });
-        return lubanPath[0];
-    }
-
-    public static File getCompressPhoto(Context context, File image) {
-        final File[] lubanPath = {null};
-        List<File> strings = new ArrayList<>();
-        strings.add(image);
-        LubanUtils.asynchronousCompression(context, strings, new LubanUtils.LubanImageListener() {
-            @Override
-            public void lubanSuccess(File files) {
-                lubanPath[0] = files;
-            }
-
-            @Override
-            public void lubanSuccess(List<File> files) {
-
-            }
-
-            @Override
-            public void lubanError(Throwable e) {
-
-            }
-        });
-        return lubanPath[0];
-    }
-
-    /**
-     * 通过Uri返回File文件
-     * 注意：通过相机的是类似content://media/external/images/media/97596
-     * 通过相册选择的：file:///storage/sdcard0/DCIM/Camera/IMG_20150423_161955.jpg
-     * 通过查询获取实际的地址
-     *
-     * @param uri     文件uri
-     * @param context 上下文
-     * @return 文件
-     */
-    public static File getFileByUri(Context context, Uri uri) {
-        String path = null;
-        if ("file".equals(uri.getScheme())) {
-            path = uri.getEncodedPath();
-            if (path != null) {
-                path = Uri.decode(path);
-                ContentResolver cr = context.getContentResolver();
-                StringBuffer buff = new StringBuffer();
-                buff.append("(").append(MediaStore.Images.ImageColumns.DATA).append("=").append("'" + path + "'").append(")");
-                Cursor cur = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Images.ImageColumns._ID, MediaStore.Images.ImageColumns.DATA}, buff.toString(), null, null);
-                int index = 0;
-                int dataIdx = 0;
-                for (cur.moveToFirst(); !cur.isAfterLast(); cur.moveToNext()) {
-                    index = cur.getColumnIndex(MediaStore.Images.ImageColumns._ID);
-                    index = cur.getInt(index);
-                    dataIdx = cur.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-                    path = cur.getString(dataIdx);
-                }
-                cur.close();
-                if (index == 0) {
-                } else {
-                    Uri u = Uri.parse("content://media/external/images/media/" + index);
-                    System.out.println("temp uri is :" + u);
-                }
-            }
-            if (path != null) {
-                return new File(path);
-            }
-        } else if ("content".equals(uri.getScheme())) {
-            // 4.2.2以后
-            String[] proj = {MediaStore.Images.Media.DATA};
-            Cursor cursor = context.getContentResolver().query(uri, proj, null, null, null);
-            if (cursor.moveToFirst()) {
-                int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                path = cursor.getString(columnIndex);
-            }
-            cursor.close();
-
-            return new File(path);
-        } else {
-            Logger.i(FileUtils.class.getSimpleName(), "Uri Scheme:" + uri.getScheme());
         }
         return null;
     }
@@ -491,54 +140,66 @@ public class FileUtils {
      * @return File类型
      * 存储 录音文件的文件夹 .AUDIO_RECORD是一个文件夹
      */
-    public static File getNewFile(int fileType) {
-        String filePath = null;
-        switch (fileType) {
-            case AUDIO_RECORD:
-                filePath = Environment.getExternalStorageDirectory() + "/hzy/record" + formatInt() + System.currentTimeMillis() + ".pcm";
-                break;
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public static File getNewFile(Context mContext, int fileType) {
+        File file = null;
+        try {
+            switch (fileType) {
+                case FILE_FOLDER:
+                    // 一加手机的文件获取方式与其他手机不同，因此额外处理
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        file = mContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+                    } else {
+                        file = new File(Environment.getExternalStorageDirectory() + "/demo/record" + formatInt() + System.currentTimeMillis());
+                    }
+                    if (!file.getParentFile().exists()) {
+                        file.getParentFile().mkdirs();
+                    }
+                    if (!file.exists()) {
+                        try {
+                            file.createNewFile();
+                        } catch (IOException e) {
+                            return null;
+                        }
+                    }
+                    break;
 
-            case AMR_RECORD:
-                filePath = Environment.getExternalStorageDirectory() + "/hzy/record" + formatInt() + System.currentTimeMillis() + ".amr";
-                break;
+                case AUDIO_RECORD:
+                    file = File.createTempFile("record" + formatInt() + System.currentTimeMillis(), ".pcm");
+                    break;
 
-            case RAW_RECORD:
-                filePath = Environment.getExternalStorageDirectory() + "/hzy/record" + formatInt() + System.currentTimeMillis() + ".raw";
-                break;
+                case AMR_RECORD:
+                    file = File.createTempFile("record" + formatInt() + System.currentTimeMillis(), ".amr");
+                    break;
 
-            case WAV_OUTPUT:
-                filePath = Environment.getExternalStorageDirectory() + "/hzy/record" + formatInt() + System.currentTimeMillis() + ".wav";
-                break;
+                case RAW_RECORD:
+                    file = File.createTempFile("record" + formatInt() + System.currentTimeMillis(), ".raw");
+                    break;
 
-            case VIDEO_RECORD:
-                filePath = Environment.getExternalStorageDirectory() + "/hzy/video" + formatInt() + System.currentTimeMillis() + ".mp4";
-                break;
+                case WAV_OUTPUT:
+                    file = File.createTempFile("record" + formatInt() + System.currentTimeMillis(), ".wav");
+                    break;
 
-            case IMAGE_CAPTURE:
-                filePath = Environment.getExternalStorageDirectory() + "/hzy/image" + formatInt() + System.currentTimeMillis() + ".jpg";
-                break;
-        }
-        if (TextUtils.isEmpty(filePath)) {
-            return null;
-        }
-        File file = new File(filePath);
-        if (!file.getParentFile().exists()) {
-            file.getParentFile().mkdirs();
-        }
+                case VIDEO_RECORD:
+                    file = File.createTempFile("record" + formatInt() + System.currentTimeMillis(), ".mp4");
+                    break;
 
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                Logger.e("FileUrils", e);
-                return null;
+                case IMAGE_CAPTURE:
+                    file = File.createTempFile("record" + formatInt() + System.currentTimeMillis(), ".jpg");
+                    break;
+
+                default:
+                    break;
             }
+        } catch (IOException e) {
+            Logger.e(e);
         }
         return file;
     }
 
-    public static String getNewFileDir(int fileType) {
-        File file = getNewFile(fileType);
+
+    public static String getNewFileDir(Context mContext) {
+        File file = getNewFile(mContext, FILE_FOLDER);
         if (Const.isEmpty(file)) {
             return null;
         }
@@ -561,10 +222,11 @@ public class FileUtils {
             System.out.println("删除文件失败:" + fileName + "不存在！");
             return false;
         } else {
-            if (file.isFile())
+            if (file.isFile()) {
                 return deleteFile(fileName);
-            else
+            } else {
                 return deleteDirectory(fileName);
+            }
         }
     }
 
@@ -599,8 +261,9 @@ public class FileUtils {
      */
     public static boolean deleteDirectory(String dir) {
         // 如果dir不以文件分隔符结尾，自动添加文件分隔符
-        if (!dir.endsWith(File.separator))
+        if (!dir.endsWith(File.separator)) {
             dir = dir + File.separator;
+        }
         File dirFile = new File(dir);
         // 如果dir对应的文件不存在，或者不是一个目录，则退出
         if ((!dirFile.exists()) || (!dirFile.isDirectory())) {
@@ -614,15 +277,17 @@ public class FileUtils {
             // 删除子文件
             if (files[i].isFile()) {
                 flag = FileUtils.deleteFile(files[i].getAbsolutePath());
-                if (!flag)
+                if (!flag) {
                     break;
+                }
             }
             // 删除子目录
             else if (files[i].isDirectory()) {
                 flag = FileUtils.deleteDirectory(files[i]
                         .getAbsolutePath());
-                if (!flag)
+                if (!flag) {
                     break;
+                }
             }
         }
         if (!flag) {
@@ -637,24 +302,4 @@ public class FileUtils {
             return false;
         }
     }
-//
-//    public static String ioToBase64(String path) throws IOException {
-////        String fileName = "D:/u18.jpg"; // 源文件
-//        String source = path;
-//        String strBase64 = null;
-//        try {
-//            InputStream in = new FileInputStream(source);
-//            // in.available()返回文件的字节长度
-//            byte[] bytes = new byte[in.available()];
-//            // 将文件中的内容读入到数组中
-//            in.read(bytes);
-//            strBase64 = new BASE64Encoder().encode(bytes); // 将字节流数组转换为字符串
-//            in.close();
-//        } catch (FileNotFoundException fe) {
-//            fe.printStackTrace();
-//        } catch (IOException ioe) {
-//            ioe.printStackTrace();
-//        }
-//        return strBase64;
-//    }
 }
