@@ -11,6 +11,7 @@ import android.support.v4.content.FileProvider;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -42,6 +43,20 @@ public class Const {
      * @return 该集合的长度
      */
     public static int judgeListNull(List list) {
+        if (list == null || list.size() == 0) {
+            return 0;
+        } else {
+            return list.size();
+        }
+    }
+
+    /**
+     * 判断集合的长度
+     *
+     * @param list 索要获取长度的集合
+     * @return 该集合的长度
+     */
+    public static int judgeListNull(Map list) {
         if (list == null || list.size() == 0) {
             return 0;
         } else {

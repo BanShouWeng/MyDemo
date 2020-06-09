@@ -86,8 +86,8 @@
         <activity android:name=".activity.view.AutoHideHeaderActivity" />
         <activity android:name=".activity.GsonInputActivity" />
 
-<!--        <activity android:name=".myTest.TestActivity">-->
-        <activity android:name=".MainActivity">
+        <activity android:name=".myTest.TestActivity">
+<!--        <activity android:name=".MainActivity">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

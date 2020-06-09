@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,15 +13,21 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.bsw.mydemo.R;
+import com.bsw.mydemo.base.BaseActivity;
 import com.bsw.mydemo.utils.EnvironmentShare;
 import com.bsw.mydemo.utils.Logger;
 import com.bsw.mydemo.utils.PermissionUtils;
 import com.bsw.mydemo.utils.TimerUtils;
-import com.bsw.mydemo.base.BaseActivity;
+import com.bsw.mydemo.utils.net.ApiRequest;
+import com.bsw.mydemo.utils.net.NetActionEnum;
+import com.bsw.mydemo.utils.net.NetUtils;
+import com.bsw.mydemo.utils.net.result.ResultBean;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
+
+import static com.bsw.mydemo.utils.net.NetActionEnum.POST__UPLOAD_AAC;
 
 public class RecordingActivity extends BaseActivity {
 
@@ -176,13 +182,13 @@ public class RecordingActivity extends BaseActivity {
                             // 设置音频来源(一般为麦克风)
                             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
                             // 设置音频输出格式（默认的输出格式）
-//                            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
-                            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
+                            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
+//                            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
                             // 设置音频编码方式（默认的编码方式）
-//                            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-                            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+                            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+//                            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
                             // 创建一个临时的音频输出文件.record_是文件的前缀名 .amr是后缀名
-                            audioFile = File.createTempFile("myDemoTest", ".amr", EnvironmentShare.getAudioRecordDir());
+                            audioFile = File.createTempFile("myDemoTest", ".aac", EnvironmentShare.getAudioRecordDir());
                             // audioFile =new
                             // File(Environment.getExternalStorageDirectory().getCanonicalPath()+"/sound.amr");
                             // 设置录制器的文件保留路径
@@ -205,6 +211,26 @@ public class RecordingActivity extends BaseActivity {
                         if (bSRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                             toast("已保存");
                             setTitle("已保存");
+                            NetUtils.getNewInstance(activity)
+                                    .request(new NetUtils.NetRequestCallBack() {
+                                                 @Override
+                                                 public void success(NetActionEnum action, ResultBean resultBean, Object tag) {
+                                                     Logger.i(resultBean.toString());
+                                                 }
+
+                                                 @Override
+                                                 public void failure(NetActionEnum action, ResultBean resultBean, Object tag) {
+
+                                                 }
+
+                                                 @Override
+                                                 public void error(NetActionEnum action, Throwable e, Object tag) {
+
+                                                 }
+                                             }, true, new ApiRequest<>(POST__UPLOAD_AAC, ApiRequest.SPECIAL_FILE_UPLOAD)
+                                                    .setRequestType(ApiRequest.REQUEST_TYPE_POST)
+                                                    .setRequestBody(audioFile)
+                                    );
                         } else {
                             if (audioFile.exists()) {
                                 audioFile.delete();

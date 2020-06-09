@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BatteryView">
+        <attr name="currentPower" format="float" />
+        <attr name="fullCharge" format="float" />
+        <attr name="aspectW2HRatio" format="float" />
+        <attr name="frameWidth" format="dimension" />
+        <attr name="framePadding" format="dimension" />
+        <attr name="headHeightRatio" format="float" />
+        <attr name="bodyWidthRatio" format="float" />
+        <attr name="powerEmptyColor" format="color" />
+        <attr name="powerColor" format="color" />
+        <attr name="frameColor" format="color" />
+    </declare-styleable>
+</resources>
