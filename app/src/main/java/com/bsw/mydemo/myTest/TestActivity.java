@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.bsw.mydemo.utils.Anim;
 import com.bsw.mydemo.utils.Const;
 import com.bsw.mydemo.utils.Logger;
 import com.bsw.mydemo.widget.BatteryView;
@@ -20,12 +21,7 @@ import java.lang.ref.WeakReference;
 
 public class TestActivity extends AppCompatActivity {
 
-    private View scaleTest;
-    private MyHandler myHandler = new MyHandler(this);
-
-    private final float offset = 300f;
-
-    private boolean isScaleRun = false;
+    private Anim anim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +31,16 @@ public class TestActivity extends AppCompatActivity {
         findViewById(R.id.test_bg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isScaleRun = !isScaleRun;
-                if (isScaleRun) {
-                    myHandler.sendEmptyMessage(0);
+                if (anim.isRunning()) {
+                    anim.stop();
+                } else {
+                    anim.start();
                 }
             }
         });
 
-        scaleTest = findViewById(R.id.scale_test);
+        anim = new Anim(findViewById(R.id.scale_test));
+        anim.start();
 
 //        FrameLayout testBg = findViewById(R.id.test_bg);
 //        SwipeItemLayout swipeItemLayout = new SwipeItemLayout(this);
@@ -64,55 +62,5 @@ public class TestActivity extends AppCompatActivity {
 //        testBg.addView(swipeItemLayout);
     }
 
-    private class MyHandler extends Handler {
-        private WeakReference<TestActivity> weakReference;
 
-        private boolean isZoomIn = true;
-
-        MyHandler(TestActivity activity) {
-            weakReference = new WeakReference<>(activity);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            final TestActivity activity = weakReference.get();
-            if (null != activity) {
-                if (isZoomIn) {
-                    activity.scaleTest.setScaleX(scaleTest.getScaleX() - 0.005f);
-                    activity.scaleTest.setScaleY(scaleTest.getScaleY() - 0.005f);
-                    activity.scaleTest.setTranslationY(activity.scaleTest.getTranslationY() + offset / 200);
-                } else {
-                    activity.scaleTest.setScaleX(scaleTest.getScaleX() + 0.005f);
-                    activity.scaleTest.setScaleY(scaleTest.getScaleY() + 0.005f);
-                    activity.scaleTest.setTranslationY(activity.scaleTest.getTranslationY() - offset / 200);
-                }
-                if (activity.scaleTest.getScaleX() < 0 || activity.scaleTest.getScaleY() < 0) {
-                    isZoomIn = false;
-                } else if (activity.scaleTest.getScaleX() > 1 || activity.scaleTest.getScaleY() > 1) {
-                    isZoomIn = true;
-                }
-                Logger.i("scaleX = " + activity.scaleTest.getScaleX()
-                        + " scaleY = " + activity.scaleTest.getScaleY()
-                        + " translationY = " + activity.scaleTest.getTranslationY()
-                        + " isZoomIn = " + isZoomIn
-                );
-
-                Const.threadPoolExecute(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(20);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } finally {
-                            if (activity.isScaleRun) {
-                                activity.myHandler.sendEmptyMessage(0);
-                            }
-                        }
-                    }
-                });
-            }
-        }
-    }
 }
