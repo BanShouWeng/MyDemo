@@ -7,37 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".myTest.TestActivity">
 
-    <com.bsw.mydemo.widget.BatteryView
+    <LinearLayout
+        android:id="@+id/scale_test"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:powerEmptyColor="@android:color/holo_orange_light"
-        android:padding="50dp"
-        app:currentPower="50">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </com.bsw.mydemo.widget.BatteryView>
+        <com.bsw.mydemo.widget.BatteryView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:padding="50dp"
+            app:currentPower="50"
+            app:powerEmptyColor="@android:color/holo_orange_light" />
 
-    <!--<TextView-->
-    <!--android:id="@+id/left_menu"-->
-    <!--android:layout_width="100dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_gravity="left"-->
-    <!--android:background="@android:color/holo_blue_bright"-->
-    <!--android:gravity="center"-->
-    <!--android:text="left"-->
-    <!--android:textColor="@android:color/white" />-->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_light" />
 
-    <!--<TextView-->
-    <!--android:id="@+id/right_menu"-->
-    <!--android:layout_width="100dp"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_gravity="right"-->
-    <!--android:background="@android:color/holo_green_light"-->
-    <!--android:gravity="center"-->
-    <!--android:text="right"-->
-    <!--android:textColor="@android:color/white" />-->
+        <TextView
+            android:id="@+id/left_menu"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="@android:color/holo_blue_bright"
+            android:gravity="center"
+            android:text="left"
+            android:textColor="@android:color/white" />
 
-    <!--<TextView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="@android:color/white" />-->
+        <TextView
+            android:id="@+id/right_menu"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="@android:color/holo_green_light"
+            android:gravity="center"
+            android:text="right"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
+    </LinearLayout>
 </FrameLayout>
