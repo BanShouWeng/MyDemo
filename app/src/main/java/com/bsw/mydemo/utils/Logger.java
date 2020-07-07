@@ -233,6 +233,8 @@ public class Logger {
             case ASSERT:
                 Log.wtf(tag, sub);
                 break;
+            default:
+                break;
         }
     }
 

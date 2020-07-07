@@ -1,23 +1,11 @@
 package com.bsw.mydemo.myTest;
 
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
-import com.bsw.mydemo.utils.Anim;
-import com.bsw.mydemo.utils.Const;
-import com.bsw.mydemo.utils.Logger;
-import com.bsw.mydemo.widget.BatteryView;
-import com.bsw.mydemo.widget.BswRecyclerView.SwipeItemLayout;
+import com.bsw.mydemo.utils.anim.Anim;
 import com.bsw.mydemo.R;
-
-import java.lang.ref.WeakReference;
 
 public class TestActivity extends AppCompatActivity {
 

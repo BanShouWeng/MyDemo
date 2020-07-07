@@ -88,6 +88,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.json:json:20190722'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+    // https://www.cnblogs.com/wjw1014/p/12287576.html
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation files('libs/agent_lss_4.6.0-20180417.jar')
     implementation files('libs/bdplayer.jar')
@@ -95,6 +97,7 @@ dependencies {
     releaseImplementation project(':camera')
     debugImplementation project(':PhotoPicker')
     releaseImplementation project(':PhotoPicker')
+    // https://www.cnblogs.com/huangjianboke/p/5083360.html
     implementation 'com.kevin:loopview:1.5.6'
     implementation 'com.amap.api:3dmap:7.4.0'
 }

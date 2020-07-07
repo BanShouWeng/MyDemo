@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 import io.reactivex.Observable;
@@ -26,6 +27,20 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+    }
+
+    @Test
+    public void passwordCreator() {
+        final String temp = "_!@#$%^&*`~()-+=.,;<>:1234567890qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM";
+        final char[] tempByte = temp.toCharArray();
+        final int pwdSize = 12;
+        final int tempSize = tempByte.length;
+        Random random = new Random();
+        StringBuilder builder = new StringBuilder(pwdSize);
+        for (int i = 0; i < pwdSize; i++) {
+            builder.append(tempByte[random.nextInt(tempSize)]);
+        }
+        System.out.println(builder.toString());
     }
 
     @Test
