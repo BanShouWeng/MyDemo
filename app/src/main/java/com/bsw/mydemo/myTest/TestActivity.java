@@ -27,7 +27,7 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-        anim = new Anim(findViewById(R.id.scale_test));
+        anim = new Anim(findViewById(R.id.scale_test), 1, 0);
         anim.start();
 
 //        FrameLayout testBg = findViewById(R.id.test_bg);
@@ -49,6 +49,4 @@ public class TestActivity extends AppCompatActivity {
 //        swipeItemLayout.addView(mainView);
 //        testBg.addView(swipeItemLayout);
     }
-
-
 }
